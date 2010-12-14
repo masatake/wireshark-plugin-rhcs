@@ -28,6 +28,10 @@ So that shooting the trouble about RHCS and understanding the
 protocols NOW, I provide the dissectors as a dynamic loadadble plugin.
 I assumed you are using Fedora-14. 
 
+A dissector for protocol used between ccsd is not built because
+the dissector uses tcp_dissect_pdus function.  It is declared in
+wireshark/epan/dissectors/packet-tcp.h, however is is not included
+in wireshark-devel package[2]. 
 
 Building & Installing
 ----------------------
@@ -61,7 +65,7 @@ as key.
 Reference
 ---------
 [1] https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=3232
-
+[2] https://bugzilla.redhat.com/show_bug.cgi?id=662969
 
 Contact
 --------
