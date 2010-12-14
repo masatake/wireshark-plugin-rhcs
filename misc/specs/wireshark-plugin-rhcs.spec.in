@@ -1,0 +1,43 @@
+Summary: wireshark packet dissector for protocols used in RHCS
+Name: wireshark-plugin-rhcs
+Version: @PACKAGE_VERSION@
+Release: 0%{?dist}
+License: GPLv2
+Group: Development/Tools
+
+Source0: wireshark-plugin-rhcs-@PACKAGE_VERSION@.tar.bz2
+
+Buildroot: %{_tmppath}/%{name}-root
+BuildRequires:	wireshark-devel
+Requires: wireshark
+
+%description
+wireshark packet dissector for protocols used in RHCS
+Protocols used in following packages are supported in this
+dissector: corosync, openais, cman, groupd, clvmd and rgmanager.
+
+%prep
+%setup -q
+
+%build
+%configure
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+%make_install
+
+rm -f $RPM_BUILD_ROOT%{_libdir}/wireshark/plugins/*/rhcs.la
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+%doc README
+%{_libdir}/wireshark/plugins/*/rhcs.so
+
+
+%changelog
+* Tue Dec 14 2010 Masatake YAMATO <yamato@redhat.com> - 0.0.0
+- First RPM build.

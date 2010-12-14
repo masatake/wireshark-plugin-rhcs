@@ -1,0 +1,68 @@
+This is wireshark packet dissector for protocols used in RHCS.
+
+I've written wireshark packet dissectors for higher level protocols of rhel5 cluster.
+See screenshots/clvmd.png.
+
+    corosync_totemnet <100%>
+      corosync_totemsrp <100%>
+	corosync_totempg <100%>
+	  openais_cman <100%>
+	    clvmd <100%>
+	    rgmanager <10%>
+	  openais_a <100%>
+	    openais_cpg <100%>
+	      groupd <100%>
+	    openais_evt <5%>
+	    openais_clm <5%>
+	  flowcontrol <100%>
+	  sync <100%>
+
+Background
+----------
+
+Dissectors for the base protocols are already submmited as a patch to
+wireshark project[1]. However, it has not been included to the official
+source tree.
+
+So that shooting the trouble about RHCS and understanding the
+protocols NOW, I provide the dissectors as a dynamic loadadble plugin.
+I assumed you are using Fedora-14. 
+
+
+Building & Installing
+----------------------
+
+   $ bash autogen.sh
+   $ ./configure
+   $ make
+   $ make rpm
+   $ sudo rpm -Uvh build/RPM/*/wireshark-plugin-rhcs*.rpm
+
+Example captures
+------------------
+pcap/corosync-totemsrp--noencypted--2nodes.pcap
+pcap/corosync-totemsrp--key:example.com--3nodes.pcap
+
+corosync-totemsrp--noencypted--2nodes.pcap: The packets in this file are not
+encrypted. So you can dissect the packets in this file with no special
+operation. 
+
+corosync-totemsrp--key:example.com--3nodes.pcap: The packets in this file are
+encrypted. So a key is needed to decrypt them. Open the Preferences dialog and
+choose COROSYNC/TOTEMNET in Protocols branch. You will see "Totemnet Layer of
+Corosync Cluster Engine" dialog. Give a key, "example.com" to "Private Key"
+text field. Then push Apply or OK button.  See screenshots/corosync_totemnet__pref.png.
+
+If you don't specify key explicitly in cluster.conf, the name of cluster is used
+as key.
+
+
+
+Reference
+---------
+[1] https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=3232
+
+
+Contact
+--------
+Masatake YAMATO <yamato@redhat.com>
