@@ -102,6 +102,7 @@ static int proto_corosync_totemnet = -1;
 /* field of struct security_header */
 static int hf_corosync_totemnet_security_header_hash_digest    = -1;
 static int hf_corosync_totemnet_security_header_salt           = -1;
+static int hf_corosync_totemnet_security_crypto_type           = -1;
 
 /* configurable parameters */
 static guint  corosync_totemnet_port        = PORT_COROSYNC_TOTEMNET;
@@ -114,11 +115,20 @@ static gint ett_corosync_totemnet_security_header              = -1;
 #define HMAC_HASH_SIZE 20
 #define SALT_SIZE      16
 
+#define TOTEM_CRYPTO_SOBER 0
+#define TOTEM_CRYPTO_NSS   1
+
+static const value_string corosync_totemnet_crypto_type[] = {
+  { TOTEM_CRYPTO_SOBER, "SOBER" },
+  { TOTEM_CRYPTO_NSS,   "NSS"   },
+  { 0, NULL }
+};
 
 
 static int
 dissect_corosync_totemnet_security_header(tvbuff_t *tvb,
-                                          packet_info *pinfo, proto_tree *parent_tree)
+                                          packet_info *pinfo, proto_tree *parent_tree,
+					  gboolean check_crypt_type)
 {
   proto_item *item;
   proto_tree *tree;
@@ -142,7 +152,16 @@ dissect_corosync_totemnet_security_header(tvbuff_t *tvb,
       proto_tree_add_item(tree,
                           hf_corosync_totemnet_security_header_salt,
                           tvb, HMAC_HASH_SIZE, SALT_SIZE, FALSE);
+      
+      if (check_crypt_type)
+	{
+	  int io_len = tvb_length(tvb);
 
+
+	  proto_tree_add_item(tree,
+			      hf_corosync_totemnet_security_crypto_type,
+			      tvb, io_len - 1, 1, FALSE);
+	}
     }
   return HMAC_HASH_SIZE + SALT_SIZE;
 }
@@ -189,7 +208,8 @@ dissect_corosync_totemnet_security_header(tvbuff_t *tvb,
  */
 static int
 dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
-                                           packet_info *pinfo, proto_tree *parent_tree)
+                                           packet_info *pinfo, proto_tree *parent_tree,
+					   gboolean check_crypt_type)
 {
   unsigned char  keys[48];
   struct sober128_prng     keygen_prng_state;
@@ -199,9 +219,9 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
   unsigned char *initial_vector = &keys[0];
   unsigned char  digest_comparison[HMAC_HASH_SIZE];
 
-
+  int            io_len;
+  unsigned char  type;
   guint8        *io_base;
-  guint          io_len;
   
 #define PRIVATE_KEY_LEN_MAX 256
   gchar          private_key[PRIVATE_KEY_LEN_MAX];
@@ -210,11 +230,15 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
   unsigned char* salt;
 
 
-  io_len = tvb_length(tvb);
+  io_len = tvb_length(tvb) - (check_crypt_type? 1: 0);
   if (io_len < HMAC_HASH_SIZE + SALT_SIZE)
     return 0;
 
   io_base = tvb_memdup(tvb, 0, io_len);
+  if (check_crypt_type &&
+      ( io_base[io_len] != TOTEM_CRYPTO_SOBER ))
+    return 0;
+
   hash_digest = io_base;
   salt        = io_base + HMAC_HASH_SIZE;
   
@@ -282,7 +306,7 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
     add_new_data_source(pinfo, decrypted_tvb, "Decrypted Data");
 
     
-    dissect_corosync_totemnet_security_header(decrypted_tvb, pinfo, parent_tree);
+    dissect_corosync_totemnet_security_header(decrypted_tvb, pinfo, parent_tree, check_crypt_type);
     
     next_tvb = tvb_new_subset(decrypted_tvb, 
                               HMAC_HASH_SIZE + SALT_SIZE, 
@@ -302,8 +326,16 @@ dissect_corosynec_totemnet(tvbuff_t *tvb,
     {
       int r;
 
-      r = dissect_corosynec_totemnet_with_decryption(tvb, pinfo, parent_tree);
-    
+      r = dissect_corosynec_totemnet_with_decryption(tvb, 
+						     pinfo, 
+						     parent_tree,
+						     FALSE);
+      
+      if (r == 0)
+	r = dissect_corosynec_totemnet_with_decryption(tvb, 
+						       pinfo, 
+						       parent_tree,
+						       TRUE);
       if (r > 0)
         return r;
     }
@@ -325,6 +357,10 @@ proto_register_corosync_totemnet(void)
       { "Salt", "corosync_totemnet.security_header_salt",
         FT_BYTES, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
+    { &hf_corosync_totemnet_security_crypto_type,
+      { "Cryptographic Type", "corosync_totemnet.security_crypto_type",
+	FT_UINT8, BASE_DEC, VALS(corosync_totemnet_crypto_type), 0x0,
+	NULL, HFILL }},
   };
   
   static gint *ett_corosync_totemnet[] = {
