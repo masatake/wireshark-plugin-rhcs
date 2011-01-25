@@ -407,7 +407,8 @@ proto_reg_handoff_corosync_totemnet(void)
     }
                 
   port  = corosync_totemnet_port;
-  dissector_add("udp.port", port, corosync_totemnet_handle);
+  dissector_add("udp.port", port,     corosync_totemnet_handle);
+  dissector_add("udp.port", port - 1, corosync_totemnet_handle);
 }
 
 
