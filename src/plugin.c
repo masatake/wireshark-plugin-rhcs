@@ -21,6 +21,8 @@ plugin_register (void)
   proto_register_groupd(); 
   proto_register_rgmanager(); 
 
+  proto_register_rhcs_fenced();
+
 
 
   proto_reg_handoff_corosync_totemnet();
@@ -41,4 +43,6 @@ plugin_register (void)
   proto_reg_handoff_groupd(); 
   proto_reg_handoff_rgmanager(); 
 
+  
+  proto_reg_handoff_rhcs_fenced();
 }

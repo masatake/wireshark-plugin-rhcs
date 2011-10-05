@@ -26,6 +26,8 @@ rhcs_la_SOURCES = \
 	packet-clumond.c			\
 	packet-clvmd.c                          \
 	\
+	packet-rhcs-fenced.c		        \
+	\
 	plugin.c                                \
 	\
 	$(NULL)
