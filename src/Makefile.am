@@ -18,6 +18,8 @@ rhcs_la_SOURCES = \
 	packet-openais-cman.c			\
 	packet-openais-cpg.c			\
 	packet-openais-evt.c			\
+	packet-openais-ckpt.c			\
+	\
 	packet-openais-flowcontrol.c		\
 	packet-openais-sync.c			\
 	\
