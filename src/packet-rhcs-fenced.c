@@ -71,8 +71,6 @@ static int hf_rhcs_fenced_protocol_dr_ver_patch = -1;
 static int hf_rhcs_fenced_protocol_dr_ver_flags = -1;
 static int hf_rhcs_fenced_protocol_dr_ver_flags_stateful = -1;
 
-static int hf_rhcs_fenced_start = -1;
-
 static int hf_rhcs_fenced_fd_info = -1;
 static int hf_rhcs_fenced_fd_info_fd_info_size = -1;
 static int hf_rhcs_fenced_fd_info_id_info_size = -1;
@@ -94,8 +92,6 @@ static int hf_rhcs_fenced_id_info_pad = -1;
 static int hf_rhcs_fenced_id_info_fence_time = -1;
 static int hf_rhcs_fenced_id_info_fence_external_time = -1;
 
-static int hf_rhcs_fenced_complete = -1;
-
 /* Initialize the subtree pointers */
 static gint ett_rhcs_fenced        = -1;
 static gint ett_rhcs_fenced_header = -1;
@@ -105,11 +101,9 @@ static gint ett_rhcs_fenced_protocol_dm_ver = -1;
 static gint ett_rhcs_fenced_protocol_dr_ver = -1;
 static gint ett_rhcs_fenced_protocol_dm_ver_flags = -1;
 static gint ett_rhcs_fenced_protocol_dr_ver_flags = -1;
-static gint ett_rhcs_fenced_start = -1;
 static gint ett_rhcs_fenced_fd_info = -1;
 static gint ett_rhcs_fenced_id_info = -1;
 static gint ett_rhcs_fenced_id_info_flags = -1;
-static gint ett_rhcs_fenced_complete = -1;
 
 /* See cluster/fence/fenced/fd.h */
 #define FD_MSG_PROTOCOL		1
@@ -310,13 +304,14 @@ dissect_rhcs_fenced_id_info(tvbuff_t *tvb, packet_info *pinfo, proto_tree *paren
   return offset - original_offset;
 }
 
+
 static int
 dissect_rhcs_fenced_start_or_complete(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
-				      int offset, guint length, int hf, gint ett)
+				      int offset, guint length)
 {
   int original_offset;
-  proto_tree *tree, *fd_info_tree;
-  proto_item *item, *fd_info_item;
+  proto_tree *tree;
+  proto_item *item;
   guint32 i, id_info_count;
   int d;
 
@@ -324,18 +319,13 @@ dissect_rhcs_fenced_start_or_complete(tvbuff_t *tvb, packet_info *pinfo, proto_t
   if ( (length - offset) <  ( 4 + 4 + 4 + 4 + 4 + 4 + 4 + 4 ) )
     return 0;
 
-  offset += 0;
-  item = proto_tree_add_item(parent_tree, hf, tvb, 
-			     offset, -1, TRUE);
-  tree = proto_item_add_subtree(item, ett);
-
-  offset += dissect_rhcs_fenced_fd_info(tvb, pinfo, tree, offset, length, &id_info_count);
+  offset += dissect_rhcs_fenced_fd_info(tvb, pinfo, parent_tree, offset, length, &id_info_count);
   if (original_offset == offset)
     goto out;
  
   for (i = 0; i < id_info_count; i++)
     {
-      d = dissect_rhcs_fenced_id_info(tvb, pinfo, tree, offset, length);
+      d = dissect_rhcs_fenced_id_info(tvb, pinfo, parent_tree, offset, length);
       if ( d == 0 )
 	goto out;
 
@@ -350,18 +340,14 @@ static int
 dissect_rhcs_fenced_start(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 			  int offset, guint length)
 {
-  return dissect_rhcs_fenced_start_or_complete(tvb, pinfo, parent_tree, offset, length,
-					       hf_rhcs_fenced_start,
-					       ett_rhcs_fenced_start);
+  return dissect_rhcs_fenced_start_or_complete(tvb, pinfo, parent_tree, offset, length);
 }
 
 static int
 dissect_rhcs_fenced_complete(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 			  int offset, guint length)
 {
-  return dissect_rhcs_fenced_start_or_complete(tvb, pinfo, parent_tree, offset, length,
-					       hf_rhcs_fenced_complete,
-					       ett_rhcs_fenced_complete);
+  return dissect_rhcs_fenced_start_or_complete(tvb, pinfo, parent_tree, offset, length);
 }
 
 
@@ -599,11 +585,6 @@ proto_register_rhcs_fenced(void)
       { "dr_ver stateful", "rhcs_fenced.protocol.dr_ver.flags.stateful",
 	FT_BOOLEAN, 16, NULL, PV_STATEFUL,
 	NULL, HFILL }},
-
-    { &hf_rhcs_fenced_start,
-      { "Start", "rhcs_fenced.start",
-        FT_NONE, BASE_NONE, NULL, 0x0,
-        NULL, HFILL }},
     { &hf_rhcs_fenced_fd_info,
       { "Fence domain info", "rhcs_fenced.fd_info",
         FT_NONE, BASE_NONE, NULL, 0x0,
@@ -681,11 +662,6 @@ proto_register_rhcs_fenced(void)
       { "External Time", "rhcs_fenced.id_info.fence_external_time",
         FT_UINT64, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
-
-    { &hf_rhcs_fenced_complete,
-      { "Complete", "rhcs_fenced.complete",
-        FT_NONE, BASE_NONE, NULL, 0x0,
-        NULL, HFILL }},
   };
   static gint *ett[] = {
     &ett_rhcs_fenced,
@@ -696,11 +672,9 @@ proto_register_rhcs_fenced(void)
     &ett_rhcs_fenced_protocol_dr_ver,
     &ett_rhcs_fenced_protocol_dm_ver_flags,
     &ett_rhcs_fenced_protocol_dr_ver_flags,
-    &ett_rhcs_fenced_start,
     &ett_rhcs_fenced_fd_info,
     &ett_rhcs_fenced_id_info,
     &ett_rhcs_fenced_id_info_flags,
-    &ett_rhcs_fenced_complete,
   };
   
   proto_rhcs_fenced = proto_register_protocol("Protocol used in fenced of rhcs",

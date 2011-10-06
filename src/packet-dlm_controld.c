@@ -94,12 +94,27 @@ VAR_protocol(dr);
 VAR_protocol(kr);
 
 
+static int hf_dlm_controld_ls_info = -1;
+static int hf_dlm_controld_ls_info_ls_info_size = -1;
+static int hf_dlm_controld_ls_info_id_info_size = -1;
+static int hf_dlm_controld_ls_info_id_info_count = -1;
+static int hf_dlm_controld_ls_info_started_count = -1;
+static int hf_dlm_controld_ls_info_member_count = -1;
+static int hf_dlm_controld_ls_info_joined_count = -1;
+static int hf_dlm_controld_ls_info_remove_count = -1;
+static int hf_dlm_controld_ls_info_failed_count = -1;
+
+static int hf_dlm_controld_id_info = -1;
+static int hf_dlm_controld_id_info_nodeid = -1;
+
 /* Initialize the subtree pointers */
 static gint ett_dlm_controld        = -1;
 static gint ett_dlm_controld_header = -1;
 static gint ett_dlm_controld_header_version = -1;
 static gint ett_dlm_controld_header_flags = -1;
 static gint ett_dlm_controld_protocol = -1;
+static gint ett_dlm_controld_ls_info = -1;
+static gint ett_dlm_controld_id_info = -1;
 
 static const value_string vals_header_type[] = {
   { DLM_MSG_PROTOCOL,                "Protocol"                  },
@@ -108,7 +123,7 @@ static const value_string vals_header_type[] = {
   { DLM_MSG_PLOCK_DROP,              "Plock drop"                },
   { DLM_MSG_PLOCK_SYNC_LOCK,         "Plock sync lock"           },
   { DLM_MSG_PLOCK_SYNC_WAITER,       "Plock sync waiter"         },
-  { DLM_MSG_PLOCKS_STORED,           "Plock stored"              },
+  { DLM_MSG_PLOCKS_STORED,           "Plocks stored"              },
   { DLM_MSG_DEADLK_CYCLE_START,      "Deadlock cycle start"      },
   { DLM_MSG_DEADLK_CYCLE_END,        "Deadlock cycle end"        },
   { DLM_MSG_DEADLK_CHECKPOINT_READY, "Deadlock checkpoint ready" },
@@ -129,8 +144,9 @@ dissect_dlm_controld_protocol(tvbuff_t *tvb, packet_info *pinfo, proto_tree *par
 			     int offset, guint length)
 {
   int original_offset;
-  proto_tree *tree, *dm_tree, *dr_tree;
-  proto_item *item, *dm_item, *dr_item;
+
+  proto_tree *protocol_tree, *tree;
+  proto_item *item;
 
 
   original_offset = offset;
@@ -140,35 +156,135 @@ dissect_dlm_controld_protocol(tvbuff_t *tvb, packet_info *pinfo, proto_tree *par
   offset += 0;
   item = proto_tree_add_item(parent_tree, hf_dlm_controld_protocol, tvb, 
 			     offset, -1, TRUE);
-  tree = proto_item_add_subtree(item, ett_dlm_controld_protocol);
-
-  offset += 0;
+  protocol_tree = proto_item_add_subtree(item, ett_dlm_controld_protocol);
 
 
 #define LOAD_protocol(X) \
-  item = proto_tree_add_item(tree, hf_dlm_controld_protocol_##X##_ver, tvb, \
+  item = proto_tree_add_item(protocol_tree, hf_dlm_controld_protocol_##X##_ver, tvb, \
 			     offset, -1, TRUE);				\
-  dm_tree = proto_item_add_subtree(item, ett_dlm_controld_protocol);	\
+  tree = proto_item_add_subtree(item, ett_dlm_controld_protocol);	\
 									\
   offset += 0;								\
-  dm_item = proto_tree_add_item(dm_tree, hf_dlm_controld_protocol_##X##_ver_major, tvb, \
+  item = proto_tree_add_item(tree, hf_dlm_controld_protocol_##X##_ver_major, tvb, \
 			     offset, 2, TRUE);				\
   offset += 2;								\
-  dm_item = proto_tree_add_item(dm_tree, hf_dlm_controld_protocol_##X##_ver_minor, tvb, \
+  item = proto_tree_add_item(tree, hf_dlm_controld_protocol_##X##_ver_minor, tvb, \
 			     offset, 2, TRUE);				\
   offset += 2;								\
-  dm_item = proto_tree_add_item(dm_tree, hf_dlm_controld_protocol_##X##_ver_patch, tvb, \
+  item = proto_tree_add_item(tree, hf_dlm_controld_protocol_##X##_ver_patch, tvb, \
 			     offset, 2, TRUE);				\
   offset += 2;								\
-  dm_item = proto_tree_add_item(dm_tree, hf_dlm_controld_protocol_##X##_ver_flags, tvb, \
+  item = proto_tree_add_item(tree, hf_dlm_controld_protocol_##X##_ver_flags, tvb, \
 				offset, 2, TRUE);			\
   offset += 2
-  
+
+  offset += 0;  
   LOAD_protocol(dm);
   LOAD_protocol(km);
   LOAD_protocol(dr);
   LOAD_protocol(kr);
 
+  return length - original_offset;
+}
+
+static int
+dissect_dlm_controld_id_info(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
+			     int offset, guint length)
+{
+  int original_offset;
+  
+  proto_tree *tree;
+  proto_item *item;
+
+
+  original_offset = offset;
+  if ( (length - offset) <  4 )
+    return 0;
+
+  offset += 0;
+  item = proto_tree_add_item(parent_tree, hf_dlm_controld_id_info, tvb, 
+			     offset, -1, TRUE);
+  tree = proto_item_add_subtree(item, ett_dlm_controld_id_info);
+
+  offset += 0;
+  proto_tree_add_item(tree, hf_dlm_controld_id_info_nodeid, 
+		      tvb, offset, 4, TRUE);
+  
+  offset += 4;
+  return offset - original_offset;  
+}
+
+static int
+dissect_dlm_controld_ls_info(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
+			     int offset, guint length, guint32 *id_info_count)
+{
+  int original_offset;
+  
+  proto_tree *tree;
+  proto_item *item;
+
+  original_offset = offset;
+  if ( (length - offset) <  ( 4 * 8 ) )
+    return 0;
+
+  offset += 0;
+  item = proto_tree_add_item(parent_tree, hf_dlm_controld_ls_info, tvb, 
+			     offset, -1, TRUE);
+  tree = proto_item_add_subtree(item, ett_dlm_controld_ls_info);
+
+  offset += 0;
+  proto_tree_add_item(tree, hf_dlm_controld_ls_info_ls_info_size, 
+		      tvb, offset, 4, TRUE);
+  offset += 4;
+  proto_tree_add_item(tree, hf_dlm_controld_ls_info_id_info_size, 
+		      tvb, offset, 4, TRUE);
+  offset += 4;
+  *id_info_count = tvb_get_letohl(tvb, offset);
+  proto_tree_add_item(tree, hf_dlm_controld_ls_info_id_info_count, 
+		      tvb, offset, 4, TRUE);
+  offset += 4;
+  proto_tree_add_item(tree, hf_dlm_controld_ls_info_started_count, 
+		      tvb, offset, 4, TRUE);
+  offset += 4;
+  proto_tree_add_item(tree, hf_dlm_controld_ls_info_member_count, 
+		      tvb, offset, 4, TRUE);
+  offset += 4;
+  proto_tree_add_item(tree, hf_dlm_controld_ls_info_joined_count, 
+		      tvb, offset, 4, TRUE);
+  offset += 4;
+  proto_tree_add_item(tree, hf_dlm_controld_ls_info_remove_count, 
+		      tvb, offset, 4, TRUE);
+  offset += 4;
+  proto_tree_add_item(tree, hf_dlm_controld_ls_info_failed_count, 
+		      tvb, offset, 4, TRUE);
+  offset += 4;
+  return offset - original_offset;
+}
+
+static int
+dissect_dlm_controld_start_or_plocks_stored(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
+					    int offset, guint length)
+{
+  int original_offset;
+  guint32 i, id_info_count;
+  int d;
+
+
+  original_offset = offset;
+  offset += dissect_dlm_controld_ls_info(tvb, pinfo, parent_tree, offset, length, &id_info_count);
+  if (original_offset == offset)
+    goto out;
+
+  for (i = 0; i < id_info_count; i++)
+    {
+      d = dissect_dlm_controld_id_info(tvb, pinfo, parent_tree, offset, length);
+      if ( d == 0 )
+	goto out;
+
+      offset += d;
+    }
+
+ out:  
   return length - original_offset;
 }
 
@@ -266,6 +382,10 @@ dissect_dlm_controld(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
     {
     case DLM_MSG_PROTOCOL:
       dissect_dlm_controld_protocol(tvb, pinfo, dlm_controld_tree, offset, length);
+      break;
+    case DLM_MSG_START:
+    case DLM_MSG_PLOCKS_STORED:
+      dissect_dlm_controld_start_or_plocks_stored(tvb, pinfo, dlm_controld_tree, offset, length);
       break;
     default:
       break;
@@ -391,6 +511,53 @@ proto_register_dlm_controld(void)
     ATTACH_protocol(km, "kernel max"),
     ATTACH_protocol(dr, "daemon running"),
     ATTACH_protocol(kr, "kernel running"),
+
+
+    { &hf_dlm_controld_ls_info,
+      { "dlm_controld ls_info", "dlm_controld.ls_info",
+        FT_NONE, BASE_NONE, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_dlm_controld_ls_info_ls_info_size,
+      { "Size of ls_info", "dlm_controld.ls_info.ls_info_size",
+        FT_UINT32, BASE_DEC, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_dlm_controld_ls_info_id_info_size,
+      { "Size of id_info", "dlm_controld.ls_info.id_info_size",
+        FT_UINT32, BASE_DEC, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_dlm_controld_ls_info_id_info_count,
+      { "Count of id_infos", "dlm_controld.ls_info.id_info_count",
+        FT_UINT32, BASE_DEC, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_dlm_controld_ls_info_started_count,
+      { "Count of started", "dlm_controld.ls_info.started_count",
+        FT_UINT32, BASE_DEC, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_dlm_controld_ls_info_member_count,
+      { "Count of members", "dlm_controld.ls_info.member_count",
+        FT_INT32, BASE_DEC, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_dlm_controld_ls_info_joined_count,
+      { "Count of joined", "dlm_controld.ls_info.joined_count",
+        FT_INT32, BASE_DEC, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_dlm_controld_ls_info_remove_count,
+      { "Count of remove", "dlm_controld.ls_info.remove_count",
+        FT_INT32, BASE_DEC, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_dlm_controld_ls_info_failed_count,
+      { "Count of failed", "dlm_controld.ls_info.failed_count",
+        FT_INT32, BASE_DEC, NULL, 0x0,
+        NULL, HFILL }},
+
+    { &hf_dlm_controld_id_info,
+      { "dlm_controld id_info", "dlm_controld.id_info",
+        FT_NONE, BASE_NONE, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_dlm_controld_id_info_nodeid,
+      { "Node id", "dlm_controld.id_info.nodeid",
+        FT_INT32, BASE_DEC, NULL, 0x0,
+        NULL, HFILL }},
   };
 
   static gint *ett[] = {
@@ -403,6 +570,8 @@ proto_register_dlm_controld(void)
     &ett_dlm_controld_protocol_km_ver,
     &ett_dlm_controld_protocol_dr_ver,
     &ett_dlm_controld_protocol_kr_ver,
+    &ett_dlm_controld_ls_info,
+    &ett_dlm_controld_id_info,
   };
   
   proto_dlm_controld = proto_register_protocol("Protocol used in dlm_controld",
