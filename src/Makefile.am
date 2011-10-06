@@ -28,6 +28,8 @@ rhcs_la_SOURCES = \
 	\
 	packet-rhcs-fenced.c		        \
 	\
+	packet-dlm_controld.c			\
+	\
 	plugin.c                                \
 	\
 	$(NULL)

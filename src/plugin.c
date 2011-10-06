@@ -22,6 +22,7 @@ plugin_register (void)
   proto_register_rgmanager(); 
 
   proto_register_rhcs_fenced();
+  proto_register_dlm_controld();
 
 
 
@@ -45,4 +46,5 @@ plugin_register (void)
 
   
   proto_reg_handoff_rhcs_fenced();
+  proto_reg_handoff_dlm_controld();
 }

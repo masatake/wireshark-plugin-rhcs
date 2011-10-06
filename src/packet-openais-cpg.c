@@ -152,7 +152,7 @@ static const value_string vals_openais_cpg_confchg_reason[] = {
 
 
 static dissector_table_t subdissector_table;
-
+static heur_dissector_list_t heur_subdissector_list;
 
 static int
 dissect_openais_cpg_mar_message_source(tvbuff_t    *tvb,
@@ -308,7 +308,8 @@ dissect_openais_cpg_proc_generic(tvbuff_t *tvb,
 						  little_endian,
 						  &group_name);
 	proto_item_append_text(item, " (group: %s)", group_name);
-
+	if (check_col(pinfo->cinfo, COL_INFO))
+	  col_append_sep_str(pinfo->cinfo, COL_INFO, " ", group_name);		
 
 	offset += sub_offset;
 	proto_tree_add_item(tree,
@@ -579,12 +580,22 @@ dissect_openais_cpg_mcast(tvbuff_t *tvb,
 	
 	{
 		tvbuff_t *next_tvb;
-
+		gboolean found;
 
 		next_tvb = tvb_new_subset(tvb, offset, msglen, msglen);
 
-		dissector_try_string(subdissector_table,
-				     group_name, next_tvb, pinfo, tree);
+		found = dissector_try_string(subdissector_table,
+					     group_name, next_tvb, pinfo, tree);
+		if (!found)
+		  {
+		    void *saved_private_data;
+		    
+
+		    saved_private_data = pinfo->private_data;
+		    pinfo->private_data = group_name;
+		    dissector_try_heuristic(heur_subdissector_list, next_tvb, pinfo, tree);
+		    pinfo->private_data = saved_private_data;
+		  }
 
 		offset += msglen;
 	}
@@ -902,6 +913,7 @@ proto_register_openais_cpg(void)
 						      "The name of closed process group",
 						      FT_STRING,
 						      FT_NONE);
+	register_heur_dissector_list("openais_cpg", &heur_subdissector_list);
 }
 
 /* Some code copyed from packet-dlm3.c. */

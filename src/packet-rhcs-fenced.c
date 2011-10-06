@@ -155,6 +155,7 @@ static const int *id_info_flags_fields[] = {
   &hf_rhcs_fenced_id_info_flags_nodedid_is_member,
   NULL
 };
+
 static int
 dissect_rhcs_fenced_protocol(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 			     int offset, guint length)
