@@ -151,7 +151,8 @@ static gint ett_corosync_totemsrp_memb_join_failed_list        = -1;
           
 static const value_string corosync_totemsrp_message_header_type[] = {
         { COROSYNC_TOTEMSRP_MESSAGE_TYPE_ORF_TOKEN,         "orf"               },
-        { COROSYNC_TOTEMSRP_MESSAGE_TYPE_MCAST,             "multicast message" },
+        /* { COROSYNC_TOTEMSRP_MESSAGE_TYPE_MCAST,             "multicast message" }, */
+	{ COROSYNC_TOTEMSRP_MESSAGE_TYPE_MCAST,             "mcast" }
         { COROSYNC_TOTEMSRP_MESSAGE_TYPE_MEMB_MERGE_DETECT, "merge rings"       },
         { COROSYNC_TOTEMSRP_MESSAGE_TYPE_MEMB_JOIN,         "join message"      },
         { COROSYNC_TOTEMSRP_MESSAGE_TYPE_MEMB_COMMIT_TOKEN, "commit token"      },
