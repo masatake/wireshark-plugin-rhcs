@@ -14,7 +14,7 @@ Coverage of the communications:
 	  openais_a: Maybe completed. 
 	    openais_cpg: Maybe completed. 
 	      groupd: Maybe completed. 
-	      fenced: Most of all but extern.
+	      fenced: Maybe completed. 
 	      dlm_controld: Needs much more work.
 	      gfs_controld: Nothing done yet.
 	    openais_evt: Needs much more work.

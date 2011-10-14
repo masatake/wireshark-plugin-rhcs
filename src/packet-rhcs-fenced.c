@@ -54,6 +54,8 @@ static int hf_rhcs_fenced_header_to_nodeid = -1;
 static int hf_rhcs_fenced_header_global_id = -1;
 static int hf_rhcs_fenced_header_flags = -1;
 static int hf_rhcs_fenced_header_msgdata = -1;
+static int hf_rhcs_fenced_header_victim = -1;
+static int hf_rhcs_fenced_header_seq = -1;
 static int hf_rhcs_fenced_header_pad1 = -1;
 static int hf_rhcs_fenced_header_pad2 = -1;
 
@@ -461,6 +463,14 @@ dissect_rhcs_fenced(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
   offset += 4;
   switch (type)
     {
+    case FD_MSG_EXTERNAL:
+      proto_tree_add_item(tree, hf_rhcs_fenced_header_victim, 
+			  tvb, offset, 4, TRUE);
+    case FD_MSG_VICTIM_DONE:
+    case FD_MSG_START:
+    case FD_MSG_COMPLETE:
+      proto_tree_add_item(tree, hf_rhcs_fenced_header_seq, 
+			  tvb, offset, 4, TRUE);
     default:
       proto_tree_add_item(tree, hf_rhcs_fenced_header_msgdata, 
 			  tvb, offset, 4, TRUE);
@@ -495,10 +505,10 @@ dissect_rhcs_fenced(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
     case FD_MSG_PROTOCOL:
       dissect_rhcs_fenced_protocol(tvb, pinfo, fenced_tree, offset, length);
       break;
-      /* TODO: FD_MSG_EXTERNAL */
     case FD_MSG_VICTIM_DONE:
       dissect_rhcs_fenced_victim_done(tvb, pinfo, fenced_tree, offset, length);
       break;
+    case FD_MSG_EXTERNAL:
     default:
       break;
     }
@@ -568,6 +578,14 @@ proto_register_rhcs_fenced(void)
     { &hf_rhcs_fenced_header_msgdata,
       { "Fenced header msgdata", "rhcs_fenced.fd_header.msgdata",
         FT_UINT32, BASE_HEX, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_rhcs_fenced_header_victim,
+      { "Fenced header victim node", "rhcs_fenced.fd_header.victim",
+        FT_INT32, BASE_DEC, NULL, 0x0,
+        NULL, HFILL }},
+    { &hf_rhcs_fenced_header_seq,
+      { "Fenced header sequnce number", "rhcs_fenced.fd_header.seq",
+        FT_INT32, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
     { &hf_rhcs_fenced_header_pad1,
       { "Padding", "rhcs_fenced.fd_header.pad1",
