@@ -118,11 +118,11 @@ static gint ett_rhcs_fenced_id_info_flags = -1;
 #define VIC_DONE_EXTERNAL	4
 
 static const value_string vals_header_type[] = {
-  { FD_MSG_PROTOCOL,    "Protocol"    },
-  { FD_MSG_START,       "Start"       },
-  { FD_MSG_VICTIM_DONE, "Victim done" },
-  { FD_MSG_COMPLETE,    "Complete"    },
-  { FD_MSG_EXTERNAL,    "External"    },
+  { FD_MSG_PROTOCOL,    "protocol"    },
+  { FD_MSG_START,       "start"       },
+  { FD_MSG_VICTIM_DONE, "victim-done" },
+  { FD_MSG_COMPLETE,    "complete"    },
+  { FD_MSG_EXTERNAL,    "external"    },
   { 0,                  NULL          },
 };
 
@@ -440,6 +440,14 @@ dissect_rhcs_fenced(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 		      tvb, offset, 8, TRUE);
 
   offset += 8;
+
+  if (check_col(pinfo->cinfo, COL_INFO))
+    {
+      const char* strval;
+      strval = match_strval(type, vals_header_type);
+      if (strval)
+	col_append_sep_str(pinfo->cinfo, COL_INFO, " :", strval);
+    }
   switch (type)
     {
     case FD_MSG_START:
