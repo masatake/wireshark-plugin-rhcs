@@ -1,21 +1,29 @@
 This is wireshark packet dissector for protocols used in RHCS.
 
-I've written wireshark packet dissectors for higher level protocols of rhel5 cluster.
-See screenshots/clvmd.png.
+I've written wireshark packet dissectors for higher level protocols of
+rhel5(cluster 2?)/rhel6(cluster 3) cluster.  See screenshots/clvmd.png.
 
-    corosync_totemnet <100%>
-      corosync_totemsrp <100%>
-	corosync_totempg <100%>
-	  openais_cman <100%>
-	    clvmd <100%>
-	    rgmanager <10%>
-	  openais_a <100%>
-	    openais_cpg <100%>
-	      groupd <100%>
-	    openais_evt <5%>
-	    openais_clm <5%>
-	  flowcontrol <100%>
-	  sync <100%>
+Coverage of the communications:
+
+    corosync_totemnet: Most of all but new encryption method.
+      corosync_totemsrp: Most of all but encapsulated packets
+	corosync_totempg: Maybe completed. 
+	  openais_cman: Maybe completed. 
+	    clvmd: Maybe completed. 
+	    rgmanager: Most of all but not completed.
+	  openais_a: Maybe completed. 
+	    openais_cpg: Maybe completed. 
+	      groupd: Maybe completed. 
+	      fenced: Most of all but extern.
+	      dlm_controld: Needs much more work.
+	      gfs_controld: Nothing done yet.
+	    openais_evt: Needs much more work.
+	    openais_clm: Needs much more work.
+	    openais_ckpt: Nothing done yet.
+	  flowcontrol: Maybe completed. 
+	  sync: Maybe completed. 
+	  sync2: Nothing done yet.
+
 
 Background
 ----------
@@ -42,6 +50,11 @@ Building & Installing
    $ make rpm
    $ sudo rpm -Uvh build/RPM/*/wireshark-plugin-rhcs*.rpm
 
+When updating wireshark itself, don't forget to rebuild and install
+wireshark-plugin-rhcs. The plugin is installed to the wireshark
+version specific directory. In stead of installing the plugin
+to the system directory, you can put it to ~/.wireshark/plugins.
+
 Example captures
 ------------------
 pcap/corosync-totemsrp--noencypted--2nodes.pcap
@@ -57,10 +70,12 @@ choose COROSYNC/TOTEMNET in Protocols branch. You will see "Totemnet Layer of
 Corosync Cluster Engine" dialog. Give a key, "example.com" to "Private Key"
 text field. Then push Apply or OK button.  See screenshots/corosync_totemnet__pref.png.
 
+You can specify the private key with command line, too:
+
+    wireshark  -o "corosync_totemnet.private_key:${PRIVATE_KEY}"
+
 If you don't specify key explicitly in cluster.conf, the name of cluster is used
 as key.
-
-
 
 Reference
 ---------
