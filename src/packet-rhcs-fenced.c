@@ -322,7 +322,7 @@ dissect_rhcs_fenced_start_or_complete(tvbuff_t *tvb, packet_info *pinfo, proto_t
   offset += dissect_rhcs_fenced_fd_info(tvb, pinfo, parent_tree, offset, length, &id_info_count);
   if (original_offset == offset)
     goto out;
- 
+
   for (i = 0; i < id_info_count; i++)
     {
       d = dissect_rhcs_fenced_id_info(tvb, pinfo, parent_tree, offset, length);
@@ -335,6 +335,42 @@ dissect_rhcs_fenced_start_or_complete(tvbuff_t *tvb, packet_info *pinfo, proto_t
  out:
   return length - original_offset;
 }
+
+static int
+dissect_rhcs_fenced_victim_done(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
+				int offset, guint length)
+{
+  int original_offset;
+  proto_tree *tree;
+  proto_item *item;
+  guint32 i, id_info_count;
+  int d;
+
+  original_offset = offset;
+#if 0
+  if ( (length - offset) <  ( 4 + 4 + 4 + 4 + 4 + 4 + 4 + 4 ) )
+    return 0;
+
+  offset += dissect_rhcs_fenced_fd_info(tvb, pinfo, parent_tree, offset, length, &id_info_count);
+  if (original_offset == offset)
+    goto out;
+#endif
+
+  /* id_info_count is statically given */
+  id_info_count = 1;
+  for (i = 0; i < id_info_count; i++)
+    {
+      d = dissect_rhcs_fenced_id_info(tvb, pinfo, parent_tree, offset, length);
+      if ( d == 0 )
+	goto out;
+
+      offset += d;
+    }
+
+ out:
+  return length - original_offset;
+}
+
 
 static int
 dissect_rhcs_fenced_start(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
@@ -459,7 +495,10 @@ dissect_rhcs_fenced(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
     case FD_MSG_PROTOCOL:
       dissect_rhcs_fenced_protocol(tvb, pinfo, fenced_tree, offset, length);
       break;
-      /* TODO: FD_MSG_VICTIM_DONE,  FD_MSG_EXTERNAL */
+      /* TODO: FD_MSG_EXTERNAL */
+    case FD_MSG_VICTIM_DONE:
+      dissect_rhcs_fenced_victim_done(tvb, pinfo, fenced_tree, offset, length);
+      break;
     default:
       break;
     }
