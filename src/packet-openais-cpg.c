@@ -111,7 +111,7 @@ static gint ett_openais_cpg_downlist             = -1;
 #define OPENAIS_CPG_FN_ID_PROCLEAVE  1
 #define OPENAIS_CPG_FN_ID_JOINLIT    2
 #define OPENAIS_CPG_FN_ID_MCAST      3
-#define OPENAIS_CPG_FN_ID_DOWNLIST   4
+#define OPENAIS_CPG_FN_ID_DOWNLIST_OLD   4
 
 
 /*  Taken from `enum lib_cpg_confchg_reason' 
@@ -130,11 +130,11 @@ static gint ett_openais_cpg_downlist             = -1;
 #define OPENAIS_CPG_PROCESSOR_COUNT_MAX       384
 
 static const value_string vals_openais_cpg_fn_id[] = {
-	{ OPENAIS_CPG_FN_ID_PROCJOIN,   "PROCJOIN"  },
-	{ OPENAIS_CPG_FN_ID_PROCLEAVE,  "PROCLEAVE" },
-	{ OPENAIS_CPG_FN_ID_JOINLIT,    "JOINLIST" },
-	{ OPENAIS_CPG_FN_ID_MCAST,      "MCAST"     },
-	{ OPENAIS_CPG_FN_ID_DOWNLIST,   "DOWNLIST"  },
+	{ OPENAIS_CPG_FN_ID_PROCJOIN,     "PROCJOIN"  },
+	{ OPENAIS_CPG_FN_ID_PROCLEAVE,    "PROCLEAVE" },
+	{ OPENAIS_CPG_FN_ID_JOINLIT,      "JOINLIST" },
+	{ OPENAIS_CPG_FN_ID_MCAST,        "MCAST"     },
+	{ OPENAIS_CPG_FN_ID_DOWNLIST_OLD, "DOWNLIST-OLD"  },
 
 	{ 0,                            NULL        },
 };
@@ -606,12 +606,12 @@ out:
 }
 
 static int
-dissect_openais_cpg_downlist(tvbuff_t *tvb,
-			     packet_info *pinfo, 
-			     proto_tree *parent_tree,
-			     proto_item *parent_item,
-			     guint length, int offset,
-			     gboolean little_endian)
+dissect_openais_cpg_downlist_old(tvbuff_t *tvb,
+				 packet_info *pinfo, 
+				 proto_tree *parent_tree,
+				 proto_item *parent_item,
+				 guint length, int offset,
+				 gboolean little_endian)
 {
 	int original_offset;
 
@@ -751,10 +751,13 @@ dissect_openais_cpg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 						       tree, item, 
 						       length, offset, little_endian);
 		break;
-	case OPENAIS_CPG_FN_ID_DOWNLIST:
-		sub_length = dissect_openais_cpg_downlist(tvb, pinfo, 
-							  tree, item, 
-							  length, offset, little_endian);
+	case OPENAIS_CPG_FN_ID_DOWNLIST_OLD:
+		sub_length = dissect_openais_cpg_downlist_old(tvb, pinfo, 
+							      tree, item, 
+							      length, offset, little_endian);
+		break;
+	default:
+	        fprintf(stderr, "Unknown cpg fn_id: %d\n", fn_id);
 		break;
 	}
 	  

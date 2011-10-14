@@ -22,6 +22,7 @@ rhcs_la_SOURCES = \
 	\
 	packet-openais-flowcontrol.c		\
 	packet-openais-sync.c			\
+	packet-corosync-syncv2.c		\
 	\
 	packet-groupd.c				\
 	packet-rgmanager.c			\

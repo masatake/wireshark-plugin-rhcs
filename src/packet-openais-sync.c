@@ -79,7 +79,8 @@ dissect_openais_sync(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 
 	length = tvb_length(tvb);
 	if (length < (corosync_totempg_dissect_mar_req_header_length
-		      + corosync_totemsrp_memb_ring_id_length))
+		      + corosync_totemsrp_memb_ring_id_length
+		      + 2))
 	  return 0;
 
 	/*

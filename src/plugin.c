@@ -15,6 +15,8 @@ plugin_register (void)
   proto_register_openais_flowcontrol();
   proto_register_openais_sync(); 
 
+  proto_register_corosync_syncv2(); 
+
   /* proto_register_ccsd();  */
   proto_register_clumond(); 
   proto_register_clvmd(); 
@@ -37,6 +39,8 @@ plugin_register (void)
   proto_reg_handoff_openais_evt();
   proto_reg_handoff_openais_flowcontrol();
   proto_reg_handoff_openais_sync();
+
+  proto_reg_handoff_corosync_syncv2();
 
   /* proto_reg_handoff_ccsd();  */
   proto_reg_handoff_clumond(); 
