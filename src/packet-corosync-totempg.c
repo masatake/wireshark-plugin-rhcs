@@ -386,12 +386,13 @@ dissect_corosync_totempg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_t
 						continuation,
 						msg_lens[0], 
 						(fragmented > 0)? 1: 0);
+
 	      next_tvb = process_reassembled_data (tvb, offset, pinfo, 
 						   "Reassembled message",
 						   frag_msg, 
 						   &corosync_totempg_message_frag_items, 
 						   NULL/*TODO*/, tree);
-	
+
 	      if (next_tvb)
 		dissect_corosync_totempg_message(next_tvb, 
 						 pinfo, 
@@ -451,11 +452,13 @@ dissect_corosync_totempg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_t
 						corosync_totempg_message_reassembled_table,
 						continuation,
 						msg_lens[z], 1);
+
 	      next_tvb = process_reassembled_data (tvb, offset, pinfo, 
 						   "Reassembled message",
 						   frag_msg, 
 						   &corosync_totempg_message_frag_items, 
 						   NULL/*TODO*/, tree);
+
 	      if (next_tvb)
 		dissect_corosync_totempg_message(next_tvb, 
 						 pinfo, 
@@ -595,7 +598,9 @@ proto_register_corosync_totempg(void)
   static gint *ett[] = {
     &ett_corosync_totempg,
     &ett_corosync_totempg_mcast_header,
-    &ett_corosync_totempg_mcast_message
+    &ett_corosync_totempg_mcast_message,
+    &ett_corosync_totempg_message_fragment,
+    &ett_corosync_totempg_message_fragments,
   };
  
   module_t *corosync_totempg_module;

@@ -6,8 +6,8 @@ rhel5(cluster 2?)/rhel6(cluster 3) cluster.  See screenshots/clvmd.png.
 Coverage of the communications:
 
     corosync_totemnet: Most of all but new encryption method.
-      corosync_totemsrp: Most of all but encapsulated packets
-	corosync_totempg: Maybe completed. 
+      corosync_totemsrp: Most of all but encapsulated packets handling.
+	corosync_totempg: Needs more work for fragmentation handling.
 	  openais_cman: Maybe completed. 
 	    clvmd: Maybe completed. 
 	    rgmanager: Most of all but not completed.
