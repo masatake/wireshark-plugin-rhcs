@@ -12,6 +12,7 @@ plugin_register (void)
   proto_register_openais_cman();
   proto_register_openais_cpg();
   proto_register_openais_evt();
+  proto_register_openais_ckpt();
   proto_register_openais_flowcontrol();
   proto_register_openais_sync(); 
 
@@ -25,6 +26,7 @@ plugin_register (void)
 
   proto_register_rhcs_fenced();
   proto_register_dlm_controld();
+  proto_register_gfs_controld();
 
 
 
@@ -37,6 +39,7 @@ plugin_register (void)
   proto_reg_handoff_openais_cman();
   proto_reg_handoff_openais_cpg();
   proto_reg_handoff_openais_evt();
+  proto_reg_handoff_openais_ckpt();
   proto_reg_handoff_openais_flowcontrol();
   proto_reg_handoff_openais_sync();
 
@@ -51,4 +54,5 @@ plugin_register (void)
   
   proto_reg_handoff_rhcs_fenced();
   proto_reg_handoff_dlm_controld();
+  proto_reg_handoff_gfs_controld();
 }

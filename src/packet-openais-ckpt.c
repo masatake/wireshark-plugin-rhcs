@@ -69,20 +69,20 @@ enum ckpt_message_req_types {
 };
 
 static const value_string vals_openais_ckpt_fn_id[] = {
-  { MESSAGE_REQ_EXEC_CKPT_CHECKPOINTOPEN, "Checkpoint open" },
-  { MESSAGE_REQ_EXEC_CKPT_CHECKPOINTCLOSE, "Checkpoint close" },
-  { MESSAGE_REQ_EXEC_CKPT_CHECKPOINTUNLINK, "Checkpoint unlink" },
-  { MESSAGE_REQ_EXEC_CKPT_CHECKPOINTRETENTIONDURATIONSET, "Checkpoint retention duration set" },
-  { MESSAGE_REQ_EXEC_CKPT_CHECKPOINTRETENTIONDURATIONEXPIRE, "Checkpoint retention duration EXPIRE" },
-  { MESSAGE_REQ_EXEC_CKPT_SECTIONCREATE, "Section create" },
-  { MESSAGE_REQ_EXEC_CKPT_SECTIONDELETE, "Sectiond elete" },
-  { MESSAGE_REQ_EXEC_CKPT_SECTIONEXPIRATIONTIMESET, "Section expiration timeset" },
-  { MESSAGE_REQ_EXEC_CKPT_SECTIONWRITE, "Section write" },
-  { MESSAGE_REQ_EXEC_CKPT_SECTIONOVERWRITE, "Section overwrite" },
-  { MESSAGE_REQ_EXEC_CKPT_SECTIONREAD, "Section read" },
-  { MESSAGE_REQ_EXEC_CKPT_SYNCCHECKPOINT, "Sync checkpoint" },
-  { MESSAGE_REQ_EXEC_CKPT_SYNCCHECKPOINTSECTION, "Sync checkpoint section" },
-  { MESSAGE_REQ_EXEC_CKPT_SYNCCHECKPOINTREFCOUNT, "Sync checkpoint refcount" },
+  { MESSAGE_REQ_EXEC_CKPT_CHECKPOINTOPEN, "checkpoint-open" },
+  { MESSAGE_REQ_EXEC_CKPT_CHECKPOINTCLOSE, "checkpoint-close" },
+  { MESSAGE_REQ_EXEC_CKPT_CHECKPOINTUNLINK, "checkpoint-unlink" },
+  { MESSAGE_REQ_EXEC_CKPT_CHECKPOINTRETENTIONDURATIONSET, "Checkpoint-retention-duration-set" },
+  { MESSAGE_REQ_EXEC_CKPT_CHECKPOINTRETENTIONDURATIONEXPIRE, "Checkpoint-retention-duration-expire" },
+  { MESSAGE_REQ_EXEC_CKPT_SECTIONCREATE, "section-create" },
+  { MESSAGE_REQ_EXEC_CKPT_SECTIONDELETE, "sectiond-elete" },
+  { MESSAGE_REQ_EXEC_CKPT_SECTIONEXPIRATIONTIMESET, "section-expiration-timeset" },
+  { MESSAGE_REQ_EXEC_CKPT_SECTIONWRITE, "section-write" },
+  { MESSAGE_REQ_EXEC_CKPT_SECTIONOVERWRITE, "section-overwrite" },
+  { MESSAGE_REQ_EXEC_CKPT_SECTIONREAD, "section-read" },
+  { MESSAGE_REQ_EXEC_CKPT_SYNCCHECKPOINT, "sync-checkpoint" },
+  { MESSAGE_REQ_EXEC_CKPT_SYNCCHECKPOINTSECTION, "sync-checkpoint-section" },
+  { MESSAGE_REQ_EXEC_CKPT_SYNCCHECKPOINTREFCOUNT, "sync-checkpoint-refcount" },
   { 0,                              NULL                },
 };
 
@@ -186,11 +186,4 @@ proto_reg_handoff_openais_ckpt(void)
 		      openais_ckpt_handle);
 }
 
-#if 0
-static guint32
-openais_ckpt_get_guint32(tvbuff_t* tvb, gint offset, gboolean little_endian)
-{
-	return (little_endian? tvb_get_letohl: tvb_get_ntohl)(tvb, offset);
-}
-#endif
 /* packet-openais-ckpt.c ends here */
