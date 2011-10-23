@@ -31,6 +31,9 @@
 #include <glib.h>
 
 #include <epan/packet.h>
+#include <time.h>
+#include <string.h>
+
 
 #define RGMANAGER_CMAN_TGTPORT 177
 
@@ -165,6 +168,14 @@ static int hf_rgmanager_sm_data_svcState                = -1;
 static int hf_rgmanager_sm_data_svcOwner                = -1;
 static int hf_rgmanager_sm_data_ret                     = -1;
 
+static int hf_rgmanager_rg_state_rs_name                = -1;
+static int hf_rgmanager_rg_state_rs_flags                  = -1;
+static int hf_rgmanager_rg_state_rs_magic               = -1;
+static int hf_rgmanager_rg_state_rs_owner               = -1;
+static int hf_rgmanager_rg_state_rs_last_owner          = -1;
+static int hf_rgmanager_rg_state_rs_state               = -1;
+static int hf_rgmanager_rg_state_rs_restarts            = -1;
+static int hf_rgmanager_rg_state_rs_transition          = -1;
 
 
 /* Value string */
@@ -199,7 +210,6 @@ static const value_string vals_generic_msg_hdr_command[] = {
 	{ VF_MESSAGE,        "view formation message" },
 	{ 0, NULL },
 };
-
 
 static const value_string vals_generic_msg_hdr_status_fast[] = {
         { 0, "no"  },
@@ -278,6 +288,31 @@ static const value_string vals_sm_ret[] = {
 	{ 0, NULL }
 };
 
+static const value_string vals_rg_state[] = {
+        { RG_STATE_STOPPED,       "stopped" },
+	{ RG_STATE_STARTING,      "starting" },
+	{ RG_STATE_STARTED,       "started" },
+	{ RG_STATE_STOPPING,      "stopping" },
+	{ RG_STATE_FAILED,        "failed" },
+	{ RG_STATE_UNINITIALIZED, "uninitialized" },
+	{ RG_STATE_CHECK,         "check" },
+	{ RG_STATE_ERROR,         "error" },
+	{ RG_STATE_RECOVER,       "recover" },
+	{ RG_STATE_DISABLED,      "disabled" },
+	{ RG_STATE_MIGRATE,       "migrate" },
+	{ 0, NULL },
+};
+
+
+#define RG_FLAG_FROZEN			(1<<0)	/** Resource frozen */
+#define RG_FLAG_PARTIAL			(1<<1)	/** One or more non-critical
+						    resources offline */
+
+static const value_string vals_rg_flags[] = {
+  { RG_FLAG_FROZEN, "frozen" },
+  { 0,              NULL     },
+};
+
 /* Bit fields */
 static const int* b_vf_commands[] = {
 	&hf_rgmanager_vf_command,
@@ -289,6 +324,7 @@ static gint ett_rgmanager                            = -1;
 static gint ett_rgmanager_generic_msg_hdr_vf_command = -1;
 static gint ett_rgmanager_vf_msg_info                = -1;
 static gint ett_rgmanager_sm_data                    = -1;
+static gint ett_rgmanager_rg_state                   = -1;
 
 static int
 dissect_rgmanager_generic_args(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree,
@@ -347,6 +383,88 @@ dissect_rgmanager_generic_args(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tr
 	return (offset - original_offset);
 	
 	pinfo = pinfo;
+}
+
+static int
+dissect_rgmanager_rg_state(tvbuff_t *tvb, packet_info *pinfo, 
+			   proto_tree *tree,
+			   guint length, int offset)
+{
+  int original_offset;
+  proto_item *item;
+  time_t t;
+  char *ct;
+
+
+  if (length - offset < 96)
+    return 0;
+  original_offset = offset;
+
+
+  item = proto_tree_add_item(tree, hf_rgmanager_vf_msg_info_vf_data,
+			     tvb, offset, length - offset, FALSE);
+  tree = proto_item_add_subtree(item, ett_rgmanager_rg_state);
+  proto_tree_add_item(tree,
+		      hf_rgmanager_rg_state_rs_name,
+		      tvb,
+		      offset,
+		      64,
+		      FALSE);
+  offset += 64;
+  proto_tree_add_item(tree,
+		      hf_rgmanager_rg_state_rs_flags,
+		      tvb,
+		      offset,
+		      4,
+		      TRUE);
+  offset += 4;
+  proto_tree_add_item(tree,
+		      hf_rgmanager_rg_state_rs_magic,
+		      tvb,
+		      offset,
+		      4,
+		      TRUE);
+  offset += 4;
+  proto_tree_add_item(tree,
+		      hf_rgmanager_rg_state_rs_owner,
+		      tvb,
+		      offset,
+		      4,
+		      TRUE);
+  offset += 4;
+  proto_tree_add_item(tree,
+		      hf_rgmanager_rg_state_rs_last_owner,
+		      tvb,
+		      offset,
+		      4,
+		      TRUE);
+  offset += 4;
+  proto_tree_add_item(tree,
+		      hf_rgmanager_rg_state_rs_state,
+		      tvb,
+		      offset,
+		      4,
+		      TRUE);
+  offset += 4;
+  proto_tree_add_item(tree,
+		      hf_rgmanager_rg_state_rs_restarts,
+		      tvb,
+		      offset,
+		      4,
+		      TRUE);
+  offset += 4;
+  proto_tree_add_item(tree,
+		      hf_rgmanager_rg_state_rs_transition,
+		      tvb,
+		      offset,
+		      8,
+		      TRUE);
+  t = (time_t)tvb_get_letoh64(tvb, offset);
+  ct = ctime(&t);
+  ct[strlen(ct)-1] = '\0';
+  proto_tree_add_text(tree, tvb, offset, 8, "%s", ct);
+  offset += 8;
+  return offset - original_offset;  
 }
 
 static int
@@ -415,12 +533,24 @@ dissect_rgmanager_vf_msg_info(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tre
 	offset += 8;
 	if ((length - offset) < datalen)
 		goto out;
-	proto_tree_add_item(tree,
-			    hf_rgmanager_vf_msg_info_vf_data,
-			    tvb,
-			    offset,
-			    datalen,
-			    FALSE);
+	
+	switch (datalen)
+	  {
+	    /* case 1: */
+	    /* "Transition-Master" */
+	  case 96:
+	    /* resgroup.h:rg_state_t 
+	       "rg="*" */
+	    offset += dissect_rgmanager_rg_state(tvb, pinfo, tree, length, offset);
+	    break;
+	  default:
+	    proto_tree_add_item(tree,
+				hf_rgmanager_vf_msg_info_vf_data,
+				tvb,
+				offset,
+				datalen,
+				FALSE);
+	  }
 	offset += datalen;
 
 out:
@@ -908,7 +1038,7 @@ proto_register_rgmanager(void)
 		    NULL, HFILL }},
 		{ &hf_rgmanager_generic_msg_hdr_command,
 		  { "Command", "rgmanager.generic_msg_hdr.command",
-		    FT_UINT32, BASE_DEC, VALS(vals_generic_msg_hdr_command), 0x0,
+		    FT_UINT32, BASE_HEX, VALS(vals_generic_msg_hdr_command), 0x0,
 		    NULL, HFILL }},
 		{ &hf_rgmanager_generic_msg_hdr_arg1,
 		  { "Arguement 1", "rgmanager.generic_msg_hdr.arg1",
@@ -1009,6 +1139,38 @@ proto_register_rgmanager(void)
 		  { "Return value", "rgmanager.sm_data.ret",
 		    FT_INT32, BASE_DEC, VALS(vals_sm_ret), 0,
 		    NULL, HFILL }},
+		{ &hf_rgmanager_rg_state_rs_name,
+		  { "Name of resource group", "rgmanager.rg_state.rs_name",
+		    FT_STRING, BASE_NONE, NULL, 0,
+		    NULL, HFILL }},
+		{ &hf_rgmanager_rg_state_rs_flags,
+		  { "Flags of resource group ", "rgmanager.rg_state.rs_flags",
+		    FT_UINT32, BASE_DEC, NULL, 0,
+		    NULL, HFILL }},
+		{ &hf_rgmanager_rg_state_rs_magic,
+		  { "Magic ", "rgmanager.rg_state.rs_magic",
+		    FT_UINT32, BASE_HEX, NULL, 0,
+		    NULL, HFILL }},
+		{ &hf_rgmanager_rg_state_rs_owner,
+		  { "Owner of resource group ", "rgmanager.rg_state.rs_owner",
+		    FT_UINT32, BASE_DEC, NULL, 0,
+		    NULL, HFILL }},
+		{ &hf_rgmanager_rg_state_rs_last_owner,
+		  { "The last owner of resource group ", "rgmanager.rg_state.rs_last_owner",
+		    FT_UINT32, BASE_DEC, NULL, 0,
+		    NULL, HFILL }},
+		{ &hf_rgmanager_rg_state_rs_state,
+		  { "The state of resource group", "rgmanager.rg_state.rs_state",
+		    FT_UINT32, BASE_DEC, VALS(vals_rg_state), 0,
+		    NULL, HFILL }},
+		{ &hf_rgmanager_rg_state_rs_restarts,
+		  { "The number of restarts", "rgmanager.rg_state.rs_restarts",
+		    FT_UINT32, BASE_DEC, NULL, 0,
+		    NULL, HFILL }},
+		{ &hf_rgmanager_rg_state_rs_transition,
+		  { "The last service transaction time", "rgmanager.rg_state.rs_transition",
+		    FT_UINT64, BASE_DEC, NULL, 0,
+		    NULL, HFILL }},
 	};
 	
 	static gint *ett[] = {
@@ -1016,6 +1178,7 @@ proto_register_rgmanager(void)
 		&ett_rgmanager_generic_msg_hdr_vf_command,
 		&ett_rgmanager_vf_msg_info,
 		&ett_rgmanager_sm_data,
+		&ett_rgmanager_rg_state,
 	};
 
 	proto_rgmanager 
