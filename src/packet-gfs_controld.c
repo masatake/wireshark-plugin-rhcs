@@ -59,7 +59,7 @@ dissect_gfs_controld(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 #if 0
   if ( length < ( 2 * 3 ) + 2 + 4 + 4 + 4 + 4 + 4 + 4 + 8)
     return 0;
-#endif 0
+#endif
 
   if (check_col(pinfo->cinfo, COL_INFO))
     col_append_sep_str(pinfo->cinfo, COL_INFO, " ", col_str);
