@@ -1,5 +1,34 @@
 const char* version = PACKAGE_VERSION;
 
+#define DECL(f) void proto_register_##f(void); \
+             void proto_reg_handoff_##f(void)
+
+DECL(corosync_totemnet);
+DECL(corosync_totemsrp);
+DECL(corosync_totempg);
+
+DECL(openais_a);
+DECL(openais_clm);
+DECL(openais_cman);
+DECL(openais_cpg);
+DECL(openais_evt);
+DECL(openais_ckpt);
+DECL(openais_flowcontrol);
+DECL(openais_sync); 
+
+DECL(corosync_syncv2); 
+
+/* DECL(ccsd);  */
+DECL(clumond); 
+DECL(clvmd); 
+DECL(groupd); 
+DECL(rgmanager); 
+
+DECL(rhcs_fenced);
+DECL(dlm_controld);
+DECL(gfs_controld);
+
+
 void
 plugin_register (void)
 {
