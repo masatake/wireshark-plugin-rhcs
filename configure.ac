@@ -17,6 +17,15 @@ AM_PATH_WIRESHARK
 WIRESHARK_PLUGINS_DIR=`pkg-config --variable=libdir wireshark`/wireshark/plugins/$WIRESHARK_VERSION
 AC_SUBST(WIRESHARK_PLUGINS_DIR)
 
+MY_CFLAGS="$CFLAGS"
+CFLAGS="$CFLAGS $WIRESHARK_CFLAGS"
+AC_CHECK_MEMBERS(
+[fragment_items.hf_fragment_count, 
+ fragment_items.hf_reassembled_length],[],[],
+[[#include <glib.h>
+  #include <epan/packet.h>
+  #include <epan/reassemble.h>]])
+CFLAGS="${MY_CFLAGS}"
 
 AC_OUTPUT([
 	   Makefile

@@ -73,8 +73,13 @@ static int hf_corosync_totempg_message_fragment_overlap_conflicts = -1;
 static int hf_corosync_totempg_message_fragment_multiple_tails = -1;
 static int hf_corosync_totempg_message_fragment_too_long_fragment = -1;
 static int hf_corosync_totempg_message_fragment_error = -1;
+#ifdef HAVE_FRAGMENT_ITEMS_HF_FRAGMENT_COUNT
+static int hf_corosync_totempg_message_fragment_count = -1;
+#endif
 static int hf_corosync_totempg_message_reassembled_in = -1;
-
+#if HAVE_FRAGMENT_ITEMS_HF_REASSEMBLED_LENGTH
+static int hf_corosync_totempg_message_reassembled_length = -1;
+#endif
 
 /* Initialize the subtree pointers */
 static gint ett_corosync_totempg                    = -1;
@@ -103,8 +108,14 @@ static const fragment_items corosync_totempg_message_frag_items = {
 	&hf_corosync_totempg_message_fragment_multiple_tails,
 	&hf_corosync_totempg_message_fragment_too_long_fragment,
 	&hf_corosync_totempg_message_fragment_error,
+#ifdef HAVE_FRAGMENT_ITEMS_HF_FRAGMENT_COUNT
+	&hf_corosync_totempg_message_fragment_count,
+#endif
 	/* Reassembled in field */
 	&hf_corosync_totempg_message_reassembled_in,
+#ifdef HAVE_FRAGMENT_ITEMS_HF_REASSEMBLED_LENGTH
+	&hf_corosync_totempg_message_reassembled_length,
+#endif
 	/* Tag */
 	"MESSAGE fragments"
 };
@@ -589,10 +600,22 @@ proto_register_corosync_totempg(void)
       { "Corosync totempg message fragment error", "corosync_totempg.message_fragment.error",
 	FT_FRAMENUM, BASE_NONE, NULL, 0x0,
 	NULL, HFILL }},
+#ifdef HAVE_FRAGMENT_ITEMS_HF_FRAGMENT_COUNT
+    { &hf_corosync_totempg_message_fragment_count,
+      { "Corosync totempg message fragment count", "corosync_totempg.message_fragment.count",
+	FT_UINT32, BASE_DEC, NULL, 0x0,
+	NULL, HFILL }},
+#endif
     { &hf_corosync_totempg_message_reassembled_in,
       { "Corosync totempg message reassembled in", "corosync_totempg.message_reassembled_in",
 	FT_FRAMENUM, BASE_NONE, NULL, 0x0,
 	NULL, HFILL }},
+#ifdef HAVE_FRAGMENT_ITEMS_HF_REASSEMBLED_LENGTH
+    { &hf_corosync_totempg_message_reassembled_length,
+      { "Corosync totempg message reassembled length", "corosync_totempg.message_reassembled_length",
+	FT_UINT32, BASE_DEC, NULL, 0x0,
+	NULL, HFILL }},
+#endif    
   };
 
   static gint *ett[] = {
