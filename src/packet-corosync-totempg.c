@@ -587,7 +587,7 @@ proto_register_corosync_totempg(void)
 	NULL, HFILL }},
     { &hf_corosync_totempg_message_fragment_error,
       { "Corosync totempg message fragment error", "corosync_totempg.message_fragment.error",
-	FT_BOOLEAN, BASE_NONE, NULL, 0x0,
+	FT_FRAMENUM, BASE_NONE, NULL, 0x0,
 	NULL, HFILL }},
     { &hf_corosync_totempg_message_reassembled_in,
       { "Corosync totempg message reassembled in", "corosync_totempg.message_reassembled_in",
