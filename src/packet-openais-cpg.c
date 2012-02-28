@@ -41,6 +41,7 @@
 void proto_reg_handoff_openais_cpg(void);
 
 static guint32 openais_cpg_get_guint32(tvbuff_t* tvb, gint offset, gboolean little_endian);
+static gchar  *openais_cpg_tvb_format_stringzpad(tvbuff_t *tvb, const gint offset, const gint size);
 
 /* Initialize the protocol and registered fields */
 static int proto_openais_cpg = -1;
@@ -249,7 +250,7 @@ dissect_openais_cpg_mar_name(tvbuff_t *tvb,
 			    hf_openais_cpg_mar_name_value,
 			    tvb, offset, name_length, little_endian);
 	if (group_name)
-		*group_name = tvb_format_stringzpad(tvb, offset, name_length);
+		*group_name = openais_cpg_tvb_format_stringzpad(tvb, offset, name_length);
 	
 	offset += name_length;
 	proto_tree_add_item(tree,
@@ -946,4 +947,13 @@ openais_cpg_get_guint32(tvbuff_t* tvb, gint offset, gboolean little_endian)
 	return (little_endian? tvb_get_letohl: tvb_get_ntohl)(tvb, offset);
 }
 
+static gchar*
+openais_cpg_tvb_format_stringzpad(tvbuff_t *tvb, const gint offset, const gint size)
+{
+#ifdef HAVE_TVB_FORMAT_STRINGZPAD  
+  return tvb_format_stringzpad(tvb, offset, size);
+#else
+  return tvb_get_ephemeral_string(tvb, offset, size);
+#endif
+}
 /* packet-openais-cpg.c ends here */
