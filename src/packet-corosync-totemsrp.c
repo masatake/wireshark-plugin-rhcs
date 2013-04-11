@@ -195,6 +195,9 @@ struct corosync_totemsrp_info {
         proto_tree* master_tree; 
 };
 
+static int dissect_corosync_totemsrp0(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, gboolean encapsulated);
+
+
 static int
 dissect_corosync_totemsrp_ip_address(tvbuff_t *tvb,
                             packet_info *pinfo, proto_tree *parent_tree,
@@ -512,9 +515,10 @@ out:
 
 static int
 dissect_corosync_totemsrp_mcast  (tvbuff_t *tvb,
-                         packet_info *pinfo, proto_tree *parent_tree,
-                         guint length, int offset,
-                         gboolean little_endian)
+				  packet_info *pinfo, proto_tree *parent_tree,
+				  guint length, int offset,
+				  guint8      message_header__encapsulated,
+				  gboolean little_endian)
 {
         int original_offset;
         int sub_length;
@@ -585,12 +589,17 @@ dissect_corosync_totemsrp_mcast  (tvbuff_t *tvb,
 
                 next_tvb = tvb_new_subset(tvb, offset, len, reported_len);
 
-                info = (struct corosync_totemsrp_info*)pinfo->private_data;
-                if (dissector_try_heuristic(heur_subdissector_list, 
-                                            next_tvb, 
-                                            pinfo, 
-                                            info->master_tree))
-                        offset = length ;
+		if (message_header__encapsulated == COROSYNC_TOTEMSRP_MESSAGE_ENCAPSULATED)
+			offset += dissect_corosync_totemsrp0(next_tvb, pinfo, tree, TRUE);
+		else
+		{
+			info = (struct corosync_totemsrp_info*)pinfo->private_data;
+			if (dissector_try_heuristic(heur_subdissector_list,
+						    next_tvb,
+						    pinfo,
+						    info->master_tree))
+				offset = length ;
+		}
         }
   
 out:
@@ -909,7 +918,15 @@ out:
 
 int
 dissect_corosync_totemsrp(tvbuff_t *tvb,
-                          packet_info *pinfo, proto_tree *parent_tree)
+			   packet_info *pinfo, proto_tree *parent_tree)
+{
+	return dissect_corosync_totemsrp0(tvb, pinfo, parent_tree, FALSE);
+}
+
+static int
+dissect_corosync_totemsrp0(tvbuff_t *tvb,
+			   packet_info *pinfo, proto_tree *parent_tree,
+			   gboolean encapsulated)
 {
         proto_item *item;
         proto_tree *tree;
@@ -962,22 +979,31 @@ dissect_corosync_totemsrp(tvbuff_t *tvb,
         info.master_tree           = parent_tree;
         pinfo->private_data        = &info;
 
-  
+	if (encapsulated)
+		goto after_updating_col;
+
         if (check_col(pinfo->cinfo, COL_PROTOCOL))
                 col_set_str(pinfo->cinfo, COL_PROTOCOL, "COROSYNC/TOTEMSRP");
 
         if (check_col(pinfo->cinfo, COL_INFO))
                 col_clear(pinfo->cinfo, COL_INFO);
+
         if (check_col(pinfo->cinfo, COL_INFO))
                 col_set_str(pinfo->cinfo, COL_INFO, 
                             "COROSYNC/TOTEMSRP");
 
-        if (check_col(pinfo->cinfo, COL_INFO))
+        if (check_col(pinfo->cinfo, COL_INFO)) {
+		int encapsulated = ((message_header__type == COROSYNC_TOTEMSRP_MESSAGE_TYPE_MCAST)
+				    && (message_header__encapsulated == COROSYNC_TOTEMSRP_MESSAGE_ENCAPSULATED));
                 col_set_str(pinfo->cinfo, COL_INFO, 
-                            val_to_str(message_header__type, 
-                                       corosync_totemsrp_message_header_type, 
+			    encapsulated?
+			    "ENCAPSULATED":
+			    val_to_str(message_header__type,
+                                       corosync_totemsrp_message_header_type,
                                        "packet-corosync-totemsrp.c internal bug"));
+	}
 
+after_updating_col:
         if (parent_tree) {
                 offset = 0;
 
@@ -1013,7 +1039,8 @@ dissect_corosync_totemsrp(tvbuff_t *tvb,
                         break;
                 case COROSYNC_TOTEMSRP_MESSAGE_TYPE_MCAST:
                         dissect_corosync_totemsrp_mcast(tvb, pinfo, tree, length, offset,
-                                               little_endian);
+							message_header__encapsulated,
+							little_endian);
                         break;
                 case COROSYNC_TOTEMSRP_MESSAGE_TYPE_MEMB_MERGE_DETECT:
                         dissect_corosync_totemsrp_memb_merge_detect(tvb, pinfo, tree, length, offset,
