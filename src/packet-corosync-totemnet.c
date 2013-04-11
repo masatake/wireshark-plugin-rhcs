@@ -209,7 +209,8 @@ dissect_corosync_totemnet_security_header(tvbuff_t *tvb,
 static int
 dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
                                            packet_info *pinfo, proto_tree *parent_tree,
-					   gboolean check_crypt_type)
+					   gboolean check_crypt_type,
+					   const gchar* key_for_trial)
 {
   unsigned char  keys[48];
   struct sober128_prng     keygen_prng_state;
@@ -229,15 +230,16 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
   unsigned char* hash_digest;
   unsigned char* salt;
 
-
   io_len = tvb_length(tvb) - (check_crypt_type? 1: 0);
-  if (io_len < HMAC_HASH_SIZE + SALT_SIZE)
+  if (io_len < HMAC_HASH_SIZE + SALT_SIZE) {
     return 0;
+  }
 
-  io_base = tvb_memdup(tvb, 0, io_len);
+  io_base = tvb_memdup(tvb, 0, io_len + (check_crypt_type? 1: 0));
   if (check_crypt_type &&
-      ( io_base[io_len] != TOTEM_CRYPTO_SOBER ))
+      ( io_base[io_len] != TOTEM_CRYPTO_SOBER )) {
     return 0;
+  }
 
   hash_digest = io_base;
   salt        = io_base + HMAC_HASH_SIZE;
@@ -245,11 +247,10 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
 
   memset(private_key, 0, sizeof(private_key));
 
-  private_key_len = (strlen(corosync_totemnet_private_key)+4) & 0xFC;
+  private_key_len = (strlen(key_for_trial)+4) & 0xFC;
   if (private_key_len > PRIVATE_KEY_LEN_MAX)
     private_key_len = PRIVATE_KEY_LEN_MAX;
-  g_strlcpy(private_key, corosync_totemnet_private_key, private_key_len);
-
+  g_strlcpy(private_key, key_for_trial, private_key_len);
 
   /*
    * Generate MAC, CIPHER, IV keys from private key
@@ -329,13 +330,15 @@ dissect_corosynec_totemnet(tvbuff_t *tvb,
       r = dissect_corosynec_totemnet_with_decryption(tvb, 
 						     pinfo, 
 						     parent_tree,
-						     FALSE);
+						     FALSE,
+						     corosync_totemnet_private_key);
       
       if (r == 0)
 	r = dissect_corosynec_totemnet_with_decryption(tvb, 
 						       pinfo, 
 						       parent_tree,
-						       TRUE);
+						       TRUE,
+						       corosync_totemnet_private_key);
       if (r > 0)
         return r;
     }
