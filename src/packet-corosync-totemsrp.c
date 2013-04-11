@@ -943,37 +943,6 @@ dissect_corosync_totemsrp(tvbuff_t *tvb,
                 return 0;
 
         message_header__encapsulated = tvb_get_guint8(tvb, 1);
-	if (
-	/*
-	  There is a version of corosync which encapsulated is not initialized.
-	  The packet sent from the version of corosync, this dissector could not
-	  recognize it as corosync packet.  So I put special condition here:
-	  don't check encapsulated field if the packet type is MESSAGE_TYPE_TOKEN_HOLD_CANCEL.
-
-	  ------------------------------------------------------------------------
-	  r2660 | sdake | 2010-02-19 05:08:39 +0900 (Fri, 19 Feb 2010) | 3 lines
-
-	  Patch to set unset value in token hold cancel structure as to not crash
-	  wireshark.
-
-	  ------------------------------------------------------------------------
-	  Index: exec/totemsrp.c
-	  ===================================================================
-	  --- exec/totemsrp.c	(revision 2659)
-	  +++ exec/totemsrp.c	(revision 2660)
-	  @@ -2627,6 +2627,7 @@
-	  
-	        token_hold_cancel.header.type = MESSAGE_TYPE_TOKEN_HOLD_CANCEL;
-	        token_hold_cancel.header.endian_detector = ENDIAN_LOCAL;
-	  +     token_hold_cancel.header.encapsulated = 0;
-	        token_hold_cancel.header.nodeid = instance->my_id.addr[0].nodeid;
-	        memcpy (&token_hold_cancel.ring_id, &instance->my_ring_id,
-	                sizeof (struct memb_ring_id));
-	*/
-	    (message_header__type != COROSYNC_TOTEMSRP_MESSAGE_TYPE_TOKEN_HOLD_CANCEL)
-	    && message_header__encapsulated > 2)
-	  /* TODO: a warning message should be printed here. */
-	  return 0;
 
         /* message_header -- byte order checking */
         tvb_memcpy(tvb, &message_header__endian_detector.f, 2, 2);
