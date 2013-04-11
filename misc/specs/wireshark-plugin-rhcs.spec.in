@@ -12,7 +12,7 @@ BuildRequires:	wireshark-devel
 Requires: wireshark
 
 %description
-wireshark packet dissector for protocols used in RHCS
+wireshark packet dissector for protocols used in RHCS.
 Protocols used in following packages are supported in this
 dissector: corosync, openais, cman, groupd, clvmd and rgmanager.
 
