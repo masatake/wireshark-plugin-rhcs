@@ -1,4 +1,4 @@
-const char* version = PACKAGE_VERSION;
+const char version[] = PACKAGE_VERSION;
 
 #define DECL(f) void proto_register_##f(void); \
              void proto_reg_handoff_##f(void)
