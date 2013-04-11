@@ -972,6 +972,7 @@ dissect_corosync_totemsrp(tvbuff_t *tvb,
 	*/
 	    (message_header__type != COROSYNC_TOTEMSRP_MESSAGE_TYPE_TOKEN_HOLD_CANCEL)
 	    && message_header__encapsulated > 2)
+	  /* TODO: a warning message should be printed here. */
 	  return 0;
 
         /* message_header -- byte order checking */
