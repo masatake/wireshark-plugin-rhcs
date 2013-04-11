@@ -103,10 +103,12 @@ static int proto_corosync_totemnet = -1;
 static int hf_corosync_totemnet_security_header_hash_digest    = -1;
 static int hf_corosync_totemnet_security_header_salt           = -1;
 static int hf_corosync_totemnet_security_crypto_type           = -1;
+static int hf_corosync_totemnet_security_crypto_key            = -1;
 
 /* configurable parameters */
-static guint  corosync_totemnet_port        = PORT_COROSYNC_TOTEMNET;
-static gchar* corosync_totemnet_private_key = NULL;
+static guint   corosync_totemnet_port              = PORT_COROSYNC_TOTEMNET;
+static gchar*  corosync_totemnet_private_keys      = NULL;
+static gchar** corosync_totemnet_private_keys_list = NULL;
 
 /* Initialize the subtree pointers */
 static gint ett_corosync_totemnet_security_header              = -1;
@@ -128,7 +130,8 @@ static const value_string corosync_totemnet_crypto_type[] = {
 static int
 dissect_corosync_totemnet_security_header(tvbuff_t *tvb,
                                           packet_info *pinfo, proto_tree *parent_tree,
-					  gboolean check_crypt_type)
+					  gboolean check_crypt_type,
+					  const gchar* key)
 {
   proto_item *item;
   proto_tree *tree;
@@ -156,11 +159,15 @@ dissect_corosync_totemnet_security_header(tvbuff_t *tvb,
       if (check_crypt_type)
 	{
 	  int io_len = tvb_length(tvb);
-
+	  proto_item * key_item;
 
 	  proto_tree_add_item(tree,
 			      hf_corosync_totemnet_security_crypto_type,
 			      tvb, io_len - 1, 1, FALSE);
+	  key_item = proto_tree_add_none_format(tree,
+						hf_corosync_totemnet_security_crypto_key,
+						tvb, 0, 0, key);
+	  PROTO_ITEM_SET_GENERATED(key_item);
 	}
     }
   return HMAC_HASH_SIZE + SALT_SIZE;
@@ -307,7 +314,8 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
     add_new_data_source(pinfo, decrypted_tvb, "Decrypted Data");
 
     
-    dissect_corosync_totemnet_security_header(decrypted_tvb, pinfo, parent_tree, check_crypt_type);
+    dissect_corosync_totemnet_security_header(decrypted_tvb, pinfo, parent_tree, 
+					      check_crypt_type, key_for_trial);
     
     next_tvb = tvb_new_subset(decrypted_tvb, 
                               HMAC_HASH_SIZE + SALT_SIZE, 
@@ -323,24 +331,32 @@ static int
 dissect_corosynec_totemnet(tvbuff_t *tvb,
                            packet_info *pinfo, proto_tree *parent_tree)
 {
-  if (corosync_totemnet_private_key) 
+  if (corosync_totemnet_private_keys_list) 
     {
-      int r;
+      int key_index;
+      gchar ** keys;
 
-      r = dissect_corosynec_totemnet_with_decryption(tvb, 
-						     pinfo, 
-						     parent_tree,
-						     FALSE,
-						     corosync_totemnet_private_key);
+      for (keys = corosync_totemnet_private_keys_list, key_index = 0;
+	   keys[key_index];
+	   key_index++)
+	{
+	  int r;
+
+	  r = dissect_corosynec_totemnet_with_decryption(tvb, 
+							 pinfo, 
+							 parent_tree,
+							 FALSE,
+							 keys[key_index]);
       
-      if (r == 0)
-	r = dissect_corosynec_totemnet_with_decryption(tvb, 
-						       pinfo, 
-						       parent_tree,
-						       TRUE,
-						       corosync_totemnet_private_key);
-      if (r > 0)
-        return r;
+	  if (r == 0)
+	    r = dissect_corosynec_totemnet_with_decryption(tvb, 
+							   pinfo, 
+							   parent_tree,
+							   TRUE,
+							   keys[key_index]);
+	  if (r > 0)
+	    return r;
+	}
     }
   return dissect_corosync_totemsrp(tvb, pinfo, parent_tree);
 }
@@ -364,6 +380,9 @@ proto_register_corosync_totemnet(void)
       { "Cryptographic Type", "corosync_totemnet.security_crypto_type",
 	FT_UINT8, BASE_DEC, VALS(corosync_totemnet_crypto_type), 0x0,
 	NULL, HFILL }},
+    { &hf_corosync_totemnet_security_crypto_key,
+      { "Private Key for decryption", "corosync_totemnet.security_crypto_key",
+	FT_NONE, BASE_NONE, NULL, 0x0, NULL, HFILL }},
   };
   
   static gint *ett_corosync_totemnet[] = {
@@ -383,24 +402,24 @@ proto_register_corosync_totemnet(void)
                                  "Set the UDP port for totem ring protocol implemented in corosync cluster engine",
                                  10,
                                  &corosync_totemnet_port);
-  prefs_register_string_preference(corosync_totemnet_module, "private_key",
-                                   "Private key",
-                                   "Key to decrypt the communications on corosync cluster engine",
-                                   (const gchar **)&corosync_totemnet_private_key);
+  prefs_register_string_preference(corosync_totemnet_module, "private_keys", "Private keys",
+                                   "Semicolon-separated list keys to decrypt the communications "
+				   "on corosync cluster engine." ,
+                                   (const gchar **)&corosync_totemnet_private_keys);
 }
 
 void
 proto_reg_handoff_corosync_totemnet(void)
 {
   static gboolean register_dissector = FALSE;
-
+  static dissector_handle_t corosync_totemnet_handle;
   static int port = 0;
 
-  static dissector_handle_t corosync_totemnet_handle;
 
   if (register_dissector) 
     {
       dissector_delete("udp.port", port, corosync_totemnet_handle);
+      dissector_delete("udp.port", port - 1, corosync_totemnet_handle);
     } 
   else 
     {
@@ -408,7 +427,14 @@ proto_reg_handoff_corosync_totemnet(void)
                                                              proto_corosync_totemnet);
       register_dissector = TRUE;
     }
-                
+
+  if (corosync_totemnet_private_keys_list) {
+    g_strfreev(corosync_totemnet_private_keys_list);
+    corosync_totemnet_private_keys_list = NULL;
+  }
+  corosync_totemnet_private_keys_list = g_strsplit(corosync_totemnet_private_keys,
+						   ";", 
+						   0);
   port  = corosync_totemnet_port;
   dissector_add("udp.port", port,     corosync_totemnet_handle);
   dissector_add("udp.port", port - 1, corosync_totemnet_handle);
