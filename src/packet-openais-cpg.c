@@ -72,11 +72,17 @@ static int hf_openais_cpg_mcast                        = -1;
 static int hf_openais_cpg_mcast_msglen                 = -1;
 static int hf_openais_cpg_mcast_msglen_padding         = -1;
 
-/* fields for struct req_exec_cpg_downlist */
-static int hf_openais_cpg_downlist                     = -1;
+/* fields for struct req_exec_cpg_downlist_old */
+static int hf_openais_cpg_downlist_old                 = -1;
 static int hf_openais_cpg_downlist_left_nodes          = -1;
 static int hf_openais_cpg_downlist_left_nodes_padding  = -1;
 static int hf_openais_cpg_downlist_nodeids             = -1;
+
+/* fields for struct req_exec_cpg_downlist */
+static int hf_openais_cpg_downlist                     = -1;
+static int hf_openais_cpg_downlist_old_members         = -1;
+static int hf_openais_cpg_downlist_old_members_padding = -1;
+
 
 /* fields for struct mar_cpg_name */
 static int hf_openais_cpg_mar_name                     = -1;
@@ -101,6 +107,7 @@ static gint ett_openais_cpg_joinlist_entry       = -1;
 static gint ett_openais_cpg_mcast                = -1;
 static gint ett_openais_cpg_mar_name             = -1;
 static gint ett_openais_cpg_mar_message_source   = -1;
+static gint ett_openais_cpg_downlist_old         = -1;
 static gint ett_openais_cpg_downlist             = -1;
 
 
@@ -608,39 +615,19 @@ out:
 }
 
 static int
-dissect_openais_cpg_downlist_old(tvbuff_t *tvb,
-				 packet_info *pinfo, 
-				 proto_tree *parent_tree,
-				 proto_item *parent_item,
-				 guint length, int offset,
-				 gboolean little_endian)
+dissect_openais_cpg_downlist0(tvbuff_t *tvb,
+			      packet_info *pinfo, 
+			      proto_tree  *tree,
+			      proto_item *item,
+			      guint length, int offset,
+			      gboolean little_endian)
 {
-	int original_offset;
-
-
-	proto_tree* tree;
-	proto_item* item;
-
 	guint32 left_nodes;
-
-#define length_openais_cpg_downlist   ( 4 + 4 )
-	
-	
-	if ((length - offset) < length_openais_cpg_downlist) {
-		fprintf(stderr, "%u < %u\n", 
-			(length - offset),
-			length_openais_cpg_downlist);
-		return 0;
-	}
+	int original_offset;
 
 	original_offset = offset;
 
-	item = proto_tree_add_item(parent_tree,
-				   hf_openais_cpg_downlist,
-				   tvb, offset, -1, little_endian);
-	tree = proto_item_add_subtree(item, ett_openais_cpg_downlist);
 
-	offset += 0;
 	proto_tree_add_item(tree,
 			    hf_openais_cpg_downlist_left_nodes,
 			    tvb, 
@@ -673,10 +660,103 @@ dissect_openais_cpg_downlist_old(tvbuff_t *tvb,
 	
 	offset += (left_nodes * 4);
 out:
-	return (offset - original_offset);
+	return (offset - original_offset);	
+}
 
-	parent_item = parent_item;
-	pinfo = pinfo;;
+static int
+dissect_openais_cpg_downlist_old(tvbuff_t *tvb,
+				 packet_info *pinfo, 
+				 proto_tree *parent_tree,
+				 proto_item *parent_item,
+				 guint length, int offset,
+				 gboolean little_endian)
+{
+	int original_offset;
+
+
+	proto_tree* tree;
+	proto_item* item;
+
+	guint32 left_nodes;
+
+#define length_openais_cpg_downlist_old   ( 4 + 4 )
+	
+	
+	if ((length - offset) < length_openais_cpg_downlist_old) {
+		fprintf(stderr, "%u < %u\n", 
+			(length - offset),
+			length_openais_cpg_downlist_old);
+		return 0;
+	}
+
+	original_offset = offset;
+
+	item = proto_tree_add_item(parent_tree,
+				   hf_openais_cpg_downlist_old,
+				   tvb, offset, -1, little_endian);
+	tree = proto_item_add_subtree(item, ett_openais_cpg_downlist_old);
+
+	
+	offset += 0;
+	offset += dissect_openais_cpg_downlist0(tvb, pinfo, tree, item, 
+						length - offset,
+						offset, little_endian);
+	return (offset - original_offset);
+}
+
+static int
+dissect_openais_cpg_downlist(tvbuff_t *tvb,
+				 packet_info *pinfo, 
+				 proto_tree *parent_tree,
+				 proto_item *parent_item,
+				 guint length, int offset,
+				 gboolean little_endian)
+{
+	int original_offset;
+
+
+	proto_tree* tree;
+	proto_item* item;
+
+	guint32 left_nodes;
+
+#define length_openais_cpg_downlist   ( 4 + 4 + 4 + 4 )
+	
+	
+	if ((length - offset) < length_openais_cpg_downlist) {
+		fprintf(stderr, "%u < %u\n", 
+			(length - offset),
+			length_openais_cpg_downlist);
+		return 0;
+	}
+
+	original_offset = offset;
+
+	item = proto_tree_add_item(parent_tree,
+				   hf_openais_cpg_downlist,
+				   tvb, offset, -1, little_endian);
+	tree = proto_item_add_subtree(item, ett_openais_cpg_downlist);
+
+
+	offset += 0;
+	proto_tree_add_item(tree,
+			    hf_openais_cpg_downlist_old_members,
+			    tvb, 
+			    offset, 4, 
+			    little_endian);
+
+	offset += 4;
+	proto_tree_add_item(tree,
+			    hf_openais_cpg_downlist_old_members_padding,
+			    tvb, 
+			    offset, 4, 
+			    little_endian);
+
+	offset += 4;
+	offset += dissect_openais_cpg_downlist0(tvb, pinfo, tree, item, 
+						length - offset, offset, little_endian);
+				      
+	return (offset - original_offset);
 }
 
 static int
@@ -759,7 +839,9 @@ dissect_openais_cpg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 							      length, offset, little_endian);
 		break;
 	case MESSAGE_REQ_EXEC_CPG_DOWNLIST:
-	        fprintf(stderr, "TODO: MESSAGE_REQ_EXEC_CPG_DOWNLIST\n");
+		sub_length = dissect_openais_cpg_downlist(tvb, pinfo,
+							  tree, item,
+							  length, offset, little_endian);
 		break;
 	default:
 	        fprintf(stderr, "Unknown cpg fn_id: %d\n", fn_id);
@@ -880,8 +962,8 @@ proto_register_openais_cpg(void)
 		    FT_UINT64, BASE_HEX, NULL, 0x0,
 		    NULL, HFILL }},
 
-		{ &hf_openais_cpg_downlist,
-		  { "Down list", "openais_cpg.downlist",
+		{ &hf_openais_cpg_downlist_old,
+		  { "Down list old", "openais_cpg.downlist_old",
 		    FT_NONE, BASE_NONE, NULL, 0x0,
 		    NULL, HFILL }},
 		{ &hf_openais_cpg_downlist_left_nodes,
@@ -896,6 +978,19 @@ proto_register_openais_cpg(void)
 		  { "Node ids", "openais_cpg.downlist.nodeids",
 		    FT_BYTES, BASE_NONE, NULL, 0x0, /* BASE_DEC is rejected by the latest wireshark. */
 		    NULL, HFILL }},
+		{ &hf_openais_cpg_downlist,
+		  { "Down list", "openais_cpg.downlist",
+		    FT_NONE, BASE_NONE, NULL, 0x0,
+		    NULL, HFILL }},
+		{ &hf_openais_cpg_downlist_old_members,
+		  { "Old members", "openais_cpg.downlist.old_members",
+		    FT_UINT32, BASE_DEC, NULL, 0x0,
+		    NULL, HFILL }},
+		{ &hf_openais_cpg_downlist_old_members_padding,
+		  { "Padding", "openais_cpg.downlist.old_members_padding",
+		    FT_UINT32, BASE_DEC, NULL, 0x0,
+		    NULL, HFILL }},
+		
 	};
 
 	static gint *ett[] = {
@@ -907,6 +1002,7 @@ proto_register_openais_cpg(void)
 		&ett_openais_cpg_mcast,
 		&ett_openais_cpg_mar_name,
 		&ett_openais_cpg_mar_message_source,
+		&ett_openais_cpg_downlist_old,
 		&ett_openais_cpg_downlist,
 	};
   
