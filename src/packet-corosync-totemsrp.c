@@ -1029,39 +1029,43 @@ after_updating_col:
                 proto_tree_add_item(tree,
                                     hf_corosync_totemsrp_message_header_nodeid,
                                     tvb, offset, 4, little_endian);
-		info.nodeid = corosync_totemsrp_get_guint32(tvb, offset, little_endian);
-                offset += 4;
+        } 
+	else {
+		tree = parent_tree;
+		offset += 0 + 1 + 1 + 2;
+	}
+	info.nodeid = corosync_totemsrp_get_guint32(tvb, offset, little_endian);
+	offset += 4;
 
-                switch (message_header__type) {
-                case COROSYNC_TOTEMSRP_MESSAGE_TYPE_ORF_TOKEN:
-                        dissect_corosync_totemsrp_orf_token(tvb, pinfo, tree, length, offset,
+	switch (message_header__type) {
+	case COROSYNC_TOTEMSRP_MESSAGE_TYPE_ORF_TOKEN:
+		dissect_corosync_totemsrp_orf_token(tvb, pinfo, tree, length, offset,
+						    little_endian);
+		break;
+	case COROSYNC_TOTEMSRP_MESSAGE_TYPE_MCAST:
+		dissect_corosync_totemsrp_mcast(tvb, pinfo, tree, length, offset,
+						message_header__encapsulated,
+						little_endian);
+		break;
+	case COROSYNC_TOTEMSRP_MESSAGE_TYPE_MEMB_MERGE_DETECT:
+		dissect_corosync_totemsrp_memb_merge_detect(tvb, pinfo, tree, length, offset,
 							    little_endian);
-                        break;
-                case COROSYNC_TOTEMSRP_MESSAGE_TYPE_MCAST:
-                        dissect_corosync_totemsrp_mcast(tvb, pinfo, tree, length, offset,
-							message_header__encapsulated,
-							little_endian);
-                        break;
-                case COROSYNC_TOTEMSRP_MESSAGE_TYPE_MEMB_MERGE_DETECT:
-                        dissect_corosync_totemsrp_memb_merge_detect(tvb, pinfo, tree, length, offset,
-                                                           little_endian);
-                        break;
-                case COROSYNC_TOTEMSRP_MESSAGE_TYPE_MEMB_JOIN:
-                        dissect_corosync_totemsrp_memb_join(tvb, pinfo, tree, length, offset,
-                                                   little_endian);
-                        break;
-                case COROSYNC_TOTEMSRP_MESSAGE_TYPE_MEMB_COMMIT_TOKEN:
-                        dissect_corosync_totemsrp_memb_commit_token(tvb, pinfo, tree, length, offset,
-                                                           little_endian);
-                        break;
-                case COROSYNC_TOTEMSRP_MESSAGE_TYPE_TOKEN_HOLD_CANCEL:
-                        dissect_corosync_totemsrp_token_hold_cancel(tvb, pinfo, tree, length, offset,
-                                                           little_endian);
-                        break;
-                default:
-                        break;
-                }
-        }
+		break;
+	case COROSYNC_TOTEMSRP_MESSAGE_TYPE_MEMB_JOIN:
+		dissect_corosync_totemsrp_memb_join(tvb, pinfo, tree, length, offset,
+						    little_endian);
+		break;
+	case COROSYNC_TOTEMSRP_MESSAGE_TYPE_MEMB_COMMIT_TOKEN:
+		dissect_corosync_totemsrp_memb_commit_token(tvb, pinfo, tree, length, offset,
+							    little_endian);
+		break;
+	case COROSYNC_TOTEMSRP_MESSAGE_TYPE_TOKEN_HOLD_CANCEL:
+		dissect_corosync_totemsrp_token_hold_cancel(tvb, pinfo, tree, length, offset,
+							    little_endian);
+		break;
+	default:
+		break;
+	}
 
         pinfo->private_data = info.original_private_data;
         return tvb_length(tvb);
