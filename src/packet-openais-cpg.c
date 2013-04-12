@@ -113,7 +113,7 @@ static gint ett_openais_cpg_downlist             = -1;
 #define OPENAIS_CPG_FN_ID_JOINLIT    2
 #define OPENAIS_CPG_FN_ID_MCAST      3
 #define OPENAIS_CPG_FN_ID_DOWNLIST_OLD   4
-
+#define MESSAGE_REQ_EXEC_CPG_DOWNLIST 5 /* Maybe new in corosync */
 
 /*  Taken from `enum lib_cpg_confchg_reason' 
     of openais-0.80.3/include/ipc_cpg.h 
@@ -136,6 +136,7 @@ static const value_string vals_openais_cpg_fn_id[] = {
 	{ OPENAIS_CPG_FN_ID_JOINLIT,      "JOINLIST" },
 	{ OPENAIS_CPG_FN_ID_MCAST,        "MCAST"     },
 	{ OPENAIS_CPG_FN_ID_DOWNLIST_OLD, "DOWNLIST-OLD"  },
+	{ MESSAGE_REQ_EXEC_CPG_DOWNLIST,     "DOWNLIST"  },
 
 	{ 0,                            NULL        },
 };
@@ -756,6 +757,9 @@ dissect_openais_cpg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 		sub_length = dissect_openais_cpg_downlist_old(tvb, pinfo, 
 							      tree, item, 
 							      length, offset, little_endian);
+		break;
+	case MESSAGE_REQ_EXEC_CPG_DOWNLIST:
+	        fprintf(stderr, "TODO: MESSAGE_REQ_EXEC_CPG_DOWNLIST\n");
 		break;
 	default:
 	        fprintf(stderr, "Unknown cpg fn_id: %d\n", fn_id);
