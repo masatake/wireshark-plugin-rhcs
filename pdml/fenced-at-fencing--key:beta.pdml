@@ -1,0 +1,790 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="pdml2html.xsl"?>
+<!-- You can find pdml2html.xsl in /usr/share/wireshark or at http://anonsvn.wireshark.org/trunk/wireshark/pdml2html.xsl. -->
+<pdml version="0" creator="wireshark/1.6.14" time="Fri Apr 12 11:01:28 2013" capture_file="pcap/fenced-at-fencing--key:beta.pcap">
+<packet>
+  <proto name="geninfo" pos="0" showname="General information" size="602">
+    <field name="num" pos="0" show="1" showname="Number" value="1" size="602"/>
+    <field name="len" pos="0" show="602" showname="Frame Length" value="25a" size="602"/>
+    <field name="caplen" pos="0" show="602" showname="Captured Length" value="25a" size="602"/>
+    <field name="timestamp" pos="0" show="Oct 17, 2011 14:05:11.997410000 JST" showname="Captured Time" value="1318827911.997410000" size="602"/>
+  </proto>
+  <proto name="frame" showname="Frame 1: 602 bytes on wire (4816 bits), 602 bytes captured (4816 bits)" size="602" pos="0">
+    <field name="frame.time" showname="Arrival Time: Oct 17, 2011 14:05:11.997410000 JST" size="0" pos="0" show="Oct 17, 2011 14:05:11.997410000"/>
+    <field name="frame.time_epoch" showname="Epoch Time: 1318827911.997410000 seconds" size="0" pos="0" show="1318827911.997410000"/>
+    <field name="frame.time_delta" showname="Time delta from previous captured frame: 0.000000000 seconds" size="0" pos="0" show="0.000000000"/>
+    <field name="frame.time_delta_displayed" showname="Time delta from previous displayed frame: 0.000000000 seconds" size="0" pos="0" show="0.000000000"/>
+    <field name="frame.time_relative" showname="Time since reference or first frame: 0.000000000 seconds" size="0" pos="0" show="0.000000000"/>
+    <field name="frame.number" showname="Frame Number: 1" size="0" pos="0" show="1"/>
+    <field name="frame.len" showname="Frame Length: 602 bytes (4816 bits)" size="0" pos="0" show="602"/>
+    <field name="frame.cap_len" showname="Capture Length: 602 bytes (4816 bits)" size="0" pos="0" show="602"/>
+    <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
+    <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:openais_a:openais_cpg:rhcs_fenced" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:openais_a:openais_cpg:rhcs_fenced"/>
+  </proto>
+  <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:63 (54:52:00:01:00:63), Dst: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="14" pos="0">
+    <field name="eth.dst" showname="Destination: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="6" pos="0" show="01:00:5e:40:4b:91" value="01005e404b91">
+      <field name="eth.addr" showname="Address: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="6" pos="0" show="01:00:5e:40:4b:91" value="01005e404b91"/>
+      <field name="eth.ig" showname=".... ...1 .... .... .... .... = IG bit: Group address (multicast/broadcast)" size="3" pos="0" show="1" value="1" unmaskedvalue="01005e"/>
+      <field name="eth.lg" showname=".... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)" size="3" pos="0" show="0" value="0" unmaskedvalue="01005e"/>
+    </field>
+    <field name="eth.src" showname="Source: 54:52:00:01:00:63 (54:52:00:01:00:63)" size="6" pos="6" show="54:52:00:01:00:63" value="545200010063">
+      <field name="eth.addr" showname="Address: 54:52:00:01:00:63 (54:52:00:01:00:63)" size="6" pos="6" show="54:52:00:01:00:63" value="545200010063"/>
+      <field name="eth.ig" showname=".... ...0 .... .... .... .... = IG bit: Individual address (unicast)" size="3" pos="6" show="0" value="0" unmaskedvalue="545200"/>
+      <field name="eth.lg" showname=".... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)" size="3" pos="6" show="0" value="0" unmaskedvalue="545200"/>
+    </field>
+    <field name="eth.type" showname="Type: IP (0x0800)" size="2" pos="12" show="0x0800" value="0800"/>
+  </proto>
+  <proto name="ip" showname="Internet Protocol Version 4, Src: 192.168.151.63 (192.168.151.63), Dst: 239.192.75.145 (239.192.75.145)" size="20" pos="14">
+    <field name="ip.version" showname="Version: 4" size="1" pos="14" show="4" value="45"/>
+    <field name="ip.hdr_len" showname="Header length: 20 bytes" size="1" pos="14" show="20" value="45"/>
+    <field name="ip.dsfield" showname="Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00: Not-ECT (Not ECN-Capable Transport))" size="1" pos="15" show="0" value="00">
+      <field name="ip.dsfield.dscp" showname="0000 00.. = Differentiated Services Codepoint: Default (0x00)" size="1" pos="15" show="0x00" value="0" unmaskedvalue="00"/>
+      <field name="ip.dsfield.ecn" showname=".... ..00 = Explicit Congestion Notification: Not-ECT (Not ECN-Capable Transport) (0x00)" size="1" pos="15" show="0x00" value="0" unmaskedvalue="00"/>
+    </field>
+    <field name="ip.len" showname="Total Length: 588" size="2" pos="16" show="588" value="024c"/>
+    <field name="ip.id" showname="Identification: 0x0000 (0)" size="2" pos="18" show="0x0000" value="0000"/>
+    <field name="ip.flags" showname="Flags: 0x02 (Don&apos;t Fragment)" size="1" pos="20" show="0x02" value="40">
+      <field name="ip.flags.rb" showname="0... .... = Reserved bit: Not set" size="1" pos="20" show="0" value="40"/>
+      <field name="ip.flags.df" showname=".1.. .... = Don&apos;t fragment: Set" size="1" pos="20" show="1" value="40"/>
+      <field name="ip.flags.mf" showname="..0. .... = More fragments: Not set" size="1" pos="20" show="0" value="40"/>
+    </field>
+    <field name="ip.frag_offset" showname="Fragment offset: 0" size="2" pos="20" show="0" value="4000"/>
+    <field name="ip.ttl" showname="Time to live: 1" size="1" pos="22" show="1" value="01"/>
+    <field name="ip.proto" showname="Protocol: UDP (17)" size="1" pos="23" show="17" value="11"/>
+    <field name="ip.checksum" showname="Header checksum: 0xe467 [correct]" size="2" pos="24" show="0xe467" value="e467">
+      <field name="ip.checksum_good" showname="Good: True" size="2" pos="24" show="1" value="e467"/>
+      <field name="ip.checksum_bad" showname="Bad: False" size="2" pos="24" show="0" value="e467"/>
+    </field>
+    <field name="ip.src" showname="Source: 192.168.151.63 (192.168.151.63)" size="4" pos="26" show="192.168.151.63" value="c0a8973f"/>
+    <field name="ip.addr" showname="Source or Destination Address: 192.168.151.63 (192.168.151.63)" hide="yes" size="4" pos="26" show="192.168.151.63" value="c0a8973f"/>
+    <field name="ip.src_host" showname="Source Host: 192.168.151.63" hide="yes" size="4" pos="26" show="192.168.151.63" value="c0a8973f"/>
+    <field name="ip.host" showname="Source or Destination Host: 192.168.151.63" hide="yes" size="4" pos="26" show="192.168.151.63" value="c0a8973f"/>
+    <field name="ip.dst" showname="Destination: 239.192.75.145 (239.192.75.145)" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.addr" showname="Source or Destination Address: 239.192.75.145 (239.192.75.145)" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.dst_host" showname="Destination Host: 239.192.75.145" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.host" showname="Source or Destination Host: 239.192.75.145" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+  </proto>
+  <proto name="udp" showname="User Datagram Protocol, Src Port: hpoms-dps-lstn (5404), Dst Port: netsupport (5405)" size="8" pos="34">
+    <field name="udp.srcport" showname="Source port: hpoms-dps-lstn (5404)" size="2" pos="34" show="5404" value="151c"/>
+    <field name="udp.dstport" showname="Destination port: netsupport (5405)" size="2" pos="36" show="5405" value="151d"/>
+    <field name="udp.port" showname="Source or Destination Port: 5404" hide="yes" size="2" pos="34" show="5404" value="151c"/>
+    <field name="udp.port" showname="Source or Destination Port: 5405" hide="yes" size="2" pos="36" show="5405" value="151d"/>
+    <field name="udp.length" showname="Length: 568" size="2" pos="38" show="568" value="0238"/>
+    <field name="udp.checksum_coverage" showname="Checksum coverage: 568" hide="yes" size="0" pos="38" show="568"/>
+    <field name="udp.checksum" showname="Checksum: 0x39a3 [validation disabled]" size="2" pos="40" show="0x39a3" value="39a3">
+      <field name="udp.checksum_good" showname="Good Checksum: False" size="2" pos="40" show="0" value="39a3"/>
+      <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="39a3"/>
+    </field>
+  </proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="559" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 2d65c39a76ab6d4bd27892ef3756e7219e2b32a4" size="20" pos="0" show="2d:65:c3:9a:76:ab:6d:4b:d2:78:92:ef:37:56:e7:21:9e:2b:32:a4" value="2d65c39a76ab6d4bd27892ef3756e7219e2b32a4"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: 351ab19afc55014a2250d3b463310b75" size="16" pos="20" show="35:1a:b1:9a:fc:55:01:4a:22:50:d3:b4:63:31:0b:75" value="351ab19afc55014a2250d3b463310b75"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="558" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="beta" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="523" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="515" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.63 (192.168.151.63)" size="4" pos="50" show="192.168.151.63" value="c0a8973f"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973f08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3f:08:00:04:00" value="08000200c0a8973f08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 69" size="4" pos="88" show="69" value="45000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 552" size="4" pos="92" show="552" value="28020000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.63 (192.168.151.63)" size="4" pos="102" show="192.168.151.63" value="c0a8973f"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973f08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3f:08:00:04:00" value="08000200c0a8973f08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 1336" size="8" pos="118" show="1336" value="3805000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="425" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 548" size="2" pos="136" show="548" value="2402"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 2" size="2" pos="140" show="2" value="0200"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 32 (msg index: 0)" size="2" pos="142" show="32" value="2000"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 381 (msg index: 1)" size="2" pos="144" show="381" value="7d01"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="32" pos="146" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="146" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="148" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="150" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="24" pos="154">
+        <field name="openais_cman.tgtport" showname="Target port number: 0 (cman internal)" size="1" pos="154" show="0" value="00"/>
+        <field name="openais_cman.srcport" showname="Source port number: 0" size="1" pos="155" show="0" value="00"/>
+        <field name="openais_cman.pad" showname="Padding: 0" size="2" pos="156" show="0" value="0000"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="158" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="162" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 3" size="4" pos="166" show="3" value="03000000"/>
+        <field name="openais_cman.protmsg.cmd" showname="Command: Kill node (6)" size="1" pos="170" show="6" value="06">
+          <field name="openais_cman.killmsg.pad1" showname="Padding: 0x6d" size="1" pos="171" show="0x6d" value="6d"/>
+          <field name="openais_cman.killmsg.reason" showname="Reason: Requested by cmantool (2)" size="2" pos="172" show="2" value="0200"/>
+          <field name="openais_cman.killmsg.nodeid" showname="Node id: 3" size="4" pos="174" show="3" value="03000000"/>
+        </field>
+      </proto>
+    </field>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 1)" size="381" pos="178" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="178" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 1 (group index: 0)" size="2" pos="180" show="1" value="0100"/>
+      <field name="corosync_totempg.group_name" showname="Group name: a (group index: 0)" size="1" pos="182" show="a" value="61"/>
+      <proto name="openais_a" showname="Protocol used in &quot;a&quot; group running on OpenAIS" size="376" pos="183">
+        <field name="openais_a.header" showname="Header" size="16" pos="183" show="" value="">
+          <field name="openais_a.header.size" showname="Size: 376" size="4" pos="183" show="376" value="78010000"/>
+          <field name="openais_a.header.size_padding" showname="Padding: 32760" size="4" pos="187" show="32760" value="f87f0000"/>
+          <field name="openais_a.header.id" showname="Id" size="368" pos="191" show="" value="">
+            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (MCAST)" size="2" pos="191" show="3" value="0300"/>
+            <field name="openais_a.header.id.service" showname="Service: CPG (8) (cpg)" size="2" pos="193" show="8" value="0800"/>
+          </field>
+          <field name="openais_a.header.id_padding" showname="Padding: 0" size="4" pos="195" show="0" value="00000000"/>
+        </field>
+        <proto name="openais_cpg" showname="cpg protocol on totempg of OpenAIS" size="360" pos="199">
+          <field name="openais_cpg.mcast" showname="Multicast (group: fenced:default)" size="360" pos="199" show="" value="">
+            <field name="openais_cpg.mar_name" showname="Mar name" size="136" pos="199" show="" value="">
+              <field name="openais_cpg.mar_name.length" showname="Mar name length: 15" size="4" pos="199" show="15" value="0f000000"/>
+              <field name="openais_cpg.mar_name.length_padding" showname="Padding: 48" size="4" pos="203" show="48" value="30000000"/>
+              <field name="openais_cpg.mar_name.value" showname="Mar name value: fenced:default" size="15" pos="207" show="fenced:default" value="66656e6365643a64656661756c7400"/>
+              <field name="openais_cpg.mar_name.value_padding" showname="Padding: 000000000000000000000000000000000000000000000000..." size="113" pos="222" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+            </field>
+            <field name="openais_cpg.mcast.msglen" showname="Message length: 192" size="4" pos="335" show="192" value="c0000000"/>
+            <field name="openais_cpg.mcast.msglen_padding" showname="Padding: 32760" size="4" pos="339" show="32760" value="f87f0000"/>
+            <field name="openais_cpg.pid" showname="Pid: 11093" size="4" pos="343" show="11093" value="552b0000"/>
+            <field name="openais_cpg.pid_padding" showname="Padding: 0" size="4" pos="347" show="0" value="00000000"/>
+            <field name="openais_cpg.mar_message_source" showname="Message source" size="208" pos="351" show="" value="">
+              <field name="openais_cpg.mar_message_source.nodeid" showname="Node id: 1" size="4" pos="351" show="1" value="01000000"/>
+              <field name="openais_cpg.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="355" show="0" value="00000000"/>
+              <field name="openais_cpg.mar_message_source.conn" showname="Pointer to connection object: 0x00000000022758d0" size="8" pos="359" show="0x00000000022758d0" value="d058270200000000"/>
+            </field>
+            <proto name="rhcs_fenced" showname="Protocol used in fenced of rhcs" size="192" pos="367">
+              <field name="rhcs_fenced.fd_header" showname="Fenced header" size="192" pos="367" show="" value="">
+                <field name="rhcs_fenced.fd_header.version" showname="Fenced header version" size="192" pos="367" show="" value="">
+                  <field name="rhcs_fenced.fd_header.version.major" showname="Fenced header major version: 1" size="2" pos="367" show="1" value="0100"/>
+                  <field name="rhcs_fenced.fd_header.version.minor" showname="Fenced header minor version: 1" size="2" pos="369" show="1" value="0100"/>
+                  <field name="rhcs_fenced.fd_header.version.patch" showname="Fenced header patch level: 1" size="2" pos="371" show="1" value="0100"/>
+                </field>
+                <field name="rhcs_fenced.fd_header.type" showname="Fenced header type: start (2)" size="2" pos="373" show="2" value="0200"/>
+                <field name="rhcs_fenced.fd_header.nodeid" showname="Sender node: 1" size="4" pos="375" show="1" value="01000000"/>
+                <field name="rhcs_fenced.fd_header.to_nodeid" showname="Recipient node: 0" size="4" pos="379" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.global_id" showname="Global unique id for this domain: 0" size="4" pos="383" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.flags" showname="Fenced header flags: 0x00000002" size="4" pos="387" show="0x00000002" value="02000000"/>
+                <field name="rhcs_fenced.fd_header.seq" showname="Fenced header sequnce number: 14" size="4" pos="391" show="14" value="0e000000"/>
+                <field name="rhcs_fenced.fd_header.msgdata" showname="Fenced header msgdata: 0x0000000e" size="4" pos="391" show="0x0000000e" value="0e000000"/>
+                <field name="rhcs_fenced.fd_header.pad1" showname="Padding: 0x00000000" size="4" pos="395" show="0x00000000" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.pad2" showname="Padding: 0x0000000000000000" size="8" pos="399" show="0x0000000000000000" value="0000000000000000"/>
+              </field>
+              <field name="rhcs_fenced.fd_info" showname="Fence domain info" size="152" pos="407" show="" value="">
+                <field name="rhcs_fenced.fd_info.fd_info_size" showname="Size of fd info: 32" size="4" pos="407" show="32" value="20000000"/>
+                <field name="rhcs_fenced.fd_info.id_info_size" showname="Size of id info: 40" size="4" pos="411" show="40" value="28000000"/>
+                <field name="rhcs_fenced.fd_info.id_info_count" showname="Count of id infos: 3" size="4" pos="415" show="3" value="03000000"/>
+                <field name="rhcs_fenced.fd_info.started_count" showname="Count of started: 13" size="4" pos="419" show="13" value="0d000000"/>
+                <field name="rhcs_fenced.fd_info.member_count" showname="Count of members: 2" size="4" pos="423" show="2" value="02000000"/>
+                <field name="rhcs_fenced.fd_info.joined_count" showname="Count of joined: 0" size="4" pos="427" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_info.remove_count" showname="Count of remove: 1" size="4" pos="431" show="1" value="01000000"/>
+                <field name="rhcs_fenced.fd_info.failed_count" showname="Count of failed: 1" size="4" pos="435" show="1" value="01000000"/>
+              </field>
+              <field name="rhcs_fenced.id_info" showname="ID info" size="120" pos="439" show="" value="">
+                <field name="rhcs_fenced.id_info.nodeid" showname="Node id: 1" size="4" pos="439" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.flags" showname="Flags: 1, Member?" size="4" pos="443" show="1" value="01000000">
+                  <field name="rhcs_fenced.id_info.flags.nodedid_is_member" showname=".... .... .... .... .... .... .... ...1 = Member?: True" size="4" pos="443" show="1" value="1" unmaskedvalue="01000000"/>
+                </field>
+                <field name="rhcs_fenced.id_info.fence_external_node" showname="Fence external node: 0" size="4" pos="447" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_master" showname="Fence master: 3" size="4" pos="451" show="3" value="03000000"/>
+                <field name="rhcs_fenced.id_info.fence_how" showname="Fence how: Member (2)" size="4" pos="455" show="2" value="02000000"/>
+                <field name="rhcs_fenced.id_info.pad" showname="Padding: 0" size="4" pos="459" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_time" showname="Time: 1318678984" size="8" pos="463" show="1318678984" value="c871994e00000000"/>
+                <field name="rhcs_fenced.id_info.fence_external_time" showname="External Time: 0" size="8" pos="471" show="0" value="0000000000000000"/>
+              </field>
+              <field name="rhcs_fenced.id_info" showname="ID info" size="80" pos="479" show="" value="">
+                <field name="rhcs_fenced.id_info.nodeid" showname="Node id: 2" size="4" pos="479" show="2" value="02000000"/>
+                <field name="rhcs_fenced.id_info.flags" showname="Flags: 1, Member?" size="4" pos="483" show="1" value="01000000">
+                  <field name="rhcs_fenced.id_info.flags.nodedid_is_member" showname=".... .... .... .... .... .... .... ...1 = Member?: True" size="4" pos="483" show="1" value="1" unmaskedvalue="01000000"/>
+                </field>
+                <field name="rhcs_fenced.id_info.fence_external_node" showname="Fence external node: 0" size="4" pos="487" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_master" showname="Fence master: 0" size="4" pos="491" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_how" showname="Fence how: Unknown (0)" size="4" pos="495" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.pad" showname="Padding: 0" size="4" pos="499" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_time" showname="Time: 0" size="8" pos="503" show="0" value="0000000000000000"/>
+                <field name="rhcs_fenced.id_info.fence_external_time" showname="External Time: 0" size="8" pos="511" show="0" value="0000000000000000"/>
+              </field>
+              <field name="rhcs_fenced.id_info" showname="ID info" size="40" pos="519" show="" value="">
+                <field name="rhcs_fenced.id_info.nodeid" showname="Node id: 3" size="4" pos="519" show="3" value="03000000"/>
+                <field name="rhcs_fenced.id_info.flags" showname="Flags: 0" size="4" pos="523" show="0" value="00000000">
+                  <field name="rhcs_fenced.id_info.flags.nodedid_is_member" showname=".... .... .... .... .... .... .... ...0 = Member?: False" size="4" pos="523" show="0" value="0" unmaskedvalue="00000000"/>
+                </field>
+                <field name="rhcs_fenced.id_info.fence_external_node" showname="Fence external node: 0" size="4" pos="527" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_master" showname="Fence master: 1" size="4" pos="531" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.fence_how" showname="Fence how: Agent (1)" size="4" pos="535" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.pad" showname="Padding: 0" size="4" pos="539" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_time" showname="Time: 1318827378" size="8" pos="543" show="1318827378" value="72b59b4e00000000"/>
+                <field name="rhcs_fenced.id_info.fence_external_time" showname="External Time: 0" size="8" pos="551" show="0" value="0000000000000000"/>
+              </field>
+            </proto>
+          </field>
+        </proto>
+      </proto>
+    </field>
+  </proto>
+</packet>
+
+
+<packet>
+  <proto name="geninfo" pos="0" showname="General information" size="602">
+    <field name="num" pos="0" show="2" showname="Number" value="2" size="602"/>
+    <field name="len" pos="0" show="602" showname="Frame Length" value="25a" size="602"/>
+    <field name="caplen" pos="0" show="602" showname="Captured Length" value="25a" size="602"/>
+    <field name="timestamp" pos="0" show="Oct 17, 2011 14:05:11.999728000 JST" showname="Captured Time" value="1318827911.999728000" size="602"/>
+  </proto>
+  <proto name="frame" showname="Frame 2: 602 bytes on wire (4816 bits), 602 bytes captured (4816 bits)" size="602" pos="0">
+    <field name="frame.time" showname="Arrival Time: Oct 17, 2011 14:05:11.999728000 JST" size="0" pos="0" show="Oct 17, 2011 14:05:11.999728000"/>
+    <field name="frame.time_epoch" showname="Epoch Time: 1318827911.999728000 seconds" size="0" pos="0" show="1318827911.999728000"/>
+    <field name="frame.time_delta" showname="Time delta from previous captured frame: 0.002318000 seconds" size="0" pos="0" show="0.002318000"/>
+    <field name="frame.time_delta_displayed" showname="Time delta from previous displayed frame: 0.002318000 seconds" size="0" pos="0" show="0.002318000"/>
+    <field name="frame.time_relative" showname="Time since reference or first frame: 0.002318000 seconds" size="0" pos="0" show="0.002318000"/>
+    <field name="frame.number" showname="Frame Number: 2" size="0" pos="0" show="2"/>
+    <field name="frame.len" showname="Frame Length: 602 bytes (4816 bits)" size="0" pos="0" show="602"/>
+    <field name="frame.cap_len" showname="Capture Length: 602 bytes (4816 bits)" size="0" pos="0" show="602"/>
+    <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
+    <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:openais_a:openais_cpg:rhcs_fenced" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:openais_a:openais_cpg:rhcs_fenced"/>
+  </proto>
+  <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:64 (54:52:00:01:00:64), Dst: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="14" pos="0">
+    <field name="eth.dst" showname="Destination: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="6" pos="0" show="01:00:5e:40:4b:91" value="01005e404b91">
+      <field name="eth.addr" showname="Address: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="6" pos="0" show="01:00:5e:40:4b:91" value="01005e404b91"/>
+      <field name="eth.ig" showname=".... ...1 .... .... .... .... = IG bit: Group address (multicast/broadcast)" size="3" pos="0" show="1" value="1" unmaskedvalue="01005e"/>
+      <field name="eth.lg" showname=".... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)" size="3" pos="0" show="0" value="0" unmaskedvalue="01005e"/>
+    </field>
+    <field name="eth.src" showname="Source: 54:52:00:01:00:64 (54:52:00:01:00:64)" size="6" pos="6" show="54:52:00:01:00:64" value="545200010064">
+      <field name="eth.addr" showname="Address: 54:52:00:01:00:64 (54:52:00:01:00:64)" size="6" pos="6" show="54:52:00:01:00:64" value="545200010064"/>
+      <field name="eth.ig" showname=".... ...0 .... .... .... .... = IG bit: Individual address (unicast)" size="3" pos="6" show="0" value="0" unmaskedvalue="545200"/>
+      <field name="eth.lg" showname=".... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)" size="3" pos="6" show="0" value="0" unmaskedvalue="545200"/>
+    </field>
+    <field name="eth.type" showname="Type: IP (0x0800)" size="2" pos="12" show="0x0800" value="0800"/>
+  </proto>
+  <proto name="ip" showname="Internet Protocol Version 4, Src: 192.168.151.64 (192.168.151.64), Dst: 239.192.75.145 (239.192.75.145)" size="20" pos="14">
+    <field name="ip.version" showname="Version: 4" size="1" pos="14" show="4" value="45"/>
+    <field name="ip.hdr_len" showname="Header length: 20 bytes" size="1" pos="14" show="20" value="45"/>
+    <field name="ip.dsfield" showname="Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00: Not-ECT (Not ECN-Capable Transport))" size="1" pos="15" show="0" value="00">
+      <field name="ip.dsfield.dscp" showname="0000 00.. = Differentiated Services Codepoint: Default (0x00)" size="1" pos="15" show="0x00" value="0" unmaskedvalue="00"/>
+      <field name="ip.dsfield.ecn" showname=".... ..00 = Explicit Congestion Notification: Not-ECT (Not ECN-Capable Transport) (0x00)" size="1" pos="15" show="0x00" value="0" unmaskedvalue="00"/>
+    </field>
+    <field name="ip.len" showname="Total Length: 588" size="2" pos="16" show="588" value="024c"/>
+    <field name="ip.id" showname="Identification: 0x0000 (0)" size="2" pos="18" show="0x0000" value="0000"/>
+    <field name="ip.flags" showname="Flags: 0x02 (Don&apos;t Fragment)" size="1" pos="20" show="0x02" value="40">
+      <field name="ip.flags.rb" showname="0... .... = Reserved bit: Not set" size="1" pos="20" show="0" value="40"/>
+      <field name="ip.flags.df" showname=".1.. .... = Don&apos;t fragment: Set" size="1" pos="20" show="1" value="40"/>
+      <field name="ip.flags.mf" showname="..0. .... = More fragments: Not set" size="1" pos="20" show="0" value="40"/>
+    </field>
+    <field name="ip.frag_offset" showname="Fragment offset: 0" size="2" pos="20" show="0" value="4000"/>
+    <field name="ip.ttl" showname="Time to live: 1" size="1" pos="22" show="1" value="01"/>
+    <field name="ip.proto" showname="Protocol: UDP (17)" size="1" pos="23" show="17" value="11"/>
+    <field name="ip.checksum" showname="Header checksum: 0xe466 [correct]" size="2" pos="24" show="0xe466" value="e466">
+      <field name="ip.checksum_good" showname="Good: True" size="2" pos="24" show="1" value="e466"/>
+      <field name="ip.checksum_bad" showname="Bad: False" size="2" pos="24" show="0" value="e466"/>
+    </field>
+    <field name="ip.src" showname="Source: 192.168.151.64 (192.168.151.64)" size="4" pos="26" show="192.168.151.64" value="c0a89740"/>
+    <field name="ip.addr" showname="Source or Destination Address: 192.168.151.64 (192.168.151.64)" hide="yes" size="4" pos="26" show="192.168.151.64" value="c0a89740"/>
+    <field name="ip.src_host" showname="Source Host: 192.168.151.64" hide="yes" size="4" pos="26" show="192.168.151.64" value="c0a89740"/>
+    <field name="ip.host" showname="Source or Destination Host: 192.168.151.64" hide="yes" size="4" pos="26" show="192.168.151.64" value="c0a89740"/>
+    <field name="ip.dst" showname="Destination: 239.192.75.145 (239.192.75.145)" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.addr" showname="Source or Destination Address: 239.192.75.145 (239.192.75.145)" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.dst_host" showname="Destination Host: 239.192.75.145" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.host" showname="Source or Destination Host: 239.192.75.145" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+  </proto>
+  <proto name="udp" showname="User Datagram Protocol, Src Port: hpoms-dps-lstn (5404), Dst Port: netsupport (5405)" size="8" pos="34">
+    <field name="udp.srcport" showname="Source port: hpoms-dps-lstn (5404)" size="2" pos="34" show="5404" value="151c"/>
+    <field name="udp.dstport" showname="Destination port: netsupport (5405)" size="2" pos="36" show="5405" value="151d"/>
+    <field name="udp.port" showname="Source or Destination Port: 5404" hide="yes" size="2" pos="34" show="5404" value="151c"/>
+    <field name="udp.port" showname="Source or Destination Port: 5405" hide="yes" size="2" pos="36" show="5405" value="151d"/>
+    <field name="udp.length" showname="Length: 568" size="2" pos="38" show="568" value="0238"/>
+    <field name="udp.checksum_coverage" showname="Checksum coverage: 568" hide="yes" size="0" pos="38" show="568"/>
+    <field name="udp.checksum" showname="Checksum: 0x8cc9 [validation disabled]" size="2" pos="40" show="0x8cc9" value="8cc9">
+      <field name="udp.checksum_good" showname="Good Checksum: False" size="2" pos="40" show="0" value="8cc9"/>
+      <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="8cc9"/>
+    </field>
+  </proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="559" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 00b0b3f3fff7e14bf8c9fdfce9497e934312075d" size="20" pos="0" show="00:b0:b3:f3:ff:f7:e1:4b:f8:c9:fd:fc:e9:49:7e:93:43:12:07:5d" value="00b0b3f3fff7e14bf8c9fdfce9497e934312075d"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: 63a0a19d7dae4314060951a722e73d1a" size="16" pos="20" show="63:a0:a1:9d:7d:ae:43:14:06:09:51:a7:22:e7:3d:1a" value="63a0a19d7dae4314060951a722e73d1a"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="558" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="beta" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="523" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 2" size="4" pos="40" show="2" value="02000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="515" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 2)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 2" size="4" pos="44" show="2" value="02000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.64 (192.168.151.64)" size="4" pos="50" show="192.168.151.64" value="c0a89740"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8974008000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:40:08:00:04:00" value="08000200c0a8974008000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 70" size="4" pos="88" show="70" value="46000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 155" size="4" pos="92" show="155" value="9b000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.63 (192.168.151.63)" size="4" pos="102" show="192.168.151.63" value="c0a8973f"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973f08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3f:08:00:04:00" value="08000200c0a8973f08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 1336" size="8" pos="118" show="1336" value="3805000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="425" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: -4301" size="2" pos="136" show="-4301" value="33ef"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 2" size="2" pos="140" show="2" value="0200"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 32 (msg index: 0)" size="2" pos="142" show="32" value="2000"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 381 (msg index: 1)" size="2" pos="144" show="381" value="7d01"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="32" pos="146" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="146" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="148" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="150" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="24" pos="154">
+        <field name="openais_cman.tgtport" showname="Target port number: 0 (cman internal)" size="1" pos="154" show="0" value="00"/>
+        <field name="openais_cman.srcport" showname="Source port number: 0" size="1" pos="155" show="0" value="00"/>
+        <field name="openais_cman.pad" showname="Padding: 0" size="2" pos="156" show="0" value="0000"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="158" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 2" size="4" pos="162" show="2" value="02000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 3" size="4" pos="166" show="3" value="03000000"/>
+        <field name="openais_cman.protmsg.cmd" showname="Command: Kill node (6)" size="1" pos="170" show="6" value="06">
+          <field name="openais_cman.killmsg.pad1" showname="Padding: 0x6d" size="1" pos="171" show="0x6d" value="6d"/>
+          <field name="openais_cman.killmsg.reason" showname="Reason: Requested by cmantool (2)" size="2" pos="172" show="2" value="0200"/>
+          <field name="openais_cman.killmsg.nodeid" showname="Node id: 3" size="4" pos="174" show="3" value="03000000"/>
+        </field>
+      </proto>
+    </field>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 1)" size="381" pos="178" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="178" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 1 (group index: 0)" size="2" pos="180" show="1" value="0100"/>
+      <field name="corosync_totempg.group_name" showname="Group name: a (group index: 0)" size="1" pos="182" show="a" value="61"/>
+      <proto name="openais_a" showname="Protocol used in &quot;a&quot; group running on OpenAIS" size="376" pos="183">
+        <field name="openais_a.header" showname="Header" size="16" pos="183" show="" value="">
+          <field name="openais_a.header.size" showname="Size: 376" size="4" pos="183" show="376" value="78010000"/>
+          <field name="openais_a.header.size_padding" showname="Padding: 32572" size="4" pos="187" show="32572" value="3c7f0000"/>
+          <field name="openais_a.header.id" showname="Id" size="368" pos="191" show="" value="">
+            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (MCAST)" size="2" pos="191" show="3" value="0300"/>
+            <field name="openais_a.header.id.service" showname="Service: CPG (8) (cpg)" size="2" pos="193" show="8" value="0800"/>
+          </field>
+          <field name="openais_a.header.id_padding" showname="Padding: 0" size="4" pos="195" show="0" value="00000000"/>
+        </field>
+        <proto name="openais_cpg" showname="cpg protocol on totempg of OpenAIS" size="360" pos="199">
+          <field name="openais_cpg.mcast" showname="Multicast (group: fenced:default)" size="360" pos="199" show="" value="">
+            <field name="openais_cpg.mar_name" showname="Mar name" size="136" pos="199" show="" value="">
+              <field name="openais_cpg.mar_name.length" showname="Mar name length: 15" size="4" pos="199" show="15" value="0f000000"/>
+              <field name="openais_cpg.mar_name.length_padding" showname="Padding: 48" size="4" pos="203" show="48" value="30000000"/>
+              <field name="openais_cpg.mar_name.value" showname="Mar name value: fenced:default" size="15" pos="207" show="fenced:default" value="66656e6365643a64656661756c7400"/>
+              <field name="openais_cpg.mar_name.value_padding" showname="Padding: 000000000000000000000000000000000000000000000000..." size="113" pos="222" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+            </field>
+            <field name="openais_cpg.mcast.msglen" showname="Message length: 192" size="4" pos="335" show="192" value="c0000000"/>
+            <field name="openais_cpg.mcast.msglen_padding" showname="Padding: 32572" size="4" pos="339" show="32572" value="3c7f0000"/>
+            <field name="openais_cpg.pid" showname="Pid: 13568" size="4" pos="343" show="13568" value="00350000"/>
+            <field name="openais_cpg.pid_padding" showname="Padding: 0" size="4" pos="347" show="0" value="00000000"/>
+            <field name="openais_cpg.mar_message_source" showname="Message source" size="208" pos="351" show="" value="">
+              <field name="openais_cpg.mar_message_source.nodeid" showname="Node id: 2" size="4" pos="351" show="2" value="02000000"/>
+              <field name="openais_cpg.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="355" show="0" value="00000000"/>
+              <field name="openais_cpg.mar_message_source.conn" showname="Pointer to connection object: 0x0000000001f31430" size="8" pos="359" show="0x0000000001f31430" value="3014f30100000000"/>
+            </field>
+            <proto name="rhcs_fenced" showname="Protocol used in fenced of rhcs" size="192" pos="367">
+              <field name="rhcs_fenced.fd_header" showname="Fenced header" size="192" pos="367" show="" value="">
+                <field name="rhcs_fenced.fd_header.version" showname="Fenced header version" size="192" pos="367" show="" value="">
+                  <field name="rhcs_fenced.fd_header.version.major" showname="Fenced header major version: 1" size="2" pos="367" show="1" value="0100"/>
+                  <field name="rhcs_fenced.fd_header.version.minor" showname="Fenced header minor version: 1" size="2" pos="369" show="1" value="0100"/>
+                  <field name="rhcs_fenced.fd_header.version.patch" showname="Fenced header patch level: 1" size="2" pos="371" show="1" value="0100"/>
+                </field>
+                <field name="rhcs_fenced.fd_header.type" showname="Fenced header type: start (2)" size="2" pos="373" show="2" value="0200"/>
+                <field name="rhcs_fenced.fd_header.nodeid" showname="Sender node: 2" size="4" pos="375" show="2" value="02000000"/>
+                <field name="rhcs_fenced.fd_header.to_nodeid" showname="Recipient node: 0" size="4" pos="379" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.global_id" showname="Global unique id for this domain: 0" size="4" pos="383" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.flags" showname="Fenced header flags: 0x00000002" size="4" pos="387" show="0x00000002" value="02000000"/>
+                <field name="rhcs_fenced.fd_header.seq" showname="Fenced header sequnce number: 6" size="4" pos="391" show="6" value="06000000"/>
+                <field name="rhcs_fenced.fd_header.msgdata" showname="Fenced header msgdata: 0x00000006" size="4" pos="391" show="0x00000006" value="06000000"/>
+                <field name="rhcs_fenced.fd_header.pad1" showname="Padding: 0x00000000" size="4" pos="395" show="0x00000000" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.pad2" showname="Padding: 0x0000000000000000" size="8" pos="399" show="0x0000000000000000" value="0000000000000000"/>
+              </field>
+              <field name="rhcs_fenced.fd_info" showname="Fence domain info" size="152" pos="407" show="" value="">
+                <field name="rhcs_fenced.fd_info.fd_info_size" showname="Size of fd info: 32" size="4" pos="407" show="32" value="20000000"/>
+                <field name="rhcs_fenced.fd_info.id_info_size" showname="Size of id info: 40" size="4" pos="411" show="40" value="28000000"/>
+                <field name="rhcs_fenced.fd_info.id_info_count" showname="Count of id infos: 3" size="4" pos="415" show="3" value="03000000"/>
+                <field name="rhcs_fenced.fd_info.started_count" showname="Count of started: 5" size="4" pos="419" show="5" value="05000000"/>
+                <field name="rhcs_fenced.fd_info.member_count" showname="Count of members: 2" size="4" pos="423" show="2" value="02000000"/>
+                <field name="rhcs_fenced.fd_info.joined_count" showname="Count of joined: 0" size="4" pos="427" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_info.remove_count" showname="Count of remove: 1" size="4" pos="431" show="1" value="01000000"/>
+                <field name="rhcs_fenced.fd_info.failed_count" showname="Count of failed: 1" size="4" pos="435" show="1" value="01000000"/>
+              </field>
+              <field name="rhcs_fenced.id_info" showname="ID info" size="120" pos="439" show="" value="">
+                <field name="rhcs_fenced.id_info.nodeid" showname="Node id: 1" size="4" pos="439" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.flags" showname="Flags: 1, Member?" size="4" pos="443" show="1" value="01000000">
+                  <field name="rhcs_fenced.id_info.flags.nodedid_is_member" showname=".... .... .... .... .... .... .... ...1 = Member?: True" size="4" pos="443" show="1" value="1" unmaskedvalue="01000000"/>
+                </field>
+                <field name="rhcs_fenced.id_info.fence_external_node" showname="Fence external node: 0" size="4" pos="447" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_master" showname="Fence master: 3" size="4" pos="451" show="3" value="03000000"/>
+                <field name="rhcs_fenced.id_info.fence_how" showname="Fence how: Member (2)" size="4" pos="455" show="2" value="02000000"/>
+                <field name="rhcs_fenced.id_info.pad" showname="Padding: 0" size="4" pos="459" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_time" showname="Time: 1318678984" size="8" pos="463" show="1318678984" value="c871994e00000000"/>
+                <field name="rhcs_fenced.id_info.fence_external_time" showname="External Time: 0" size="8" pos="471" show="0" value="0000000000000000"/>
+              </field>
+              <field name="rhcs_fenced.id_info" showname="ID info" size="80" pos="479" show="" value="">
+                <field name="rhcs_fenced.id_info.nodeid" showname="Node id: 2" size="4" pos="479" show="2" value="02000000"/>
+                <field name="rhcs_fenced.id_info.flags" showname="Flags: 1, Member?" size="4" pos="483" show="1" value="01000000">
+                  <field name="rhcs_fenced.id_info.flags.nodedid_is_member" showname=".... .... .... .... .... .... .... ...1 = Member?: True" size="4" pos="483" show="1" value="1" unmaskedvalue="01000000"/>
+                </field>
+                <field name="rhcs_fenced.id_info.fence_external_node" showname="Fence external node: 0" size="4" pos="487" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_master" showname="Fence master: 0" size="4" pos="491" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_how" showname="Fence how: Unknown (0)" size="4" pos="495" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.pad" showname="Padding: 0" size="4" pos="499" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_time" showname="Time: 0" size="8" pos="503" show="0" value="0000000000000000"/>
+                <field name="rhcs_fenced.id_info.fence_external_time" showname="External Time: 0" size="8" pos="511" show="0" value="0000000000000000"/>
+              </field>
+              <field name="rhcs_fenced.id_info" showname="ID info" size="40" pos="519" show="" value="">
+                <field name="rhcs_fenced.id_info.nodeid" showname="Node id: 3" size="4" pos="519" show="3" value="03000000"/>
+                <field name="rhcs_fenced.id_info.flags" showname="Flags: 0" size="4" pos="523" show="0" value="00000000">
+                  <field name="rhcs_fenced.id_info.flags.nodedid_is_member" showname=".... .... .... .... .... .... .... ...0 = Member?: False" size="4" pos="523" show="0" value="0" unmaskedvalue="00000000"/>
+                </field>
+                <field name="rhcs_fenced.id_info.fence_external_node" showname="Fence external node: 0" size="4" pos="527" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_master" showname="Fence master: 1" size="4" pos="531" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.fence_how" showname="Fence how: Agent (1)" size="4" pos="535" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.pad" showname="Padding: 0" size="4" pos="539" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_time" showname="Time: 1318827378" size="8" pos="543" show="1318827378" value="72b59b4e00000000"/>
+                <field name="rhcs_fenced.id_info.fence_external_time" showname="External Time: 0" size="8" pos="551" show="0" value="0000000000000000"/>
+              </field>
+            </proto>
+          </field>
+        </proto>
+      </proto>
+    </field>
+  </proto>
+</packet>
+
+
+<packet>
+  <proto name="geninfo" pos="0" showname="General information" size="839">
+    <field name="num" pos="0" show="3" showname="Number" value="3" size="839"/>
+    <field name="len" pos="0" show="839" showname="Frame Length" value="347" size="839"/>
+    <field name="caplen" pos="0" show="839" showname="Captured Length" value="347" size="839"/>
+    <field name="timestamp" pos="0" show="Oct 17, 2011 14:05:34.053938000 JST" showname="Captured Time" value="1318827934.053938000" size="839"/>
+  </proto>
+  <proto name="frame" showname="Frame 3: 839 bytes on wire (6712 bits), 839 bytes captured (6712 bits)" size="839" pos="0">
+    <field name="frame.time" showname="Arrival Time: Oct 17, 2011 14:05:34.053938000 JST" size="0" pos="0" show="Oct 17, 2011 14:05:34.053938000"/>
+    <field name="frame.time_epoch" showname="Epoch Time: 1318827934.053938000 seconds" size="0" pos="0" show="1318827934.053938000"/>
+    <field name="frame.time_delta" showname="Time delta from previous captured frame: 22.054210000 seconds" size="0" pos="0" show="22.054210000"/>
+    <field name="frame.time_delta_displayed" showname="Time delta from previous displayed frame: 22.054210000 seconds" size="0" pos="0" show="22.054210000"/>
+    <field name="frame.time_relative" showname="Time since reference or first frame: 22.056528000 seconds" size="0" pos="0" show="22.056528000"/>
+    <field name="frame.number" showname="Frame Number: 3" size="0" pos="0" show="3"/>
+    <field name="frame.len" showname="Frame Length: 839 bytes (6712 bits)" size="0" pos="0" show="839"/>
+    <field name="frame.cap_len" showname="Capture Length: 839 bytes (6712 bits)" size="0" pos="0" show="839"/>
+    <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
+    <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_a:openais_cpg:rhcs_fenced:openais_a:openais_cpg:rhcs_fenced" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_a:openais_cpg:rhcs_fenced:openais_a:openais_cpg:rhcs_fenced"/>
+  </proto>
+  <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:63 (54:52:00:01:00:63), Dst: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="14" pos="0">
+    <field name="eth.dst" showname="Destination: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="6" pos="0" show="01:00:5e:40:4b:91" value="01005e404b91">
+      <field name="eth.addr" showname="Address: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="6" pos="0" show="01:00:5e:40:4b:91" value="01005e404b91"/>
+      <field name="eth.ig" showname=".... ...1 .... .... .... .... = IG bit: Group address (multicast/broadcast)" size="3" pos="0" show="1" value="1" unmaskedvalue="01005e"/>
+      <field name="eth.lg" showname=".... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)" size="3" pos="0" show="0" value="0" unmaskedvalue="01005e"/>
+    </field>
+    <field name="eth.src" showname="Source: 54:52:00:01:00:63 (54:52:00:01:00:63)" size="6" pos="6" show="54:52:00:01:00:63" value="545200010063">
+      <field name="eth.addr" showname="Address: 54:52:00:01:00:63 (54:52:00:01:00:63)" size="6" pos="6" show="54:52:00:01:00:63" value="545200010063"/>
+      <field name="eth.ig" showname=".... ...0 .... .... .... .... = IG bit: Individual address (unicast)" size="3" pos="6" show="0" value="0" unmaskedvalue="545200"/>
+      <field name="eth.lg" showname=".... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)" size="3" pos="6" show="0" value="0" unmaskedvalue="545200"/>
+    </field>
+    <field name="eth.type" showname="Type: IP (0x0800)" size="2" pos="12" show="0x0800" value="0800"/>
+  </proto>
+  <proto name="ip" showname="Internet Protocol Version 4, Src: 192.168.151.63 (192.168.151.63), Dst: 239.192.75.145 (239.192.75.145)" size="20" pos="14">
+    <field name="ip.version" showname="Version: 4" size="1" pos="14" show="4" value="45"/>
+    <field name="ip.hdr_len" showname="Header length: 20 bytes" size="1" pos="14" show="20" value="45"/>
+    <field name="ip.dsfield" showname="Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00: Not-ECT (Not ECN-Capable Transport))" size="1" pos="15" show="0" value="00">
+      <field name="ip.dsfield.dscp" showname="0000 00.. = Differentiated Services Codepoint: Default (0x00)" size="1" pos="15" show="0x00" value="0" unmaskedvalue="00"/>
+      <field name="ip.dsfield.ecn" showname=".... ..00 = Explicit Congestion Notification: Not-ECT (Not ECN-Capable Transport) (0x00)" size="1" pos="15" show="0x00" value="0" unmaskedvalue="00"/>
+    </field>
+    <field name="ip.len" showname="Total Length: 825" size="2" pos="16" show="825" value="0339"/>
+    <field name="ip.id" showname="Identification: 0x0000 (0)" size="2" pos="18" show="0x0000" value="0000"/>
+    <field name="ip.flags" showname="Flags: 0x02 (Don&apos;t Fragment)" size="1" pos="20" show="0x02" value="40">
+      <field name="ip.flags.rb" showname="0... .... = Reserved bit: Not set" size="1" pos="20" show="0" value="40"/>
+      <field name="ip.flags.df" showname=".1.. .... = Don&apos;t fragment: Set" size="1" pos="20" show="1" value="40"/>
+      <field name="ip.flags.mf" showname="..0. .... = More fragments: Not set" size="1" pos="20" show="0" value="40"/>
+    </field>
+    <field name="ip.frag_offset" showname="Fragment offset: 0" size="2" pos="20" show="0" value="4000"/>
+    <field name="ip.ttl" showname="Time to live: 1" size="1" pos="22" show="1" value="01"/>
+    <field name="ip.proto" showname="Protocol: UDP (17)" size="1" pos="23" show="17" value="11"/>
+    <field name="ip.checksum" showname="Header checksum: 0xe37a [correct]" size="2" pos="24" show="0xe37a" value="e37a">
+      <field name="ip.checksum_good" showname="Good: True" size="2" pos="24" show="1" value="e37a"/>
+      <field name="ip.checksum_bad" showname="Bad: False" size="2" pos="24" show="0" value="e37a"/>
+    </field>
+    <field name="ip.src" showname="Source: 192.168.151.63 (192.168.151.63)" size="4" pos="26" show="192.168.151.63" value="c0a8973f"/>
+    <field name="ip.addr" showname="Source or Destination Address: 192.168.151.63 (192.168.151.63)" hide="yes" size="4" pos="26" show="192.168.151.63" value="c0a8973f"/>
+    <field name="ip.src_host" showname="Source Host: 192.168.151.63" hide="yes" size="4" pos="26" show="192.168.151.63" value="c0a8973f"/>
+    <field name="ip.host" showname="Source or Destination Host: 192.168.151.63" hide="yes" size="4" pos="26" show="192.168.151.63" value="c0a8973f"/>
+    <field name="ip.dst" showname="Destination: 239.192.75.145 (239.192.75.145)" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.addr" showname="Source or Destination Address: 239.192.75.145 (239.192.75.145)" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.dst_host" showname="Destination Host: 239.192.75.145" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.host" showname="Source or Destination Host: 239.192.75.145" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+  </proto>
+  <proto name="udp" showname="User Datagram Protocol, Src Port: hpoms-dps-lstn (5404), Dst Port: netsupport (5405)" size="8" pos="34">
+    <field name="udp.srcport" showname="Source port: hpoms-dps-lstn (5404)" size="2" pos="34" show="5404" value="151c"/>
+    <field name="udp.dstport" showname="Destination port: netsupport (5405)" size="2" pos="36" show="5405" value="151d"/>
+    <field name="udp.port" showname="Source or Destination Port: 5404" hide="yes" size="2" pos="34" show="5404" value="151c"/>
+    <field name="udp.port" showname="Source or Destination Port: 5405" hide="yes" size="2" pos="36" show="5405" value="151d"/>
+    <field name="udp.length" showname="Length: 805" size="2" pos="38" show="805" value="0325"/>
+    <field name="udp.checksum_coverage" showname="Checksum coverage: 805" hide="yes" size="0" pos="38" show="805"/>
+    <field name="udp.checksum" showname="Checksum: 0x4d08 [validation disabled]" size="2" pos="40" show="0x4d08" value="4d08">
+      <field name="udp.checksum_good" showname="Good Checksum: False" size="2" pos="40" show="0" value="4d08"/>
+      <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="4d08"/>
+    </field>
+  </proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="796" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 2e90bb87246c3c8a3d78c0d120f35cf9c380f00f" size="20" pos="0" show="2e:90:bb:87:24:6c:3c:8a:3d:78:c0:d1:20:f3:5c:f9:c3:80:f0:0f" value="2e90bb87246c3c8a3d78c0d120f35cf9c380f00f"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: 997d0c3ed7a2e086bd29777679f4949b" size="16" pos="20" show="99:7d:0c:3e:d7:a2:e0:86:bd:29:77:76:79:f4:94:9b" value="997d0c3ed7a2e086bd29777679f4949b"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="795" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="beta" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="760" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="752" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.63 (192.168.151.63)" size="4" pos="50" show="192.168.151.63" value="c0a8973f"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973f08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3f:08:00:04:00" value="08000200c0a8973f08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 2" size="4" pos="88" show="2" value="02000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 553" size="4" pos="92" show="553" value="29020000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.63 (192.168.151.63)" size="4" pos="102" show="192.168.151.63" value="c0a8973f"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973f08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3f:08:00:04:00" value="08000200c0a8973f08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 1340" size="8" pos="118" show="1340" value="3c05000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="662" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 548" size="2" pos="136" show="548" value="2402"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 2" size="2" pos="140" show="2" value="0200"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 269 (msg index: 0)" size="2" pos="142" show="269" value="0d01"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 381 (msg index: 1)" size="2" pos="144" show="381" value="7d01"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="269" pos="146" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="146" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 1 (group index: 0)" size="2" pos="148" show="1" value="0100"/>
+      <field name="corosync_totempg.group_name" showname="Group name: a (group index: 0)" size="1" pos="150" show="a" value="61"/>
+      <proto name="openais_a" showname="Protocol used in &quot;a&quot; group running on OpenAIS" size="264" pos="151">
+        <field name="openais_a.header" showname="Header" size="16" pos="151" show="" value="">
+          <field name="openais_a.header.size" showname="Size: 264" size="4" pos="151" show="264" value="08010000"/>
+          <field name="openais_a.header.size_padding" showname="Padding: 32760" size="4" pos="155" show="32760" value="f87f0000"/>
+          <field name="openais_a.header.id" showname="Id" size="256" pos="159" show="" value="">
+            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (MCAST)" size="2" pos="159" show="3" value="0300"/>
+            <field name="openais_a.header.id.service" showname="Service: CPG (8) (cpg)" size="2" pos="161" show="8" value="0800"/>
+          </field>
+          <field name="openais_a.header.id_padding" showname="Padding: 0" size="4" pos="163" show="0" value="00000000"/>
+        </field>
+        <proto name="openais_cpg" showname="cpg protocol on totempg of OpenAIS" size="248" pos="167">
+          <field name="openais_cpg.mcast" showname="Multicast (group: fenced:default)" size="248" pos="167" show="" value="">
+            <field name="openais_cpg.mar_name" showname="Mar name" size="136" pos="167" show="" value="">
+              <field name="openais_cpg.mar_name.length" showname="Mar name length: 15" size="4" pos="167" show="15" value="0f000000"/>
+              <field name="openais_cpg.mar_name.length_padding" showname="Padding: 48" size="4" pos="171" show="48" value="30000000"/>
+              <field name="openais_cpg.mar_name.value" showname="Mar name value: fenced:default" size="15" pos="175" show="fenced:default" value="66656e6365643a64656661756c7400"/>
+              <field name="openais_cpg.mar_name.value_padding" showname="Padding: 000000000000000000000000000000000000000000000000..." size="113" pos="190" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+            </field>
+            <field name="openais_cpg.mcast.msglen" showname="Message length: 80" size="4" pos="303" show="80" value="50000000"/>
+            <field name="openais_cpg.mcast.msglen_padding" showname="Padding: 32760" size="4" pos="307" show="32760" value="f87f0000"/>
+            <field name="openais_cpg.pid" showname="Pid: 11093" size="4" pos="311" show="11093" value="552b0000"/>
+            <field name="openais_cpg.pid_padding" showname="Padding: 0" size="4" pos="315" show="0" value="00000000"/>
+            <field name="openais_cpg.mar_message_source" showname="Message source" size="96" pos="319" show="" value="">
+              <field name="openais_cpg.mar_message_source.nodeid" showname="Node id: 1" size="4" pos="319" show="1" value="01000000"/>
+              <field name="openais_cpg.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="323" show="0" value="00000000"/>
+              <field name="openais_cpg.mar_message_source.conn" showname="Pointer to connection object: 0x00000000022758d0" size="8" pos="327" show="0x00000000022758d0" value="d058270200000000"/>
+            </field>
+            <proto name="rhcs_fenced" showname="Protocol used in fenced of rhcs" size="80" pos="335">
+              <field name="rhcs_fenced.fd_header" showname="Fenced header" size="80" pos="335" show="" value="">
+                <field name="rhcs_fenced.fd_header.version" showname="Fenced header version" size="80" pos="335" show="" value="">
+                  <field name="rhcs_fenced.fd_header.version.major" showname="Fenced header major version: 1" size="2" pos="335" show="1" value="0100"/>
+                  <field name="rhcs_fenced.fd_header.version.minor" showname="Fenced header minor version: 1" size="2" pos="337" show="1" value="0100"/>
+                  <field name="rhcs_fenced.fd_header.version.patch" showname="Fenced header patch level: 1" size="2" pos="339" show="1" value="0100"/>
+                </field>
+                <field name="rhcs_fenced.fd_header.type" showname="Fenced header type: victim-done (3)" size="2" pos="341" show="3" value="0300"/>
+                <field name="rhcs_fenced.fd_header.nodeid" showname="Sender node: 1" size="4" pos="343" show="1" value="01000000"/>
+                <field name="rhcs_fenced.fd_header.to_nodeid" showname="Recipient node: 0" size="4" pos="347" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.global_id" showname="Global unique id for this domain: 0" size="4" pos="351" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.flags" showname="Fenced header flags: 0x00000002" size="4" pos="355" show="0x00000002" value="02000000"/>
+                <field name="rhcs_fenced.fd_header.seq" showname="Fenced header sequnce number: 14" size="4" pos="359" show="14" value="0e000000"/>
+                <field name="rhcs_fenced.fd_header.msgdata" showname="Fenced header msgdata: 0x0000000e" size="4" pos="359" show="0x0000000e" value="0e000000"/>
+                <field name="rhcs_fenced.fd_header.pad1" showname="Padding: 0x00000000" size="4" pos="363" show="0x00000000" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.pad2" showname="Padding: 0x0000000000000000" size="8" pos="367" show="0x0000000000000000" value="0000000000000000"/>
+              </field>
+              <field name="rhcs_fenced.id_info" showname="ID info" size="40" pos="375" show="" value="">
+                <field name="rhcs_fenced.id_info.nodeid" showname="Node id: 3" size="4" pos="375" show="3" value="03000000"/>
+                <field name="rhcs_fenced.id_info.flags" showname="Flags: 0" size="4" pos="379" show="0" value="00000000">
+                  <field name="rhcs_fenced.id_info.flags.nodedid_is_member" showname=".... .... .... .... .... .... .... ...0 = Member?: False" size="4" pos="379" show="0" value="0" unmaskedvalue="00000000"/>
+                </field>
+                <field name="rhcs_fenced.id_info.fence_external_node" showname="Fence external node: 0" size="4" pos="383" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_master" showname="Fence master: 1" size="4" pos="387" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.fence_how" showname="Fence how: Agent (1)" size="4" pos="391" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.pad" showname="Padding: 0" size="4" pos="395" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_time" showname="Time: 1318827914" size="8" pos="399" show="1318827914" value="8ab79b4e00000000"/>
+                <field name="rhcs_fenced.id_info.fence_external_time" showname="External Time: 0" size="8" pos="407" show="0" value="0000000000000000"/>
+              </field>
+            </proto>
+          </field>
+        </proto>
+      </proto>
+    </field>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 1)" size="381" pos="415" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="415" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 1 (group index: 0)" size="2" pos="417" show="1" value="0100"/>
+      <field name="corosync_totempg.group_name" showname="Group name: a (group index: 0)" size="1" pos="419" show="a" value="61"/>
+      <proto name="openais_a" showname="Protocol used in &quot;a&quot; group running on OpenAIS" size="376" pos="420">
+        <field name="openais_a.header" showname="Header" size="16" pos="420" show="" value="">
+          <field name="openais_a.header.size" showname="Size: 376" size="4" pos="420" show="376" value="78010000"/>
+          <field name="openais_a.header.size_padding" showname="Padding: 32760" size="4" pos="424" show="32760" value="f87f0000"/>
+          <field name="openais_a.header.id" showname="Id" size="368" pos="428" show="" value="">
+            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (MCAST)" size="2" pos="428" show="3" value="0300"/>
+            <field name="openais_a.header.id.service" showname="Service: CPG (8) (cpg)" size="2" pos="430" show="8" value="0800"/>
+          </field>
+          <field name="openais_a.header.id_padding" showname="Padding: 0" size="4" pos="432" show="0" value="00000000"/>
+        </field>
+        <proto name="openais_cpg" showname="cpg protocol on totempg of OpenAIS" size="360" pos="436">
+          <field name="openais_cpg.mcast" showname="Multicast (group: fenced:default)" size="360" pos="436" show="" value="">
+            <field name="openais_cpg.mar_name" showname="Mar name" size="136" pos="436" show="" value="">
+              <field name="openais_cpg.mar_name.length" showname="Mar name length: 15" size="4" pos="436" show="15" value="0f000000"/>
+              <field name="openais_cpg.mar_name.length_padding" showname="Padding: 48" size="4" pos="440" show="48" value="30000000"/>
+              <field name="openais_cpg.mar_name.value" showname="Mar name value: fenced:default" size="15" pos="444" show="fenced:default" value="66656e6365643a64656661756c7400"/>
+              <field name="openais_cpg.mar_name.value_padding" showname="Padding: 000000000000000000000000000000000000000000000000..." size="113" pos="459" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+            </field>
+            <field name="openais_cpg.mcast.msglen" showname="Message length: 192" size="4" pos="572" show="192" value="c0000000"/>
+            <field name="openais_cpg.mcast.msglen_padding" showname="Padding: 32760" size="4" pos="576" show="32760" value="f87f0000"/>
+            <field name="openais_cpg.pid" showname="Pid: 11093" size="4" pos="580" show="11093" value="552b0000"/>
+            <field name="openais_cpg.pid_padding" showname="Padding: 0" size="4" pos="584" show="0" value="00000000"/>
+            <field name="openais_cpg.mar_message_source" showname="Message source" size="208" pos="588" show="" value="">
+              <field name="openais_cpg.mar_message_source.nodeid" showname="Node id: 1" size="4" pos="588" show="1" value="01000000"/>
+              <field name="openais_cpg.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="592" show="0" value="00000000"/>
+              <field name="openais_cpg.mar_message_source.conn" showname="Pointer to connection object: 0x00000000022758d0" size="8" pos="596" show="0x00000000022758d0" value="d058270200000000"/>
+            </field>
+            <proto name="rhcs_fenced" showname="Protocol used in fenced of rhcs" size="192" pos="604">
+              <field name="rhcs_fenced.fd_header" showname="Fenced header" size="192" pos="604" show="" value="">
+                <field name="rhcs_fenced.fd_header.version" showname="Fenced header version" size="192" pos="604" show="" value="">
+                  <field name="rhcs_fenced.fd_header.version.major" showname="Fenced header major version: 1" size="2" pos="604" show="1" value="0100"/>
+                  <field name="rhcs_fenced.fd_header.version.minor" showname="Fenced header minor version: 1" size="2" pos="606" show="1" value="0100"/>
+                  <field name="rhcs_fenced.fd_header.version.patch" showname="Fenced header patch level: 1" size="2" pos="608" show="1" value="0100"/>
+                </field>
+                <field name="rhcs_fenced.fd_header.type" showname="Fenced header type: complete (4)" size="2" pos="610" show="4" value="0400"/>
+                <field name="rhcs_fenced.fd_header.nodeid" showname="Sender node: 1" size="4" pos="612" show="1" value="01000000"/>
+                <field name="rhcs_fenced.fd_header.to_nodeid" showname="Recipient node: 0" size="4" pos="616" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.global_id" showname="Global unique id for this domain: 0" size="4" pos="620" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.flags" showname="Fenced header flags: 0x00000002" size="4" pos="624" show="0x00000002" value="02000000"/>
+                <field name="rhcs_fenced.fd_header.seq" showname="Fenced header sequnce number: 14" size="4" pos="628" show="14" value="0e000000"/>
+                <field name="rhcs_fenced.fd_header.msgdata" showname="Fenced header msgdata: 0x0000000e" size="4" pos="628" show="0x0000000e" value="0e000000"/>
+                <field name="rhcs_fenced.fd_header.pad1" showname="Padding: 0x00000000" size="4" pos="632" show="0x00000000" value="00000000"/>
+                <field name="rhcs_fenced.fd_header.pad2" showname="Padding: 0x0000000000000000" size="8" pos="636" show="0x0000000000000000" value="0000000000000000"/>
+              </field>
+              <field name="rhcs_fenced.fd_info" showname="Fence domain info" size="152" pos="644" show="" value="">
+                <field name="rhcs_fenced.fd_info.fd_info_size" showname="Size of fd info: 32" size="4" pos="644" show="32" value="20000000"/>
+                <field name="rhcs_fenced.fd_info.id_info_size" showname="Size of id info: 40" size="4" pos="648" show="40" value="28000000"/>
+                <field name="rhcs_fenced.fd_info.id_info_count" showname="Count of id infos: 3" size="4" pos="652" show="3" value="03000000"/>
+                <field name="rhcs_fenced.fd_info.started_count" showname="Count of started: 13" size="4" pos="656" show="13" value="0d000000"/>
+                <field name="rhcs_fenced.fd_info.member_count" showname="Count of members: 2" size="4" pos="660" show="2" value="02000000"/>
+                <field name="rhcs_fenced.fd_info.joined_count" showname="Count of joined: 0" size="4" pos="664" show="0" value="00000000"/>
+                <field name="rhcs_fenced.fd_info.remove_count" showname="Count of remove: 1" size="4" pos="668" show="1" value="01000000"/>
+                <field name="rhcs_fenced.fd_info.failed_count" showname="Count of failed: 1" size="4" pos="672" show="1" value="01000000"/>
+              </field>
+              <field name="rhcs_fenced.id_info" showname="ID info" size="120" pos="676" show="" value="">
+                <field name="rhcs_fenced.id_info.nodeid" showname="Node id: 1" size="4" pos="676" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.flags" showname="Flags: 1, Member?" size="4" pos="680" show="1" value="01000000">
+                  <field name="rhcs_fenced.id_info.flags.nodedid_is_member" showname=".... .... .... .... .... .... .... ...1 = Member?: True" size="4" pos="680" show="1" value="1" unmaskedvalue="01000000"/>
+                </field>
+                <field name="rhcs_fenced.id_info.fence_external_node" showname="Fence external node: 0" size="4" pos="684" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_master" showname="Fence master: 3" size="4" pos="688" show="3" value="03000000"/>
+                <field name="rhcs_fenced.id_info.fence_how" showname="Fence how: Member (2)" size="4" pos="692" show="2" value="02000000"/>
+                <field name="rhcs_fenced.id_info.pad" showname="Padding: 0" size="4" pos="696" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_time" showname="Time: 1318678984" size="8" pos="700" show="1318678984" value="c871994e00000000"/>
+                <field name="rhcs_fenced.id_info.fence_external_time" showname="External Time: 0" size="8" pos="708" show="0" value="0000000000000000"/>
+              </field>
+              <field name="rhcs_fenced.id_info" showname="ID info" size="80" pos="716" show="" value="">
+                <field name="rhcs_fenced.id_info.nodeid" showname="Node id: 2" size="4" pos="716" show="2" value="02000000"/>
+                <field name="rhcs_fenced.id_info.flags" showname="Flags: 1, Member?" size="4" pos="720" show="1" value="01000000">
+                  <field name="rhcs_fenced.id_info.flags.nodedid_is_member" showname=".... .... .... .... .... .... .... ...1 = Member?: True" size="4" pos="720" show="1" value="1" unmaskedvalue="01000000"/>
+                </field>
+                <field name="rhcs_fenced.id_info.fence_external_node" showname="Fence external node: 0" size="4" pos="724" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_master" showname="Fence master: 0" size="4" pos="728" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_how" showname="Fence how: Unknown (0)" size="4" pos="732" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.pad" showname="Padding: 0" size="4" pos="736" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_time" showname="Time: 0" size="8" pos="740" show="0" value="0000000000000000"/>
+                <field name="rhcs_fenced.id_info.fence_external_time" showname="External Time: 0" size="8" pos="748" show="0" value="0000000000000000"/>
+              </field>
+              <field name="rhcs_fenced.id_info" showname="ID info" size="40" pos="756" show="" value="">
+                <field name="rhcs_fenced.id_info.nodeid" showname="Node id: 3" size="4" pos="756" show="3" value="03000000"/>
+                <field name="rhcs_fenced.id_info.flags" showname="Flags: 0" size="4" pos="760" show="0" value="00000000">
+                  <field name="rhcs_fenced.id_info.flags.nodedid_is_member" showname=".... .... .... .... .... .... .... ...0 = Member?: False" size="4" pos="760" show="0" value="0" unmaskedvalue="00000000"/>
+                </field>
+                <field name="rhcs_fenced.id_info.fence_external_node" showname="Fence external node: 0" size="4" pos="764" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_master" showname="Fence master: 1" size="4" pos="768" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.fence_how" showname="Fence how: Agent (1)" size="4" pos="772" show="1" value="01000000"/>
+                <field name="rhcs_fenced.id_info.pad" showname="Padding: 0" size="4" pos="776" show="0" value="00000000"/>
+                <field name="rhcs_fenced.id_info.fence_time" showname="Time: 1318827914" size="8" pos="780" show="1318827914" value="8ab79b4e00000000"/>
+                <field name="rhcs_fenced.id_info.fence_external_time" showname="External Time: 0" size="8" pos="788" show="0" value="0000000000000000"/>
+              </field>
+            </proto>
+          </field>
+        </proto>
+      </proto>
+    </field>
+  </proto>
+</packet>
+
+
+</pdml>

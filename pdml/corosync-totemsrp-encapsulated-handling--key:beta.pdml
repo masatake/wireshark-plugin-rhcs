@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="pdml2html.xsl"?>
+<!-- You can find pdml2html.xsl in /usr/share/wireshark or at http://anonsvn.wireshark.org/trunk/wireshark/pdml2html.xsl. -->
+<pdml version="0" creator="wireshark/1.6.14" time="Fri Apr 12 11:01:27 2013" capture_file="pcap/corosync-totemsrp-encapsulated-handling--key:beta.pcap">
+<packet>
+  <proto name="geninfo" pos="0" showname="General information" size="310">
+    <field name="num" pos="0" show="1" showname="Number" value="1" size="310"/>
+    <field name="len" pos="0" show="310" showname="Frame Length" value="136" size="310"/>
+    <field name="caplen" pos="0" show="310" showname="Captured Length" value="136" size="310"/>
+    <field name="timestamp" pos="0" show="Oct 16, 2011 03:16:27.142444000 JST" showname="Captured Time" value="1318702587.142444000" size="310"/>
+  </proto>
+  <proto name="frame" showname="Frame 1: 310 bytes on wire (2480 bits), 310 bytes captured (2480 bits)" size="310" pos="0">
+    <field name="frame.time" showname="Arrival Time: Oct 16, 2011 03:16:27.142444000 JST" size="0" pos="0" show="Oct 16, 2011 03:16:27.142444000"/>
+    <field name="frame.time_epoch" showname="Epoch Time: 1318702587.142444000 seconds" size="0" pos="0" show="1318702587.142444000"/>
+    <field name="frame.time_delta" showname="Time delta from previous captured frame: 0.000000000 seconds" size="0" pos="0" show="0.000000000"/>
+    <field name="frame.time_delta_displayed" showname="Time delta from previous displayed frame: 0.000000000 seconds" size="0" pos="0" show="0.000000000"/>
+    <field name="frame.time_relative" showname="Time since reference or first frame: 0.000000000 seconds" size="0" pos="0" show="0.000000000"/>
+    <field name="frame.number" showname="Frame Number: 1" size="0" pos="0" show="1"/>
+    <field name="frame.len" showname="Frame Length: 310 bytes (2480 bits)" size="0" pos="0" show="310"/>
+    <field name="frame.cap_len" showname="Capture Length: 310 bytes (2480 bits)" size="0" pos="0" show="310"/>
+    <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
+    <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman"/>
+  </proto>
+  <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:65 (54:52:00:01:00:65), Dst: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="14" pos="0">
+    <field name="eth.dst" showname="Destination: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="6" pos="0" show="01:00:5e:40:4b:91" value="01005e404b91">
+      <field name="eth.addr" showname="Address: IPv4mcast_40:4b:91 (01:00:5e:40:4b:91)" size="6" pos="0" show="01:00:5e:40:4b:91" value="01005e404b91"/>
+      <field name="eth.ig" showname=".... ...1 .... .... .... .... = IG bit: Group address (multicast/broadcast)" size="3" pos="0" show="1" value="1" unmaskedvalue="01005e"/>
+      <field name="eth.lg" showname=".... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)" size="3" pos="0" show="0" value="0" unmaskedvalue="01005e"/>
+    </field>
+    <field name="eth.src" showname="Source: 54:52:00:01:00:65 (54:52:00:01:00:65)" size="6" pos="6" show="54:52:00:01:00:65" value="545200010065">
+      <field name="eth.addr" showname="Address: 54:52:00:01:00:65 (54:52:00:01:00:65)" size="6" pos="6" show="54:52:00:01:00:65" value="545200010065"/>
+      <field name="eth.ig" showname=".... ...0 .... .... .... .... = IG bit: Individual address (unicast)" size="3" pos="6" show="0" value="0" unmaskedvalue="545200"/>
+      <field name="eth.lg" showname=".... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)" size="3" pos="6" show="0" value="0" unmaskedvalue="545200"/>
+    </field>
+    <field name="eth.type" showname="Type: IP (0x0800)" size="2" pos="12" show="0x0800" value="0800"/>
+  </proto>
+  <proto name="ip" showname="Internet Protocol Version 4, Src: 192.168.151.65 (192.168.151.65), Dst: 239.192.75.145 (239.192.75.145)" size="20" pos="14">
+    <field name="ip.version" showname="Version: 4" size="1" pos="14" show="4" value="45"/>
+    <field name="ip.hdr_len" showname="Header length: 20 bytes" size="1" pos="14" show="20" value="45"/>
+    <field name="ip.dsfield" showname="Differentiated Services Field: 0x00 (DSCP 0x00: Default; ECN: 0x00: Not-ECT (Not ECN-Capable Transport))" size="1" pos="15" show="0" value="00">
+      <field name="ip.dsfield.dscp" showname="0000 00.. = Differentiated Services Codepoint: Default (0x00)" size="1" pos="15" show="0x00" value="0" unmaskedvalue="00"/>
+      <field name="ip.dsfield.ecn" showname=".... ..00 = Explicit Congestion Notification: Not-ECT (Not ECN-Capable Transport) (0x00)" size="1" pos="15" show="0x00" value="0" unmaskedvalue="00"/>
+    </field>
+    <field name="ip.len" showname="Total Length: 296" size="2" pos="16" show="296" value="0128"/>
+    <field name="ip.id" showname="Identification: 0x0000 (0)" size="2" pos="18" show="0x0000" value="0000"/>
+    <field name="ip.flags" showname="Flags: 0x02 (Don&apos;t Fragment)" size="1" pos="20" show="0x02" value="40">
+      <field name="ip.flags.rb" showname="0... .... = Reserved bit: Not set" size="1" pos="20" show="0" value="40"/>
+      <field name="ip.flags.df" showname=".1.. .... = Don&apos;t fragment: Set" size="1" pos="20" show="1" value="40"/>
+      <field name="ip.flags.mf" showname="..0. .... = More fragments: Not set" size="1" pos="20" show="0" value="40"/>
+    </field>
+    <field name="ip.frag_offset" showname="Fragment offset: 0" size="2" pos="20" show="0" value="4000"/>
+    <field name="ip.ttl" showname="Time to live: 1" size="1" pos="22" show="1" value="01"/>
+    <field name="ip.proto" showname="Protocol: UDP (17)" size="1" pos="23" show="17" value="11"/>
+    <field name="ip.checksum" showname="Header checksum: 0xe589 [correct]" size="2" pos="24" show="0xe589" value="e589">
+      <field name="ip.checksum_good" showname="Good: True" size="2" pos="24" show="1" value="e589"/>
+      <field name="ip.checksum_bad" showname="Bad: False" size="2" pos="24" show="0" value="e589"/>
+    </field>
+    <field name="ip.src" showname="Source: 192.168.151.65 (192.168.151.65)" size="4" pos="26" show="192.168.151.65" value="c0a89741"/>
+    <field name="ip.addr" showname="Source or Destination Address: 192.168.151.65 (192.168.151.65)" hide="yes" size="4" pos="26" show="192.168.151.65" value="c0a89741"/>
+    <field name="ip.src_host" showname="Source Host: 192.168.151.65" hide="yes" size="4" pos="26" show="192.168.151.65" value="c0a89741"/>
+    <field name="ip.host" showname="Source or Destination Host: 192.168.151.65" hide="yes" size="4" pos="26" show="192.168.151.65" value="c0a89741"/>
+    <field name="ip.dst" showname="Destination: 239.192.75.145 (239.192.75.145)" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.addr" showname="Source or Destination Address: 239.192.75.145 (239.192.75.145)" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.dst_host" showname="Destination Host: 239.192.75.145" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+    <field name="ip.host" showname="Source or Destination Host: 239.192.75.145" hide="yes" size="4" pos="30" show="239.192.75.145" value="efc04b91"/>
+  </proto>
+  <proto name="udp" showname="User Datagram Protocol, Src Port: hpoms-dps-lstn (5404), Dst Port: netsupport (5405)" size="8" pos="34">
+    <field name="udp.srcport" showname="Source port: hpoms-dps-lstn (5404)" size="2" pos="34" show="5404" value="151c"/>
+    <field name="udp.dstport" showname="Destination port: netsupport (5405)" size="2" pos="36" show="5405" value="151d"/>
+    <field name="udp.port" showname="Source or Destination Port: 5404" hide="yes" size="2" pos="34" show="5404" value="151c"/>
+    <field name="udp.port" showname="Source or Destination Port: 5405" hide="yes" size="2" pos="36" show="5405" value="151d"/>
+    <field name="udp.length" showname="Length: 276" size="2" pos="38" show="276" value="0114"/>
+    <field name="udp.checksum_coverage" showname="Checksum coverage: 276" hide="yes" size="0" pos="38" show="276"/>
+    <field name="udp.checksum" showname="Checksum: 0x5dc3 [validation disabled]" size="2" pos="40" show="0x5dc3" value="5dc3">
+      <field name="udp.checksum_good" showname="Good Checksum: False" size="2" pos="40" show="0" value="5dc3"/>
+      <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="5dc3"/>
+    </field>
+  </proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="267" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: b0d6de5c5b96db08ce3c2bc1dcf523cb96255520" size="20" pos="0" show="b0:d6:de:5c:5b:96:db:08:ce:3c:2b:c1:dc:f5:23:cb:96:25:55:20" value="b0d6de5c5b96db08ce3c2bc1dcf523cb96255520"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: ca5ddd1843b0d3521d8dd4b5f59d4106" size="16" pos="20" show="ca:5d:dd:18:43:b0:d3:52:1d:8d:d4:b5:f5:9d:41:06" value="ca5ddd1843b0d3521d8dd4b5f59d4106"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: Unknown (9)" size="1" pos="266" show="9" value="09"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="beta" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="231" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: encapsulated (1)" size="1" pos="37" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 3" size="4" pos="40" show="3" value="03000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="223" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 3)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 3" size="4" pos="44" show="3" value="03000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.65 (192.168.151.65)" size="4" pos="50" show="192.168.151.65" value="c0a89741"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8974108000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:41:08:00:04:00" value="08000200c0a8974108000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 16" size="4" pos="88" show="16" value="10000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 241" size="4" pos="92" show="241" value="f1000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.63 (192.168.151.63)" size="4" pos="102" show="192.168.151.63" value="c0a8973f"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973f08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3f:08:00:04:00" value="08000200c0a8973f08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 716" size="8" pos="118" show="716" value="cc02000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+      <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="133" pos="134">
+        <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="134" show="1" value="01"/>
+        <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="135" show="2" value="02"/>
+        <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="136" show="0xff22" value="22ff"/>
+        <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 3" size="4" pos="138" show="3" value="03000000"/>
+        <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="125" pos="142" show="" value="">
+          <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="142" show="" value="">
+            <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 3)" size="22" pos="142" show="" value="">
+              <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 3" size="4" pos="142" show="3" value="03000000"/>
+              <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="146" show="2" value="0200"/>
+              <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.65 (192.168.151.65)" size="4" pos="148" show="192.168.151.65" value="c0a89741"/>
+              <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8974108000400" size="12" pos="152" show="08:00:02:00:c0:a8:97:41:08:00:04:00" value="08000200c0a8974108000400"/>
+            </field>
+            <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="164" show="" value="">
+              <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="164" show="0" value="00000000"/>
+              <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="168" show="0" value="0000"/>
+              <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="170" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+            </field>
+          </field>
+          <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 95" size="4" pos="186" show="95" value="5f000000"/>
+          <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 87" size="4" pos="190" show="87" value="57000000"/>
+          <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="194" show="" value="">
+            <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="194" show="" value="">
+              <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="194" show="1" value="01000000"/>
+              <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="198" show="2" value="0200"/>
+              <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.63 (192.168.151.63)" size="4" pos="200" show="192.168.151.63" value="c0a8973f"/>
+              <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973f08000400" size="12" pos="204" show="08:00:02:00:c0:a8:97:3f:08:00:04:00" value="08000200c0a8973f08000400"/>
+            </field>
+            <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 712" size="8" pos="216" show="712" value="c802000000000000"/>
+          </field>
+          <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="224" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="228" show="0" value="00000000"/>
+        </field>
+      </proto>
+      <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="35" pos="232">
+        <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="232" show="" value="">
+          <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="232" show="0" value="0000"/>
+          <field name="corosync_totempg.mcast_header.type" showname="Type: 21835" size="2" pos="234" show="21835" value="4b55"/>
+        </field>
+        <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="236" show="0" value="00"/>
+        <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="237" show="0" value="00"/>
+        <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="238" show="1" value="0100"/>
+        <field name="corosync_totempg.msg_len" showname="Length of message: 25 (msg index: 0)" size="2" pos="240" show="25" value="1900"/>
+        <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="25" pos="242" show="" value="">
+          <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="242" show="1" value="0100"/>
+          <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="244" show="4" value="0400"/>
+          <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="246" show="CMAN" value="434d414e"/>
+          <proto name="openais_cman" showname="Cman running on OpenAIS" size="17" pos="250">
+            <field name="openais_cman.tgtport" showname="Target port number: 0 (cman internal)" size="1" pos="250" show="0" value="00"/>
+            <field name="openais_cman.srcport" showname="Source port number: 0" size="1" pos="251" show="0" value="00"/>
+            <field name="openais_cman.pad" showname="Padding: 29012" size="2" pos="252" show="29012" value="5471"/>
+            <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="254" show="0" value="00000000"/>
+            <field name="openais_cman.srcid" showname="Source node id: 3" size="4" pos="258" show="3" value="03000000"/>
+            <field name="openais_cman.tgtid" showname="Target node id: 1" size="4" pos="262" show="1" value="01000000"/>
+            <field name="openais_cman.protmsg.cmd" showname="Command: Post enqueue (9)" size="1" pos="266" show="9" value="09"/>
+          </proto>
+        </field>
+      </proto>
+    </field>
+  </proto>
+</packet>
+
+
+</pdml>
