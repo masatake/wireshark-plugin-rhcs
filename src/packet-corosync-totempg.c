@@ -148,23 +148,27 @@ dissect_corosync_totempg_mcast_header(tvbuff_t *tvb,
 
   original_offset = offset;
 
-  item = proto_tree_add_item(parent_tree, hf_corosync_totempg_mcast_header, 
-                             tvb, offset, 2 + 2, little_endian);
-  tree = proto_item_add_subtree(item, ett_corosync_totempg_mcast_header);
+  if (parent_tree) {
+    item = proto_tree_add_item(parent_tree, hf_corosync_totempg_mcast_header, 
+			       tvb, offset, 2 + 2, little_endian);
+    tree = proto_item_add_subtree(item, ett_corosync_totempg_mcast_header);
 
 
-  offset += 0;
-  proto_tree_add_item(tree,
-                      hf_corosync_totempg_mcast_header_version,
-                      tvb, offset, 2, little_endian);
+    offset += 0;
+    proto_tree_add_item(tree,
+			hf_corosync_totempg_mcast_header_version,
+			tvb, offset, 2, little_endian);
 
-  offset += 2;
-  proto_tree_add_item(tree,
-                      hf_corosync_totempg_mcast_header_type,
-                      tvb, offset, 2, little_endian);
-  offset += 2;
+    offset += 2;
+    proto_tree_add_item(tree,
+			hf_corosync_totempg_mcast_header_type,
+			tvb, offset, 2, little_endian);
+    offset += 2;
+  }
+  else
+    offset += (2 + 2);
   return (offset - original_offset);
- 
+  
   pinfo = pinfo;
 }
 
@@ -189,8 +193,9 @@ dissect_corosync_totempg_message0(tvbuff_t *tvb, packet_info *pinfo, proto_tree 
 
 
   local_offset += 0;
-  proto_tree_add_item(tree, hf_corosync_totempg_groups_count,
-                      tvb, local_offset, 2, little_endian);
+  if (tree)
+    proto_tree_add_item(tree, hf_corosync_totempg_groups_count,
+			tvb, local_offset, 2, little_endian);
   groups_count = corosync_totempg_get_guint16(tvb, local_offset, little_endian);
 
 
@@ -201,11 +206,14 @@ dissect_corosync_totempg_message0(tvbuff_t *tvb, packet_info *pinfo, proto_tree 
   group_lens = ep_alloc(sizeof (guint16) * groups_count);
   group_lens_total = 0;
   for (j = 0; j < groups_count; j++) {
-    sub_item = proto_tree_add_item(tree, hf_corosync_totempg_group_len,
-                                   tvb, local_offset, 2, little_endian);
+    if (tree) {
+      sub_item = proto_tree_add_item(tree, hf_corosync_totempg_group_len,
+				     tvb, local_offset, 2, little_endian);
+      proto_item_append_text(sub_item, " (group index: %u)", j);
+    }
+    
     group_lens[j] = corosync_totempg_get_guint16(tvb, local_offset, little_endian);
     group_lens_total += group_lens[j];
-    proto_item_append_text(sub_item, " (group index: %u)", j);
 
     local_offset += 2;
   }
@@ -217,9 +225,11 @@ dissect_corosync_totempg_message0(tvbuff_t *tvb, packet_info *pinfo, proto_tree 
 
   group_names = ep_alloc(sizeof (gchar*) * groups_count);
   for (j = 0; j < groups_count; j++) {
-    sub_item = proto_tree_add_item(tree, hf_corosync_totempg_group_name,
-                                   tvb, local_offset, group_lens[j], little_endian);
-    proto_item_append_text(sub_item, " (group index: %u)", j);
+    if (tree) {
+      sub_item = proto_tree_add_item(tree, hf_corosync_totempg_group_name,
+				     tvb, local_offset, group_lens[j], little_endian);
+      proto_item_append_text(sub_item, " (group index: %u)", j);
+    }
     group_names[j] = tvb_get_ephemeral_string(tvb, local_offset, group_lens[j]);
         
     local_offset += group_lens[j];
@@ -260,11 +270,15 @@ dissect_corosync_totempg_message(tvbuff_t *tvb, packet_info *pinfo, proto_tree *
   proto_tree *sub_tree;
       
 
-  sub_item = proto_tree_add_item(tree, hf_corosync_totempg_mcast_message, 
-				 tvb, offset, msg_lens[msg_index], little_endian);
-  proto_item_append_text(sub_item, " (msg index: %u)", msg_index);
-  sub_tree = proto_item_add_subtree(sub_item, ett_corosync_totempg_mcast_message);
-	
+  if (tree) {
+    sub_item = proto_tree_add_item(tree, hf_corosync_totempg_mcast_message, 
+				   tvb, offset, msg_lens[msg_index], little_endian);
+    proto_item_append_text(sub_item, " (msg index: %u)", msg_index);
+    sub_tree = proto_item_add_subtree(sub_item, ett_corosync_totempg_mcast_message);
+  } 
+  else
+    sub_tree = tree;
+
   if (deal_as_data)
     {
       tvbuff_t* next_tvb;
@@ -276,6 +290,138 @@ dissect_corosync_totempg_message(tvbuff_t *tvb, packet_info *pinfo, proto_tree *
   else
     return dissect_corosync_totempg_message0(tvb, pinfo, sub_tree, 
 					     length, msg_lens[msg_index], offset, little_endian);
+
+}
+
+static int
+reassemble_and_dissect_corosync_totempg_payload(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree,
+						guint length, int offset,
+						guint8 continuation, guint8 fragmented, 
+						guint16 *msg_lens, guint16 msg_count,
+						gboolean little_endian)
+{
+  int i, i0;
+  int original_offset;
+
+
+
+  original_offset = offset;
+  i0 = 0;
+
+  if (continuation > 0)
+    {
+      if  (corosync_totempg_message_desegment)
+	{
+	  fragment_data  *frag_msg;
+	  tvbuff_t       *next_tvb;
+
+
+	  frag_msg = fragment_add_seq_check(tvb, offset, pinfo, 
+					    corosync_totemsrp_nodeid(pinfo),
+					    corosync_totempg_message_segment_table,
+					    corosync_totempg_message_reassembled_table,
+					    continuation,
+					    msg_lens[0], 
+					    (fragmented > 0)? 1: 0);
+
+	  next_tvb = process_reassembled_data (tvb, offset, pinfo, 
+					       "Reassembled message",
+					       frag_msg, 
+					       &corosync_totempg_message_frag_items, 
+					       NULL/*TODO*/, tree);
+
+	  if (next_tvb)
+	    dissect_corosync_totempg_message(next_tvb, 
+					     pinfo, 
+					     tree, 
+					     length,
+					     msg_lens, 
+					     offset, 
+					     0, 
+					     FALSE,
+					     little_endian);
+	}
+      else 
+	dissect_corosync_totempg_message(tvb, 
+					 pinfo, 
+					 tree, 
+					 length,
+					 msg_lens, 
+					 offset, 
+					 0, 
+					 TRUE,
+					 little_endian);
+      offset += msg_lens[0];
+      i0 = 1;
+    }
+      
+  for (i = i0; i < (msg_count - ((fragmented > 0)? 1: 0)); i++) 
+    offset += dissect_corosync_totempg_message(tvb, 
+					       pinfo, 
+					       tree, 
+					       length,
+					       msg_lens, 
+					       offset, 
+					       i, 
+					       FALSE,
+					       little_endian);
+
+  if (fragmented > 0)
+    {
+      int z;
+      z = msg_count - 1;
+
+      /* If this message is already in reassemble process, 
+	 do nothing. */
+      if (continuation && ((msg_count - 1) == 0))
+	goto out;
+
+
+      if (corosync_totempg_message_desegment)
+	{
+
+	  fragment_data  *frag_msg;
+	  tvbuff_t       *next_tvb;
+
+	  frag_msg = fragment_add_seq_check(tvb, offset, pinfo, 
+					    corosync_totemsrp_nodeid(pinfo),
+					    corosync_totempg_message_segment_table,
+					    corosync_totempg_message_reassembled_table,
+					    continuation,
+					    msg_lens[z], 1);
+
+	  next_tvb = process_reassembled_data (tvb, offset, pinfo, 
+					       "Reassembled message",
+					       frag_msg, 
+					       &corosync_totempg_message_frag_items, 
+					       NULL/*TODO*/, tree);
+
+	  if (next_tvb)
+	    dissect_corosync_totempg_message(next_tvb, 
+					     pinfo, 
+					     tree, 
+					     length,
+					     msg_lens, 
+					     offset, 
+					     z, 
+					     FALSE,
+					     little_endian);
+	  offset += msg_lens[z];
+	}
+      else
+	dissect_corosync_totempg_message(tvb, 
+					 pinfo, 
+					 tree, 
+					 length,
+					 msg_lens, 
+					 offset, 
+					 z, 
+					 TRUE,
+					 little_endian);
+    }
+
+ out:
+  return offset - original_offset;
 }
 
 static int
@@ -313,40 +459,49 @@ dissect_corosync_totempg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_t
   /* if (check_col(pinfo->cinfo, COL_INFO))
      col_clear(pinfo->cinfo, COL_INFO); */
 
-  if (parent_tree) {
-    little_endian = corosync_totemsrp_is_little_endian(pinfo);
-    offset = 0;
+  little_endian = corosync_totemsrp_is_little_endian(pinfo);
+  offset = 0;
 
+  if (parent_tree) {
     item = proto_tree_add_item(parent_tree, proto_corosync_totempg, tvb, 
                                offset, -1, little_endian);
     tree = proto_item_add_subtree(item, ett_corosync_totempg);
+  } 
+  else {
+    item = NULL;
+    tree  = parent_tree;
+  }
     
 
-    offset += 0;
-    sub_length = dissect_corosync_totempg_mcast_header(tvb, 
-						       pinfo, tree,
-						       length, offset,
-						       little_endian);
-    if (sub_length == 0)
-      goto out;
+  offset += 0;
+  sub_length = dissect_corosync_totempg_mcast_header(tvb, 
+						     pinfo, tree,
+						     length, offset,
+						     little_endian);
+  if (sub_length == 0)
+    goto out;
 
-    offset += sub_length;
+  offset += sub_length;
+  if (parent_tree)
     proto_tree_add_item(tree,
-                        hf_corosync_totempg_fragmented,
-                        tvb, offset, 1, little_endian);
-    fragmented = tvb_get_guint8(tvb, offset);
+			hf_corosync_totempg_fragmented,
+			tvb, offset, 1, little_endian);
+  fragmented = tvb_get_guint8(tvb, offset);
 
     offset += 1;
-    proto_tree_add_item(tree,
-                        hf_corosync_totempg_continuation,
-                        tvb, offset, 1, little_endian);
+    
+    if (parent_tree)
+      proto_tree_add_item(tree,
+			  hf_corosync_totempg_continuation,
+			  tvb, offset, 1, little_endian);
     continuation = tvb_get_guint8(tvb, offset);
 
 
     offset += 1;
-    proto_tree_add_item(tree,
-                        hf_corosync_totempg_msg_count,
-                        tvb, offset, 2, little_endian);
+    if (parent_tree)
+      proto_tree_add_item(tree,
+			  hf_corosync_totempg_msg_count,
+			  tvb, offset, 2, little_endian);
     msg_count = corosync_totempg_get_guint16(tvb, offset, little_endian);
 
 
@@ -362,12 +517,14 @@ dissect_corosync_totempg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_t
 
 
       offset += 2;
-      sub_item = proto_tree_add_item(tree,
-                                     hf_corosync_totempg_msg_len,
-                                     tvb, offset, 2, little_endian);
+      if (parent_tree) {
+	sub_item = proto_tree_add_item(tree,
+				       hf_corosync_totempg_msg_len,
+				       tvb, offset, 2, little_endian);
+	proto_item_append_text(sub_item, " (msg index: %u)", i);
+      }
       msg_lens[i] = corosync_totempg_get_guint16(tvb, offset, little_endian);
       msg_lens_total += msg_lens[i];
-      proto_item_append_text(sub_item, " (msg index: %u)", i);
     }
 
 
@@ -375,127 +532,11 @@ dissect_corosync_totempg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_t
     if ((length - offset) < msg_lens_total)
       goto out;
 
-
-    {
-      int i0;
-
-
-      i0 = 0;
-
-      if (continuation > 0)
-	{
-	  if  (corosync_totempg_message_desegment)
-	    {
-	      fragment_data  *frag_msg;
-	      tvbuff_t       *next_tvb;
-
-
-	      frag_msg = fragment_add_seq_check(tvb, offset, pinfo, 
-						corosync_totemsrp_nodeid(pinfo),
-						corosync_totempg_message_segment_table,
-						corosync_totempg_message_reassembled_table,
-						continuation,
-						msg_lens[0], 
-						(fragmented > 0)? 1: 0);
-
-	      next_tvb = process_reassembled_data (tvb, offset, pinfo, 
-						   "Reassembled message",
-						   frag_msg, 
-						   &corosync_totempg_message_frag_items, 
-						   NULL/*TODO*/, tree);
-
-	      if (next_tvb)
-		dissect_corosync_totempg_message(next_tvb, 
-						 pinfo, 
-						 tree, 
-						 length,
-						 msg_lens, 
-						 offset, 
-						 0, 
-						 FALSE,
-						 little_endian);
-	    }
-	  else 
-	    dissect_corosync_totempg_message(tvb, 
-					     pinfo, 
-					     tree, 
-					     length,
-					     msg_lens, 
-					     offset, 
-					     0, 
-					     TRUE,
-					     little_endian);
-	  offset += msg_lens[0];
-	  i0 = 1;
-	}
-      
-      for (i = i0; i < (msg_count - ((fragmented > 0)? 1: 0)); i++) 
-	offset += dissect_corosync_totempg_message(tvb, 
-						   pinfo, 
-						   tree, 
-						   length,
-						   msg_lens, 
-						   offset, 
-						   i, 
-						   FALSE,
-						   little_endian);
-
-      if (fragmented > 0)
-	{
-	  int z;
-	  z = msg_count - 1;
-
-	  /* If this message is already in reassemble process, 
-	     do nothing. */
-	  if (continuation && ((msg_count - 1) == 0))
-	    goto out;
-
-
-	  if (corosync_totempg_message_desegment)
-	    {
-
-	      fragment_data  *frag_msg;
-	      tvbuff_t       *next_tvb;
-
-	      frag_msg = fragment_add_seq_check(tvb, offset, pinfo, 
-						corosync_totemsrp_nodeid(pinfo),
-						corosync_totempg_message_segment_table,
-						corosync_totempg_message_reassembled_table,
-						continuation,
-						msg_lens[z], 1);
-
-	      next_tvb = process_reassembled_data (tvb, offset, pinfo, 
-						   "Reassembled message",
-						   frag_msg, 
-						   &corosync_totempg_message_frag_items, 
-						   NULL/*TODO*/, tree);
-
-	      if (next_tvb)
-		dissect_corosync_totempg_message(next_tvb, 
-						 pinfo, 
-						 tree, 
-						 length,
-						 msg_lens, 
-						 offset, 
-						 z, 
-						 FALSE,
-						 little_endian);
-	      offset += msg_lens[z];
-	    }
-	  else
-	    dissect_corosync_totempg_message(tvb, 
-					     pinfo, 
-					     tree, 
-					     length,
-					     msg_lens, 
-					     offset, 
-					     z, 
-					     TRUE,
-					     little_endian);
-	}
-    }
-  }
-
+    offset += reassemble_and_dissect_corosync_totempg_payload(tvb, pinfo, tree,
+							      length, offset,
+							      continuation, fragmented, 
+							      msg_lens, msg_count,
+							      little_endian);
  out:
   return length;
 }
@@ -712,22 +753,29 @@ corosync_totempg_dissect_mar_req_header(tvbuff_t *tvb,
 
   original_offset = offset;
 
-  item = proto_tree_add_item(parent_tree, hf_header,
-                             tvb, offset, corosync_totempg_dissect_mar_req_header_length, little_endian);
-  tree = proto_item_add_subtree(item, ett_header);
-
   offset += 0;
-  proto_tree_add_item(tree,
-                      hf_size,
-                      tvb, offset, 4, little_endian);
+  if (parent_tree) {
+    item = proto_tree_add_item(parent_tree, hf_header,
+			       tvb, offset, corosync_totempg_dissect_mar_req_header_length, little_endian);
+    tree = proto_item_add_subtree(item, ett_header);
+
+
+    proto_tree_add_item(tree,
+			hf_size,
+			tvb, offset, 4, little_endian);
+  } 
+  else
+    tree = parent_tree;
+
   if (size)
     *size = corosync_totempg_get_gint32(tvb, offset, little_endian);
 
 
   offset += 4;
-  proto_tree_add_item(tree,
-                      hf_size_padding,
-                      tvb, offset, 4, little_endian);
+  if (parent_tree)
+    proto_tree_add_item(tree,
+			hf_size_padding,
+			tvb, offset, 4, little_endian);
 
   /* --- ID --- */
   offset += 4;
@@ -736,16 +784,16 @@ corosync_totempg_dissect_mar_req_header(tvbuff_t *tvb,
   
   if (id_callback)
     id_callback(tree, tvb, offset, little_endian, id_callback_data);
-  else
+  else if (parent_tree)
     proto_tree_add_item(tree,
                         hf_id,
                         tvb, offset, 4, little_endian);  
-  /* --- ID --- */
-
+    
   offset += 4;
-  proto_tree_add_item(tree,
-                      hf_id_padding,
-                      tvb, offset, 4, little_endian);
+  if (parent_tree)
+    proto_tree_add_item(tree,
+			hf_id_padding,
+			tvb, offset, 4, little_endian);
   
   offset += 4;
   return (offset - original_offset);
