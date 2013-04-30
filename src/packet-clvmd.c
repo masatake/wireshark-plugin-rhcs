@@ -57,6 +57,8 @@
 #define CLVMD_CMD_GET_CLUSTERNAME   41
 #define CLVMD_CMD_SET_DEBUG	    42
 #define CLVMD_CMD_VG_BACKUP	    43
+#define CLVMD_CMD_RESTART	    44
+#define CLVMD_CMD_SYNC_NAMES	    45
 
 
 
@@ -186,6 +188,8 @@ static const value_string vals_header_cmd[] = {
 	{ CLVMD_CMD_GET_CLUSTERNAME, "Get cluster name"}, 
 	{ CLVMD_CMD_SET_DEBUG,	     "Set debug"       },
 	{ CLVMD_CMD_VG_BACKUP,       "Backup"          },
+	{ CLVMD_CMD_RESTART,         "Restart"         },
+	{ CLVMD_CMD_SYNC_NAMES,      "Sync names"      },
 	{ 0,                            NULL           },
 		
 };
@@ -595,6 +599,17 @@ dissect_clvmd(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 		break;
 		
 	case CLVMD_CMD_VG_BACKUP:
+		offset += dissect_clvmd__cmd_flags_resource(tvb,
+							    pinfo,
+							    tree,
+							    offset,
+							    length,
+							    arglen);
+		break;
+	case CLVMD_CMD_RESTART:
+		g_warning("TODO: clvmd:cmd: %d\n", cmd);
+		break;
+	case CLVMD_CMD_SYNC_NAMES:
 		offset += dissect_clvmd__cmd_flags_resource(tvb,
 							    pinfo,
 							    tree,
