@@ -16,7 +16,7 @@ Coverage of the communications:
 	      groupd: DONE.
 	      fenced: DONE.
 	      dlm_controld: Needs much more work.
-	      gfs_controld: Nothing done yet.
+	      gfs_controld: of all but not completed.
 	    openais_evt: Needs much more work.
 	    openais_clm: Needs much more work.
 	    openais_ckpt: Nothing done yet.
