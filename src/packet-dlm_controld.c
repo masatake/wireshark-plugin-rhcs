@@ -285,7 +285,7 @@ dissect_dlm_controld_start_or_plocks_stored(tvbuff_t *tvb, packet_info *pinfo, p
     }
 
  out:  
-  return length - original_offset;
+  return offset - original_offset;
 }
 
 static int
@@ -303,8 +303,10 @@ dissect_dlm_controld(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
   if ( length < ( 2 * 3 ) + 2 + 4 + 4 + 4 + 4 + 4 + 4 + 8)
     return 0;
 
+  type = tvb_get_letohs(tvb, ( 2 * 3 ));
   if (check_col(pinfo->cinfo, COL_INFO))
-    col_append_sep_str(pinfo->cinfo, COL_INFO, " ", col_str);
+    col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(%s %s)", 
+			  col_str, val_to_str(type, vals_header_type, "Unknown type"));
 
   if (!parent_tree)
     goto out;
@@ -381,17 +383,17 @@ dissect_dlm_controld(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
   switch (type)
     {
     case DLM_MSG_PROTOCOL:
-      dissect_dlm_controld_protocol(tvb, pinfo, dlm_controld_tree, offset, length);
+      offset += dissect_dlm_controld_protocol(tvb, pinfo, dlm_controld_tree, offset, length);
       break;
     case DLM_MSG_START:
     case DLM_MSG_PLOCKS_STORED:
-      dissect_dlm_controld_start_or_plocks_stored(tvb, pinfo, dlm_controld_tree, offset, length);
+      offset += dissect_dlm_controld_start_or_plocks_stored(tvb, pinfo, dlm_controld_tree, offset, length);
       break;
     default:
       break;
     }
  out:
-  return length;
+  return offset;
 }
 
 static int
