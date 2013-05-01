@@ -496,9 +496,11 @@ dissect_clvmd(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 	/* if (check_col(pinfo->cinfo, COL_PROTOCOL))
 	   col_set_str(pinfo->cinfo, COL_PROTOCOL, "CLVMD"); */
 	
+	cmd = tvb_get_guint8(tvb, offset);
 	if (check_col(pinfo->cinfo, COL_INFO))
-		col_append_sep_str(pinfo->cinfo, COL_INFO, " ", "clvmd");
-
+		col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(clvmd %s)",
+				    val_to_str(cmd, vals_header_cmd, "Unknown cmd"));
+	
 	if (!parent_tree)
 		goto out;
 
@@ -510,8 +512,7 @@ dissect_clvmd(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 
 	offset += 0;
 	proto_tree_add_item(tree, hf_clvmd_header_cmd, tvb, offset, 1, FALSE);
-	cmd = tvb_get_guint8(tvb, offset);
-	
+
 	offset += 1;
 	proto_tree_add_bitmask(tree, tvb, offset, hf_clvmd_header_flags,
 			       ett_clvmd_header_flags, header_flags_fields, FALSE);
