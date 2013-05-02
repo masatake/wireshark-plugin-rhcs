@@ -54,7 +54,7 @@ static gint ett_openais_clm                      = -1;
 #define OPENAIS_CLM_FN_ID_NODEJOIN  0
 
 static const value_string vals_openais_clm_fn_id[] = {
-	{ OPENAIS_CLM_FN_ID_NODEJOIN,   "NODEJOIN"  },
+	{ OPENAIS_CLM_FN_ID_NODEJOIN,   "nodejoin"  },
 	{ 0,                            NULL             },
 };
 
@@ -85,7 +85,7 @@ dissect_openais_clm(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 	proto_item_append_text(item, " (%s)",
 			       val_to_str(openais_a_get_fn_id(pinfo),
 					  vals_openais_clm_fn_id,
-					  "Unknown"));
+					  "UNKNOWN-ID"));
 
 
 	/* if (check_col(pinfo->cinfo, COL_PROTOCOL))
@@ -101,7 +101,7 @@ dissect_openais_clm(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 		col_append_fstr(pinfo->cinfo, COL_INFO, 
 				" :%s",
 				val_to_str(fn_id, vals_openais_clm_fn_id,
-					   "Unknown"));
+					   "UNKNOWN-ID"));
 
 	little_endian = openais_a_is_little_endian(pinfo);
 	offset = 0;

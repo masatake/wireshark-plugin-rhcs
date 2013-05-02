@@ -113,7 +113,7 @@ dissect_openais_ckpt(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 	proto_item_append_text(item, " (%s)",
 			       val_to_str(openais_a_get_fn_id(pinfo),
 					  vals_openais_ckpt_fn_id,
-					  "Unknown"));
+					  "UNKNOWN-ID"));
 
 	if (check_col(pinfo->cinfo, COL_INFO))
 	        col_append_sep_str(pinfo->cinfo, COL_INFO, " ", "(ckpt");	
@@ -122,7 +122,7 @@ dissect_openais_ckpt(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 		col_append_fstr(pinfo->cinfo, COL_INFO, 
 				" :%s",
 				val_to_str(fn_id, vals_openais_ckpt_fn_id,
-					   "Unknown"));
+					   "UNKNOWN-ID"));
 
 	little_endian = openais_a_is_little_endian(pinfo);
 	offset = 0;

@@ -112,14 +112,14 @@ static const int *header_flags_fields[] = {
 #define GFS_MSG_WITHDRAW_ACK		8
 
 static const value_string vals_header_type[] = {
-  { GFS_MSG_PROTOCOL,                "Protocol"              },
-  { GFS_MSG_START,                   "Start"                 },
-  { GFS_MSG_MOUNT_DONE,              "Mount done"            },
-  { GFS_MSG_FIRST_RECOVERY_DONE,     "First recovery done"   },
-  { GFS_MSG_RECOVERY_RESULT,         "Recovery result"       },
-  { GFS_MSG_REMOUNT,                 "Remount"               },
-  { GFS_MSG_WITHDRAW,                "Withdraw"              },
-  { GFS_MSG_WITHDRAW_ACK,            "Withdraw ack"          },
+  { GFS_MSG_PROTOCOL,                "protocol"              },
+  { GFS_MSG_START,                   "start"                 },
+  { GFS_MSG_MOUNT_DONE,              "mount-done"            },
+  { GFS_MSG_FIRST_RECOVERY_DONE,     "first-recovery-done"   },
+  { GFS_MSG_RECOVERY_RESULT,         "recovery-result"       },
+  { GFS_MSG_REMOUNT,                 "remount"               },
+  { GFS_MSG_WITHDRAW,                "withdraw"              },
+  { GFS_MSG_WITHDRAW_ACK,            "withdraw-ack"          },
   { 0,                               NULL                    },
 };
 
@@ -377,8 +377,8 @@ dissect_gfs_controld(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 
   type = tvb_get_letohs(tvb, ( 2 * 3 ));
   if (check_col(pinfo->cinfo, COL_INFO))
-    col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(%s %s)", 
-			  col_str, val_to_str(type, vals_header_type, "Unknown type"));
+    col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(%s :%s)", 
+			  col_str, val_to_str(type, vals_header_type, "UNKNOWN-TYPE"));
 
   if (!parent_tree)
     goto out;
@@ -494,27 +494,27 @@ proto_register_gfs_controld(void)
   /* Setup list of fields */
   static hf_register_info hf[] = {
     { &hf_gfs_controld_header,
-      { "gfs_controld header", "gfs_controld.gfs_header",
+      { "header", "gfs_controld.gfs_header",
         FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_header_version,
-      { "gfs_controld header version", "gfs_controld.gfs_header.version",
+      { "header version", "gfs_controld.gfs_header.version",
         FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_header_version_major,
-      { "gfs_controld header major version", "gfs_controld.gfs_header.version.major",
+      { "header major version", "gfs_controld.gfs_header.version.major",
         FT_UINT16, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_header_version_minor,
-      { "gfs_controld header minor version", "gfs_controld.gfs_header.version.minor",
+      { "header minor version", "gfs_controld.gfs_header.version.minor",
         FT_UINT16, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_header_version_patch,
-      { "gfs_controld header patch level", "gfs_controld.gfs_header.version.patch",
+      { "header patch level", "gfs_controld.gfs_header.version.patch",
         FT_UINT16, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_header_type,
-      { "gfs_controld header type", "gfs_controld.gfs_header.type",
+      { "header type", "gfs_controld.gfs_header.type",
         FT_UINT16, BASE_DEC, VALS(vals_header_type), 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_header_nodeid,
@@ -530,7 +530,7 @@ proto_register_gfs_controld(void)
         FT_UINT32, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_header_flags,
-      { "gfs_controld header flags", "gfs_controld.gfs_header.flags",
+      { "header flags", "gfs_controld.gfs_header.flags",
         FT_UINT32, BASE_HEX, NULL, 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_header_flags_joining,
@@ -573,7 +573,7 @@ proto_register_gfs_controld(void)
 	NULL, HFILL }},
     
     { &hf_gfs_controld_mg_info,
-      { "gfs_controld mg_info", "gfs_controld.mg_info",
+      { "mg_info", "gfs_controld.mg_info",
         FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_mg_info_mg_info_size,
@@ -617,7 +617,7 @@ proto_register_gfs_controld(void)
         FT_INT32, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_id_info,
-      { "gfs_controld id_info", "gfs_controld.id_info",
+      { "id_info", "gfs_controld.id_info",
         FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
     { &hf_gfs_controld_id_info_nodeid,
@@ -658,7 +658,7 @@ proto_register_gfs_controld(void)
 	NULL, HFILL }},
 
     { &hf_gfs_controld_protocol,
-      { "gfs_controld protocol", "gfs_controld.protocol",
+      { "protocol", "gfs_controld.protocol",
         FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
 #define ATTACH_protocol(X,Y)		   \

@@ -98,7 +98,10 @@ dissect_corosync_syncv2(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tr
 		col_set_str(pinfo->cinfo, COL_PROTOCOL, "COROSYNC/syncv2");
 	*/
 	if (check_col(pinfo->cinfo, COL_INFO)) {
-	  col_append_sep_str(pinfo->cinfo, COL_INFO, " ", "syncv2");
+	  if (parent_tree)
+	    col_append_sep_str(pinfo->cinfo, COL_INFO, " ", "(syncv2");
+	  else
+	    col_append_sep_str(pinfo->cinfo, COL_INFO, " ", "syncv2");
 	  /* col_clear(pinfo->cinfo, COL_INFO); */
 	}
 
@@ -141,8 +144,7 @@ dissect_corosync_syncv2(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tr
 	  {
 	    const char* strval;
 	    strval = match_strval(header_id, vals_header_id);
-	    if (strval)
-	      col_append_sep_str(pinfo->cinfo, COL_INFO, "/", strval);
+	    col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", ":%s)", strval?strval: "UNKNOWN-ID");
 	  }
 
 	if (header_id == MESSAGE_REQ_SYNC_SERVICE_BUILD)

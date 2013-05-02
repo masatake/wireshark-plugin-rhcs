@@ -57,9 +57,9 @@ static gint ett_openais_evt                      = -1;
 
 
 static const value_string vals_openais_evt_fn_id[] = {
-	{ OPENAIS_EVT_FN_ID_REMOTE_EVT,   "REMOTE-EVENT"      },
-	{ OPENAIS_EVT_FN_ID_CHAN_OP,      "CHANNEL-OPERATION" },
-	{ OPENAIS_EVT_FN_ID_RECOVERY_EVT, "RECOVERY-EVENT"    },
+	{ OPENAIS_EVT_FN_ID_REMOTE_EVT,   "remote-event"      },
+	{ OPENAIS_EVT_FN_ID_CHAN_OP,      "channel-operation" },
+	{ OPENAIS_EVT_FN_ID_RECOVERY_EVT, "recovery-event"    },
 	{ 0,                              NULL                },
 };
 
@@ -90,7 +90,7 @@ dissect_openais_evt(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 	proto_item_append_text(item, " (%s)",
 			       val_to_str(openais_a_get_fn_id(pinfo),
 					  vals_openais_evt_fn_id,
-					  "Unknown"));
+					  "UNKNOWN"));
 
 	/*
 	if (check_col(pinfo->cinfo, COL_PROTOCOL))
@@ -106,7 +106,7 @@ dissect_openais_evt(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 		col_append_fstr(pinfo->cinfo, COL_INFO, 
 				" :%s",
 				val_to_str(fn_id, vals_openais_evt_fn_id,
-					   "Unknown"));
+					   "UNKNOWN"));
 
 	little_endian = openais_a_is_little_endian(pinfo);
 	offset = 0;

@@ -404,8 +404,15 @@ dissect_rhcs_fenced(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
   if ( length < ( 2 * 3 ) + 2 + 4 + 4 + 4 + 4 + 4 + 4 + 8)
     return 0;
 
-  if (check_col(pinfo->cinfo, COL_INFO))
-    col_append_sep_str(pinfo->cinfo, COL_INFO, " ", daemon?"fenced:daemon": "fenced:default");
+  type = tvb_get_letohs(tvb, (2 * 3));
+  if (check_col(pinfo->cinfo, COL_INFO)) {
+    const char* strval;
+
+    strval = match_strval(type, vals_header_type);
+    col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(%s :%s)", 
+			(daemon?"fenced:daemon": "fenced:default"),
+			(strval? strval: "UNKNOWN-TYPE"));
+  }
 
   if (!parent_tree)
     goto out;
@@ -440,7 +447,6 @@ dissect_rhcs_fenced(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 		      tvb, offset, 2, TRUE);
 
   offset += 2;
-  type = tvb_get_letohs(tvb, offset);
   proto_tree_add_item(tree, hf_rhcs_fenced_header_type, 
 		      tvb, offset, 2, TRUE);
 
@@ -486,14 +492,6 @@ dissect_rhcs_fenced(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 		      tvb, offset, 8, TRUE);
 
   offset += 8;
-
-  if (check_col(pinfo->cinfo, COL_INFO))
-    {
-      const char* strval;
-      strval = match_strval(type, vals_header_type);
-      if (strval)
-	col_append_sep_str(pinfo->cinfo, COL_INFO, " :", strval);
-    }
   switch (type)
     {
     case FD_MSG_START:

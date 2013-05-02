@@ -117,17 +117,17 @@ static gint ett_dlm_controld_ls_info = -1;
 static gint ett_dlm_controld_id_info = -1;
 
 static const value_string vals_header_type[] = {
-  { DLM_MSG_PROTOCOL,                "Protocol"                  },
-  { DLM_MSG_START,                   "Start"                     },
-  { DLM_MSG_PLOCK_OWN,               "Plock own"                 },
-  { DLM_MSG_PLOCK_DROP,              "Plock drop"                },
-  { DLM_MSG_PLOCK_SYNC_LOCK,         "Plock sync lock"           },
-  { DLM_MSG_PLOCK_SYNC_WAITER,       "Plock sync waiter"         },
-  { DLM_MSG_PLOCKS_STORED,           "Plocks stored"              },
-  { DLM_MSG_DEADLK_CYCLE_START,      "Deadlock cycle start"      },
-  { DLM_MSG_DEADLK_CYCLE_END,        "Deadlock cycle end"        },
-  { DLM_MSG_DEADLK_CHECKPOINT_READY, "Deadlock checkpoint ready" },
-  { DLM_MSG_DEADLK_CANCEL_LOCK,      "Deadlock cancel lock"      },
+  { DLM_MSG_PROTOCOL,                "protocol"                  },
+  { DLM_MSG_START,                   "start"                     },
+  { DLM_MSG_PLOCK_OWN,               "plock-own"                 },
+  { DLM_MSG_PLOCK_DROP,              "plock-drop"                },
+  { DLM_MSG_PLOCK_SYNC_LOCK,         "plock-sync-lock"           },
+  { DLM_MSG_PLOCK_SYNC_WAITER,       "plock-sync-waiter"         },
+  { DLM_MSG_PLOCKS_STORED,           "plocks-stored"             },
+  { DLM_MSG_DEADLK_CYCLE_START,      "deadlock-cycle-start"      },
+  { DLM_MSG_DEADLK_CYCLE_END,        "deadlock-cycle-end"        },
+  { DLM_MSG_DEADLK_CHECKPOINT_READY, "deadlock-checkpoint-ready" },
+  { DLM_MSG_DEADLK_CANCEL_LOCK,      "deadlock-cancel-lock"      },
   { 0,                               NULL                        },
 };
 
@@ -305,8 +305,8 @@ dissect_dlm_controld(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 
   type = tvb_get_letohs(tvb, ( 2 * 3 ));
   if (check_col(pinfo->cinfo, COL_INFO))
-    col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(%s %s)", 
-			  col_str, val_to_str(type, vals_header_type, "Unknown type"));
+    col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(%s :%s)", 
+			  col_str, val_to_str(type, vals_header_type, "UNKNOWN-TYPE"));
 
   if (!parent_tree)
     goto out;
@@ -418,27 +418,27 @@ proto_register_dlm_controld(void)
   /* Setup list of fields */
   static hf_register_info hf[] = {
     { &hf_dlm_controld_header,
-      { "dlm_controld header", "dlm_controld.dlm_header",
+      { "header", "dlm_controld.dlm_header",
         FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_header_version,
-      { "dlm_controld header version", "dlm_controld.dlm_header.version",
+      { "header version", "dlm_controld.dlm_header.version",
         FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_header_version_major,
-      { "dlm_controld header major version", "dlm_controld.dlm_header.version.major",
+      { "header major version", "dlm_controld.dlm_header.version.major",
         FT_UINT16, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_header_version_minor,
-      { "dlm_controld header minor version", "dlm_controld.dlm_header.version.minor",
+      { "header minor version", "dlm_controld.dlm_header.version.minor",
         FT_UINT16, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_header_version_patch,
-      { "dlm_controld header patch level", "dlm_controld.dlm_header.version.patch",
+      { "header patch level", "dlm_controld.dlm_header.version.patch",
         FT_UINT16, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_header_type,
-      { "dlm_controld header type", "dlm_controld.dlm_header.type",
+      { "header type", "dlm_controld.dlm_header.type",
         FT_UINT16, BASE_DEC, VALS(vals_header_type), 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_header_nodeid,
@@ -454,7 +454,7 @@ proto_register_dlm_controld(void)
         FT_UINT32, BASE_DEC, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_header_flags,
-      { "dlm_controld header flags", "dlm_controld.dlm_header.flags",
+      { "header flags", "dlm_controld.dlm_header.flags",
         FT_UINT32, BASE_HEX, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_header_flags_joining,
@@ -471,7 +471,7 @@ proto_register_dlm_controld(void)
 	NULL, HFILL }},
     
     { &hf_dlm_controld_header_msgdata,
-      { "dlm_controld header msgdata", "dlm_controld.dlm_header.msgdata",
+      { "header msgdata", "dlm_controld.dlm_header.msgdata",
         FT_UINT32, BASE_HEX, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_header_pad1,
@@ -484,7 +484,7 @@ proto_register_dlm_controld(void)
         NULL, HFILL }},
 
     { &hf_dlm_controld_protocol,
-      { "dlm_controld protocol", "dlm_controld.protocol",
+      { "protocol", "dlm_controld.protocol",
         FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
 #define ATTACH_protocol(X,Y)		   \
@@ -516,7 +516,7 @@ proto_register_dlm_controld(void)
 
 
     { &hf_dlm_controld_ls_info,
-      { "dlm_controld ls_info", "dlm_controld.ls_info",
+      { "ls_info", "dlm_controld.ls_info",
         FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_ls_info_ls_info_size,
@@ -553,7 +553,7 @@ proto_register_dlm_controld(void)
         NULL, HFILL }},
 
     { &hf_dlm_controld_id_info,
-      { "dlm_controld id_info", "dlm_controld.id_info",
+      { "id_info", "dlm_controld.id_info",
         FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_id_info_nodeid,

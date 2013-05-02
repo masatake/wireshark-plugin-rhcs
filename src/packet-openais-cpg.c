@@ -138,14 +138,13 @@ static gint ett_openais_cpg_downlist             = -1;
 #define OPENAIS_CPG_PROCESSOR_COUNT_MAX       384
 
 static const value_string vals_openais_cpg_fn_id[] = {
-	{ OPENAIS_CPG_FN_ID_PROCJOIN,     "PROCJOIN"  },
-	{ OPENAIS_CPG_FN_ID_PROCLEAVE,    "PROCLEAVE" },
-	{ OPENAIS_CPG_FN_ID_JOINLIT,      "JOINLIST" },
-	{ OPENAIS_CPG_FN_ID_MCAST,        "MCAST"     },
-	{ OPENAIS_CPG_FN_ID_DOWNLIST_OLD, "DOWNLIST-OLD"  },
-	{ MESSAGE_REQ_EXEC_CPG_DOWNLIST,     "DOWNLIST"  },
-
-	{ 0,                            NULL        },
+	{ OPENAIS_CPG_FN_ID_PROCJOIN,     "procjoin"     },
+	{ OPENAIS_CPG_FN_ID_PROCLEAVE,    "procleave"    },
+	{ OPENAIS_CPG_FN_ID_JOINLIT,      "joinlist"     },
+	{ OPENAIS_CPG_FN_ID_MCAST,        "mcast"        },
+	{ OPENAIS_CPG_FN_ID_DOWNLIST_OLD, "downlist-old" },
+	{ MESSAGE_REQ_EXEC_CPG_DOWNLIST,  "downlist"     },
+	{ 0,                               NULL          },
 };
 
 
@@ -783,7 +782,7 @@ dissect_openais_cpg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 	proto_item_append_text(item, " (%s)",
 			       val_to_str(openais_a_get_fn_id(pinfo),
 					  vals_openais_cpg_fn_id,
-					  "Unknown"));
+					  "UNKNOWN-ID"));
 
 
 	/* if (check_col(pinfo->cinfo, COL_PROTOCOL))
@@ -801,7 +800,7 @@ dissect_openais_cpg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 		col_append_fstr(pinfo->cinfo, COL_INFO, 
 				" :%s",
 				val_to_str(fn_id, vals_openais_cpg_fn_id,
-					   "Unknown"));
+					   "UNKNOWN-ID"));
 
 	little_endian = openais_a_is_little_endian(pinfo);
 	offset = 0;

@@ -175,21 +175,21 @@ static int hf_clvmd_lock_flags_dmeventd_monitor_mode = -1;
 
 /* Value strings */
 static const value_string vals_header_cmd[] = {
-  	{ 0,                         "Successful"      },
-	{ CLVMD_CMD_REPLY,           "Reply"           },
-	{ CLVMD_CMD_VERSION,         "Version"         },
-	{ CLVMD_CMD_GOAWAY,          "Goaway"          },
-	{ CLVMD_CMD_TEST,            "Test"            },
-	{ CLVMD_CMD_LOCK,            "Lock"            },
-	{ CLVMD_CMD_UNLOCK,          "Unlock"          },
-	{ CLVMD_CMD_LOCK_LV,         "Lock LV"         },
-	{ CLVMD_CMD_LOCK_VG,         "Lock VG"         },
-	{ CLVMD_CMD_REFRESH,	     "Refresh"         },
-	{ CLVMD_CMD_GET_CLUSTERNAME, "Get cluster name"}, 
-	{ CLVMD_CMD_SET_DEBUG,	     "Set debug"       },
-	{ CLVMD_CMD_VG_BACKUP,       "Backup"          },
-	{ CLVMD_CMD_RESTART,         "Restart"         },
-	{ CLVMD_CMD_SYNC_NAMES,      "Sync names"      },
+  	{ 0,                         "successful"      },
+	{ CLVMD_CMD_REPLY,           "reply"           },
+	{ CLVMD_CMD_VERSION,         "version"         },
+	{ CLVMD_CMD_GOAWAY,          "goaway"          },
+	{ CLVMD_CMD_TEST,            "test"            },
+	{ CLVMD_CMD_LOCK,            "lock"            },
+	{ CLVMD_CMD_UNLOCK,          "unlock"          },
+	{ CLVMD_CMD_LOCK_LV,         "lock-lv"         },
+	{ CLVMD_CMD_LOCK_VG,         "lock-vg"         },
+	{ CLVMD_CMD_REFRESH,	     "refresh"         },
+	{ CLVMD_CMD_GET_CLUSTERNAME, "get-cluster-name"}, 
+	{ CLVMD_CMD_SET_DEBUG,	     "set-debug"       },
+	{ CLVMD_CMD_VG_BACKUP,       "backup"          },
+	{ CLVMD_CMD_RESTART,         "restart"         },
+	{ CLVMD_CMD_SYNC_NAMES,      "sync-names"      },
 	{ 0,                            NULL           },
 		
 };
@@ -498,8 +498,8 @@ dissect_clvmd(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 	
 	cmd = tvb_get_guint8(tvb, offset);
 	if (check_col(pinfo->cinfo, COL_INFO))
-		col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(clvmd %s)",
-				    val_to_str(cmd, vals_header_cmd, "Unknown cmd"));
+		col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(clvmd :%s)",
+				    val_to_str(cmd, vals_header_cmd, "unknown-cmd"));
 	
 	if (!parent_tree)
 		goto out;

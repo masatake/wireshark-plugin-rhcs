@@ -150,17 +150,17 @@ static gint ett_openais_cman_cl_fencemsg          = -1;
 
 /* Value strings */
 static const value_string vals_cluster_msg[] = {
-	{ OPENAIS_CMAN_CLUSTER_MSG_ACK,         "Ack"          },
-	{ OPENAIS_CMAN_CLUSTER_MSG_PORTOPENED,  "Port opened"  },
-	{ OPENAIS_CMAN_CLUSTER_MSG_PORTCLOSED,  "Port closed"  },
-	{ OPENAIS_CMAN_CLUSTER_MSG_BARRIER,     "Barrier"      },
-	{ OPENAIS_CMAN_CLUSTER_MSG_TRANSITION,  "Transition"   },
-	{ OPENAIS_CMAN_CLUSTER_MSG_KILLNODE,    "Kill node"    },
-	{ OPENAIS_CMAN_CLUSTER_MSG_LEAVE,       "Leave"        },
-	{ OPENAIS_CMAN_CLUSTER_MSG_RECONFIGURE, "Reconfigure"  },
-	{ OPENAIS_CMAN_CLUSTER_MSG_PORTENQ,     "Post enqueue" },
-	{ OPENAIS_CMAN_CLUSTER_MSG_PORTSTATUS,  "Port status"  },
-	{ OPENAIS_CMAN_CLUSTER_MSG_FENCESTATUS, "Fence status" },
+	{ OPENAIS_CMAN_CLUSTER_MSG_ACK,         "ack"          },
+	{ OPENAIS_CMAN_CLUSTER_MSG_PORTOPENED,  "port-opened"  },
+	{ OPENAIS_CMAN_CLUSTER_MSG_PORTCLOSED,  "port-closed"  },
+	{ OPENAIS_CMAN_CLUSTER_MSG_BARRIER,     "barrier"      },
+	{ OPENAIS_CMAN_CLUSTER_MSG_TRANSITION,  "transition"   },
+	{ OPENAIS_CMAN_CLUSTER_MSG_KILLNODE,    "kill-node"    },
+	{ OPENAIS_CMAN_CLUSTER_MSG_LEAVE,       "leave"        },
+	{ OPENAIS_CMAN_CLUSTER_MSG_RECONFIGURE, "reconfigure"  },
+	{ OPENAIS_CMAN_CLUSTER_MSG_PORTENQ,     "post-enqueue" },
+	{ OPENAIS_CMAN_CLUSTER_MSG_PORTSTATUS,  "port-status"  },
+	{ OPENAIS_CMAN_CLUSTER_MSG_FENCESTATUS, "fence-status" },
 	{ 0,                                    NULL           },
 		
 };
@@ -736,7 +736,7 @@ dissect_openais_cman(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 					" :%s", 
 					val_to_str(cmd, 
 						   vals_cluster_msg, 
-						   "Unknown message type(%d)"));
+						   "UNKNOWN-MESSAGE-TYPE"));
 		offset += 1;
 		sub_offset = 0;	/* TODO */
 		switch (cmd)
