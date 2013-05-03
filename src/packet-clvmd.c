@@ -29,7 +29,6 @@
 #endif
 
 #include <glib.h>
-
 #include <epan/packet.h>
 
 #define CLVMD_CMAN_TGTPORT 11
@@ -51,6 +50,7 @@
 /* Lock/Unlock commands */
 #define CLVMD_CMD_LOCK_LV           50
 #define CLVMD_CMD_LOCK_VG           51
+#define CLVMD_CMD_LOCK_QUERY        52
 
 /* Misc functions */
 #define CLVMD_CMD_REFRESH	    40
@@ -154,6 +154,8 @@ static int hf_clvmd_minor   = -1;
 static int hf_clvmd_patch   = -1;
 static int hf_clvmd_garbage = -1;
 
+static int hf_clvmd_query_args_unused0  = -1;
+static int hf_clvmd_query_args_unused1  = -1;
 static int hf_clvmd_resource = -1;
 
 
@@ -184,6 +186,7 @@ static const value_string vals_header_cmd[] = {
 	{ CLVMD_CMD_UNLOCK,          "unlock"          },
 	{ CLVMD_CMD_LOCK_LV,         "lock-lv"         },
 	{ CLVMD_CMD_LOCK_VG,         "lock-vg"         },
+	{ CLVMD_CMD_LOCK_QUERY,      "lock-query"      },
 	{ CLVMD_CMD_REFRESH,	     "refresh"         },
 	{ CLVMD_CMD_GET_CLUSTERNAME, "get-cluster-name"}, 
 	{ CLVMD_CMD_SET_DEBUG,	     "set-debug"       },
@@ -329,12 +332,12 @@ dissect_clvmd_reply_args(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_t
 		return (offset - original_offset);
 
 	args = tvb_get_ephemeral_string(tvb, offset, arglen);
-	proto_tree_add_bytes(parent_tree,
-			     hf_clvmd_args,
-			     tvb,
-			     offset,
-			     arglen,
-			     node);
+	proto_tree_add_string(parent_tree,
+			      hf_clvmd_args,
+			      tvb,
+			      offset,
+			      arglen,
+			      args);
 	offset += arglen;
 
 	if (arglen == 0 && (length - offset) > 0)
@@ -413,6 +416,70 @@ dissect_clvmd_version_args(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent
 	arglen = arglen;
 }
 
+
+static int
+dissect_clvmd__cmd_resource(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
+			    int offset, guint length, guint32 arglen)
+{
+	int original_offset;
+	guint8 *node;
+	guint8* resource;
+
+	
+	original_offset = offset;
+	if ( (length - offset) < 1 + arglen )
+		return 0;
+
+
+	offset += 0;
+	node = tvb_get_ephemeral_string(tvb, offset, 1);
+	proto_tree_add_string(parent_tree,
+			      hf_clvmd_header_node,
+			      tvb,
+			      offset,
+			      1,
+			      node);
+
+	offset += 1;
+	proto_tree_add_item(parent_tree,
+			    hf_clvmd_query_args_unused0,
+			    tvb,
+			    offset,
+			    1,
+			    FALSE);
+
+	offset += 1;
+	proto_tree_add_item(parent_tree,
+			    hf_clvmd_query_args_unused1,
+			    tvb,
+			    offset,
+			    1,
+			    FALSE);
+
+	offset += 1;
+	resource = tvb_get_ephemeral_string(tvb, offset, arglen - 2);
+	proto_tree_add_string(parent_tree,
+			      hf_clvmd_resource,
+			      tvb,
+			      offset,
+			      arglen - 2,
+			      resource);
+	offset += (arglen - 2);
+
+	if ( (offset - original_offset) > 0 )
+	{
+		proto_tree_add_item(parent_tree,
+				    hf_clvmd_garbage,
+				    tvb,
+				    offset,
+				    1,
+				    FALSE);
+		offset += 1;
+	}
+
+	
+	return (offset - original_offset);
+}
 
 static int
 dissect_clvmd__cmd_flags_resource(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
@@ -499,7 +566,7 @@ dissect_clvmd(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 	cmd = tvb_get_guint8(tvb, offset);
 	if (check_col(pinfo->cinfo, COL_INFO))
 		col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(clvmd :%s)",
-				    val_to_str(cmd, vals_header_cmd, "unknown-cmd"));
+				    val_to_str(cmd, vals_header_cmd, "UNKNOWN-CMD"));
 	
 	if (!parent_tree)
 		goto out;
@@ -583,6 +650,15 @@ dissect_clvmd(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 							    arglen);
 		break;
 		
+	case CLVMD_CMD_LOCK_QUERY:
+		offset += dissect_clvmd__cmd_resource(tvb,
+						      pinfo,
+						      tree,
+						      offset,
+						      length,
+						      arglen);
+		break;
+
 	case CLVMD_CMD_REFRESH:
 		/* TODO: strlen is needed, may be empty, no payload,
 		 * see _cluster_request(). */
@@ -672,7 +748,7 @@ proto_register_clvmd(void)
 		    NULL, HFILL }},
 		{ &hf_clvmd_args,
 		  { "Arguments", "clvmd.args",
-		    FT_BYTES, BASE_NONE, NULL, 0x0,
+		    FT_STRING, BASE_NONE, NULL, 0x0,
 		    NULL, HFILL }},
 		{ &hf_clvmd_major,
 		  { "Major version", "clvmd.major",
@@ -739,6 +815,14 @@ proto_register_clvmd(void)
 		  { "Register with dmeventd", "clvmd.lock_flags.dmeventd_monitor_mode",
 		    FT_BOOLEAN, 8,
 		    NULL, LCK_DMEVENTD_MONITOR_MODE, NULL, HFILL }},
+		{ &hf_clvmd_query_args_unused0,
+		  { "Unused", "clvmd.query_args.unused0",
+		    FT_UINT8, BASE_HEX, NULL, 0x0,
+		    NULL, HFILL }},
+		{ &hf_clvmd_query_args_unused1,
+		  { "Unused", "clvmd.query_args.unused1",
+		    FT_UINT8, BASE_HEX, NULL, 0x0,
+		    NULL, HFILL }},
 	};
 
 	static gint *ett[] = {
