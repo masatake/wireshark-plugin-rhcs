@@ -91,12 +91,6 @@ static int hf_openais_cpg_mar_name_length_padding      = -1;
 static int hf_openais_cpg_mar_name_value               = -1;
 static int hf_openais_cpg_mar_name_value_padding       = -1;
 
-/* fields of for struct mar_message_source */
-static int hf_openais_cpg_mar_message_source           = -1;
-static int hf_openais_cpg_mar_message_source_nodeid    = -1;
-static int hf_openais_cpg_mar_message_source_nodeid_padding = -1;
-static int hf_openais_cpg_mar_message_source_conn      = -1;
-
 
 /* Initialize the subtree pointers */
 static gint ett_openais_cpg                      = -1;
@@ -106,7 +100,6 @@ static gint ett_openais_cpg_joinlist             = -1;
 static gint ett_openais_cpg_joinlist_entry       = -1;
 static gint ett_openais_cpg_mcast                = -1;
 static gint ett_openais_cpg_mar_name             = -1;
-static gint ett_openais_cpg_mar_message_source   = -1;
 static gint ett_openais_cpg_downlist_old         = -1;
 static gint ett_openais_cpg_downlist             = -1;
 
@@ -161,51 +154,6 @@ static const value_string vals_openais_cpg_confchg_reason[] = {
 
 static dissector_table_t subdissector_table;
 static heur_dissector_list_t heur_subdissector_list;
-
-static int
-dissect_openais_cpg_mar_message_source(tvbuff_t    *tvb,
-				       packet_info *pinfo, 
-				       proto_tree  *parent_tree,
-				       guint length, int offset,
-				       gboolean little_endian)
-{
-	int original_offset;
-	proto_tree *tree;
-	proto_item *item;
-
-#define length_openais_cpg_mar_source ( 8 + 8 )
-	if ((length - offset) < length_openais_cpg_mar_source)
-		return 0;
-	
-	original_offset = offset;
-
-	item = proto_tree_add_item(parent_tree, hf_openais_cpg_mar_message_source, 
-				   tvb, offset, -1, little_endian);
-	tree = proto_item_add_subtree(item, ett_openais_cpg_mar_message_source);
-
-	
-	offset += 0;
-	proto_tree_add_item(tree,
-			    hf_openais_cpg_mar_message_source_nodeid,
-			    tvb, offset, 4, little_endian);
-
-	offset += 4;
-	proto_tree_add_item(tree,
-			    hf_openais_cpg_mar_message_source_nodeid_padding,
-			    tvb, offset, 4, little_endian);
-
-	offset += 4;
-	proto_tree_add_item(tree,
-			    hf_openais_cpg_mar_message_source_conn,
-			    tvb, offset, 8, little_endian);
-	offset += 8;
-	
-	return (offset - original_offset);
-
-	pinfo = pinfo;
-}
-
-
 
 static int
 dissect_openais_cpg_mar_name(tvbuff_t *tvb,
@@ -523,7 +471,7 @@ dissect_openais_cpg_mcast(tvbuff_t *tvb,
 #define length_openais_cpg_mcast ( length_openais_cpg_mar_name         \
 				  + 8                                  \
 				  + 8                                  \
-				  + length_openais_cpg_mar_source      )
+				  + openais_a_mar_source_length        )
 	
 	
 	if ((length - offset) < length_openais_cpg_mcast)
@@ -577,10 +525,10 @@ dissect_openais_cpg_mcast(tvbuff_t *tvb,
 			    little_endian);
 	
 	offset += 4;
-	sub_offset = dissect_openais_cpg_mar_message_source(tvb, pinfo, 
-							    tree,
-							    length, offset,
-							    little_endian);
+	sub_offset = dissect_openais_a_mar_message_source(tvb, pinfo, 
+							  tree,
+							  length, offset,
+							  little_endian);
 	offset += sub_offset;
 	if ((length - offset) < msglen)
 		goto out;
@@ -944,23 +892,6 @@ proto_register_openais_cpg(void)
 		    FT_UINT32, BASE_DEC, NULL, 0x0,
 		    NULL, HFILL }},
 
-		{ &hf_openais_cpg_mar_message_source,
-		  { "Message source", "openais_cpg.mar_message_source",
-		    FT_NONE, BASE_NONE, NULL, 0x0,
-		    NULL, HFILL }},
-		{ &hf_openais_cpg_mar_message_source_nodeid,
-		  { "Node id", "openais_cpg.mar_message_source.nodeid",
-		    FT_UINT32, BASE_DEC, NULL, 0x0,
-		    NULL, HFILL }},
-		{ &hf_openais_cpg_mar_message_source_nodeid_padding,
-		  { "Padding", "openais_cpg.mar_message_source.nodeid_padding",
-		    FT_UINT32, BASE_DEC, NULL, 0x0,
-		    NULL, HFILL }},
-		{ &hf_openais_cpg_mar_message_source_conn,
-		  { "Pointer to connection object", "openais_cpg.mar_message_source.conn",
-		    FT_UINT64, BASE_HEX, NULL, 0x0,
-		    NULL, HFILL }},
-
 		{ &hf_openais_cpg_downlist_old,
 		  { "Down list old", "openais_cpg.downlist_old",
 		    FT_NONE, BASE_NONE, NULL, 0x0,
@@ -1000,7 +931,6 @@ proto_register_openais_cpg(void)
 		&ett_openais_cpg_joinlist_entry,
 		&ett_openais_cpg_mcast,
 		&ett_openais_cpg_mar_name,
-		&ett_openais_cpg_mar_message_source,
 		&ett_openais_cpg_downlist_old,
 		&ett_openais_cpg_downlist,
 	};

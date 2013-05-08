@@ -38,4 +38,20 @@ extern gint32      openais_a_get_size        (packet_info *pinfo);
 extern const value_string vals_openais_a_error[];
 extern const value_string vals_openais_a_service[];
 
+guint32 openais_a_get_guint32(tvbuff_t* tvb, gint offset, gboolean little_endian);
+
+#define openais_a_mar_source_length ( 8 + 8 )
+extern int   dissect_openais_a_mar_message_source(tvbuff_t    *tvb,
+						  packet_info *pinfo, 
+						  proto_tree  *parent_tree,
+						  guint length, int offset,
+						  gboolean little_endian);
+
+extern int   dissect_openais_a_mar_name(tvbuff_t *tvb,
+					packet_info *pinfo, 
+					proto_tree *parent_tree,
+					guint length, int offset,
+					gboolean little_endian,
+					gchar** group_name);
+
 #endif /* packet-openais-a.h */

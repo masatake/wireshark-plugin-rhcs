@@ -40,9 +40,6 @@
 void proto_reg_handoff_openais_a(void);
 
 static guint16 openais_a_get_guint16(tvbuff_t* tvb, gint offset, gboolean little_endian);
-#if 0
-static guint32 openais_a_get_guint32(tvbuff_t* tvb, gint offset, gboolean little_endian);
-#endif 
 
 /* Initialize the protocol and registered fields */
 static int proto_openais_a = -1;
@@ -56,10 +53,28 @@ static int hf_openais_a_header_id_padding      = -1;
 static int hf_openais_a_header_id_service      = -1;
 static int hf_openais_a_header_id_fn_id        = -1;
 
+/* fields of for struct mar_message_source */
+static int hf_openais_a_mar_message_source           = -1;
+static int hf_openais_a_mar_message_source_nodeid    = -1;
+static int hf_openais_a_mar_message_source_nodeid_padding = -1;
+static int hf_openais_a_mar_message_source_conn      = -1;
+
+
+/* fields for struct mar_a_name */
+static int hf_openais_a_mar_name                     = -1;
+static int hf_openais_a_mar_name_length              = -1;
+static int hf_openais_a_mar_name_length_padding      = -1;
+static int hf_openais_a_mar_name_value               = -1;
+static int hf_openais_a_mar_name_value_padding       = -1;
+
+
 /* Initialize the subtree pointers */
 static gint ett_openais_a                      = -1;
 static gint ett_openais_a_header               = -1;
 static gint ett_openais_a_header_id            = -1;
+static gint ett_openais_a_mar_message_source   = -1;
+static gint ett_openais_a_mar_name             = -1;
+
 
 /* openais-0.80.3/include/ipc_gen.h */
 enum service_types {
@@ -238,6 +253,129 @@ out:
 	return tvb_length(tvb);
 }
 
+int
+dissect_openais_a_mar_message_source(tvbuff_t    *tvb,
+				       packet_info *pinfo, 
+				       proto_tree  *parent_tree,
+				       guint length, int offset,
+				       gboolean little_endian)
+{
+	int original_offset;
+	proto_tree *tree;
+	proto_item *item;
+
+	if ((length - offset) < openais_a_mar_source_length)
+		return 0;
+	
+	original_offset = offset;
+
+	item = proto_tree_add_item(parent_tree, hf_openais_a_mar_message_source, 
+				   tvb, offset, -1, little_endian);
+	tree = proto_item_add_subtree(item, ett_openais_a_mar_message_source);
+
+	
+	offset += 0;
+	proto_tree_add_item(tree,
+			    hf_openais_a_mar_message_source_nodeid,
+			    tvb, offset, 4, little_endian);
+
+	offset += 4;
+	proto_tree_add_item(tree,
+			    hf_openais_a_mar_message_source_nodeid_padding,
+			    tvb, offset, 4, little_endian);
+
+	offset += 4;
+	proto_tree_add_item(tree,
+			    hf_openais_a_mar_message_source_conn,
+			    tvb, offset, 8, little_endian);
+	offset += 8;
+	
+	return (offset - original_offset);
+}
+
+static gchar*
+openais_a_tvb_format_stringzpad(tvbuff_t *tvb, const gint offset, const gint size)
+{
+#ifdef HAVE_TVB_FORMAT_STRINGZPAD  
+  return tvb_format_stringzpad(tvb, offset, size);
+#else
+  return tvb_get_ephemeral_string(tvb, offset, size);
+#endif
+}
+
+#define OPENAIS_A_MAX_NAME_LENGTH  256
+int
+dissect_openais_a_mar_name(tvbuff_t *tvb,
+			     packet_info *pinfo, 
+			     proto_tree *parent_tree,
+			     guint length, int offset,
+			     gboolean little_endian,
+			     gchar** group_name)
+{
+	int original_offset;
+
+	proto_tree *tree;
+	proto_item *item;
+
+	guint name_length;
+
+	if (group_name)
+	  *group_name = NULL;
+	original_offset = offset;
+
+
+
+	if ((length - offset) < 8)
+		return 0;
+
+	name_length = openais_a_get_guint16(tvb, offset, little_endian);
+	if ((length - offset) < ( 8 + OPENAIS_A_MAX_NAME_LENGTH ))
+		return 0;
+	
+	item = proto_tree_add_item(parent_tree, hf_openais_a_mar_name, 
+				   tvb, offset, 8 + OPENAIS_A_MAX_NAME_LENGTH, little_endian);
+	tree = proto_item_add_subtree(item, ett_openais_a_mar_name);
+
+	
+	offset += 0;
+	proto_tree_add_item(tree,
+			    hf_openais_a_mar_name_length,
+			    tvb, offset, 2, little_endian);
+
+	offset += 2;
+	proto_tree_add_item(tree,
+			    hf_openais_a_mar_name_length_padding,
+			    tvb, offset, 6, little_endian);
+
+
+	offset += 6;
+	if (name_length > OPENAIS_A_MAX_NAME_LENGTH) {
+		name_length = OPENAIS_A_MAX_NAME_LENGTH;
+	}
+	if ((length - offset) < name_length)
+	  goto out;
+
+	proto_tree_add_item(tree,
+			    hf_openais_a_mar_name_value,
+			    tvb, offset, name_length, little_endian);
+	if (group_name)
+		*group_name = openais_a_tvb_format_stringzpad(tvb, offset, name_length);
+	
+	offset += name_length;
+
+	if ((length - offset) < ( OPENAIS_A_MAX_NAME_LENGTH - name_length ))
+	  goto out;
+	
+	proto_tree_add_item(tree,
+			    hf_openais_a_mar_name_value_padding,
+			    tvb, 
+			    offset, (OPENAIS_A_MAX_NAME_LENGTH - name_length), 
+			    little_endian);
+	offset += (OPENAIS_A_MAX_NAME_LENGTH - name_length);
+
+ out:
+	return (offset - original_offset);
+}
 
 void
 proto_register_openais_a(void)
@@ -272,12 +410,51 @@ proto_register_openais_a(void)
 		  { "Padding", "openais_a.header.id_padding",
 		    FT_INT32, BASE_DEC, NULL, 0x0,
 		    NULL, HFILL }},
+		{ &hf_openais_a_mar_message_source,
+		  { "Message source", "openais_a.mar_message_source",
+		    FT_NONE, BASE_NONE, NULL, 0x0,
+		    NULL, HFILL }},
+		{ &hf_openais_a_mar_message_source_nodeid,
+		  { "Node id", "openais_a.mar_message_source.nodeid",
+		    FT_UINT32, BASE_DEC, NULL, 0x0,
+		    NULL, HFILL }},
+		{ &hf_openais_a_mar_message_source_nodeid_padding,
+		  { "Padding", "openais_a.mar_message_source.nodeid_padding",
+		    FT_UINT32, BASE_DEC, NULL, 0x0,
+		    NULL, HFILL }},
+		{ &hf_openais_a_mar_message_source_conn,
+		  { "Pointer to connection object", "openais_a.mar_message_source.conn",
+		    FT_UINT64, BASE_HEX, NULL, 0x0,
+		    NULL, HFILL }},
+
+		{ &hf_openais_a_mar_name,
+		  { "Mar name", "openais_a.mar_name",
+		    FT_NONE, BASE_NONE, NULL, 0x0,
+		    NULL, HFILL }},
+		{ &hf_openais_a_mar_name_length,
+		  { "Mar name length", "openais_a.mar_name.length",
+		    FT_UINT16, BASE_DEC, NULL, 0x0,
+		    NULL, HFILL }},
+		{ &hf_openais_a_mar_name_length_padding,
+		  { "Padding", "openais_a.mar_name.length_padding",
+		    FT_UINT64, BASE_DEC, NULL, 0x0,
+		    NULL, HFILL }},
+		{ &hf_openais_a_mar_name_value,
+		  { "Mar name value", "openais_a.mar_name.value",
+		    FT_STRING, BASE_NONE, NULL, 0x0,
+		    NULL, HFILL }},
+		{ &hf_openais_a_mar_name_value_padding,
+		  { "Padding", "openais_a.mar_name.value_padding",
+		    FT_BYTES, BASE_NONE, NULL, 0x0,
+		    NULL, HFILL }},
 	};
 
 	static gint *ett[] = {
 		&ett_openais_a,
 		&ett_openais_a_header,
 		&ett_openais_a_header_id,
+		&ett_openais_a_mar_message_source,
+		&ett_openais_a_mar_name,
 	};
   
 	proto_openais_a 
@@ -368,7 +545,6 @@ openais_a_get_guint16(tvbuff_t* tvb, gint offset, gboolean little_endian)
 {
   return (little_endian? tvb_get_letohs: tvb_get_ntohs)(tvb, offset);
 }
-
 
 /* Taken from `SaAisErrorT'
    of openais-0.80.3/include/saAis.h 
