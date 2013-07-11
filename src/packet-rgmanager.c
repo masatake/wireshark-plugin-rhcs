@@ -115,7 +115,8 @@ enum {
 
 /* TODO */
 #define VF_FLAGS_MASK           0xffff0000
-#define VFMF_AFFIRM	        0x00010000
+#define VF_FLAGS_SHIFT          16
+#define VFMF_AFFIRM	        (0x00010000 >> VF_FLAGS_SHIFT)
 
 
 /* Forward declaration we need below */
@@ -150,6 +151,7 @@ static int hf_rgmanager_generic_msg_hdr_vf_command      = -1;
 static int hf_rgmanager_generic_msg_hdr_owner           = -1;
 static int hf_rgmanager_generic_msg_hdr_last            = -1;
 static int hf_rgmanager_vf_command                      = -1;
+static int hf_rgmanager_vf_flags                        = -1;
 static int hf_rgmanager_generic_msg_hdr_vf_trans        = -1;
 
 static int hf_rgmanager_vf_msg_info                     = -1;
@@ -225,6 +227,11 @@ static const value_string vals_vf_msg_info_command[] = {
 	{ VF_CURRENT,     "current"     },
 	{ VF_ACK,         "ack"         },
 	{ VF_NACK,        "nack"        },
+	{ 0, NULL },
+};
+
+static const value_string vals_vf_msg_info_flags[] = {
+	{ VFMF_AFFIRM, "affirm" },
 	{ 0, NULL },
 };
 
@@ -316,6 +323,7 @@ static const value_string vals_rg_flags[] = {
 /* Bit fields */
 static const int* b_vf_commands[] = {
 	&hf_rgmanager_vf_command,
+	&hf_rgmanager_vf_flags,
 	NULL
 };
 
@@ -1067,6 +1075,10 @@ proto_register_rgmanager(void)
 		{ &hf_rgmanager_vf_command,
 		  { "VF command", "rgmanager.vf_command",
 		    FT_UINT32, BASE_HEX, VALS(vals_vf_msg_info_command), VF_COMMAND_MASK,
+		    NULL, HFILL }},
+		{ &hf_rgmanager_vf_flags,
+		  { "VF flags", "rgmanager.vf_flags",
+		    FT_UINT32, BASE_HEX, VALS(vals_vf_msg_info_flags), VF_FLAGS_MASK,
 		    NULL, HFILL }},
 		{ &hf_rgmanager_generic_msg_hdr_owner,
 		  { "Node id of owner", "rgmanager.generic_msg_hdr.owner",
