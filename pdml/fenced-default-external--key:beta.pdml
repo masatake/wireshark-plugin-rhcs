@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="pdml2html.xsl"?>
 <!-- You can find pdml2html.xsl in /usr/share/wireshark or at http://anonsvn.wireshark.org/trunk/wireshark/pdml2html.xsl. -->
-<pdml version="0" creator="wireshark/1.6.14" time="Sat Apr 13 14:56:54 2013" capture_file="pcap/fenced-default-external--key:beta.pcap">
+<pdml version="0" creator="wireshark/1.6.14" time="Thu Jul 11 11:03:44 2013" capture_file="pcap/fenced-default-external--key:beta.pcap">
 <packet>
   <proto name="geninfo" pos="0" showname="General information" size="416">
     <field name="num" pos="0" show="1" showname="Number" value="1" size="416"/>
@@ -135,7 +135,7 @@
           <field name="openais_a.header.size" showname="Size: 224" size="4" pos="149" show="224" value="e0000000"/>
           <field name="openais_a.header.size_padding" showname="Padding: 32530" size="4" pos="153" show="32530" value="127f0000"/>
           <field name="openais_a.header.id" showname="Id" size="216" pos="157" show="" value="">
-            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (MCAST)" size="2" pos="157" show="3" value="0300"/>
+            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (mcast)" size="2" pos="157" show="3" value="0300"/>
             <field name="openais_a.header.id.service" showname="Service: CPG (8) (cpg)" size="2" pos="159" show="8" value="0800"/>
           </field>
           <field name="openais_a.header.id_padding" showname="Padding: 0" size="4" pos="161" show="0" value="00000000"/>
@@ -152,10 +152,10 @@
             <field name="openais_cpg.mcast.msglen_padding" showname="Padding: 32530" size="4" pos="305" show="32530" value="127f0000"/>
             <field name="openais_cpg.pid" showname="Pid: 1828" size="4" pos="309" show="1828" value="24070000"/>
             <field name="openais_cpg.pid_padding" showname="Padding: 0" size="4" pos="313" show="0" value="00000000"/>
-            <field name="openais_cpg.mar_message_source" showname="Message source" size="56" pos="317" show="" value="">
-              <field name="openais_cpg.mar_message_source.nodeid" showname="Node id: 2" size="4" pos="317" show="2" value="02000000"/>
-              <field name="openais_cpg.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="321" show="0" value="00000000"/>
-              <field name="openais_cpg.mar_message_source.conn" showname="Pointer to connection object: 0x00000000010d88f0" size="8" pos="325" show="0x00000000010d88f0" value="f0880d0100000000"/>
+            <field name="openais_a.mar_message_source" showname="Message source" size="56" pos="317" show="" value="">
+              <field name="openais_a.mar_message_source.nodeid" showname="Node id: 2" size="4" pos="317" show="2" value="02000000"/>
+              <field name="openais_a.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="321" show="0" value="00000000"/>
+              <field name="openais_a.mar_message_source.conn" showname="Pointer to connection object: 0x00000000010d88f0" size="8" pos="325" show="0x00000000010d88f0" value="f0880d0100000000"/>
             </field>
             <proto name="rhcs_fenced" showname="Protocol used in fenced of rhcs" size="40" pos="333">
               <field name="rhcs_fenced.fd_header" showname="Fenced header" size="40" pos="333" show="" value="">

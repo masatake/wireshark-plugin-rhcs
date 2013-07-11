@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="pdml2html.xsl"?>
 <!-- You can find pdml2html.xsl in /usr/share/wireshark or at http://anonsvn.wireshark.org/trunk/wireshark/pdml2html.xsl. -->
-<pdml version="0" creator="wireshark/1.6.14" time="Sat Apr 13 14:56:53 2013" capture_file="pcap/fenced-at-fencing--key:beta.pcap">
+<pdml version="0" creator="wireshark/1.6.14" time="Thu Jul 11 10:58:43 2013" capture_file="pcap/fenced-at-fencing--key:beta.pcap">
 <packet>
   <proto name="geninfo" pos="0" showname="General information" size="602">
     <field name="num" pos="0" show="1" showname="Number" value="1" size="602"/>
@@ -138,7 +138,7 @@
         <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="158" show="0" value="00000000"/>
         <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="162" show="1" value="01000000"/>
         <field name="openais_cman.tgtid" showname="Target node id: 3" size="4" pos="166" show="3" value="03000000"/>
-        <field name="openais_cman.protmsg.cmd" showname="Command: Kill node (6)" size="1" pos="170" show="6" value="06">
+        <field name="openais_cman.protmsg.cmd" showname="Command: kill-node (6)" size="1" pos="170" show="6" value="06">
           <field name="openais_cman.killmsg.pad1" showname="Padding: 0x6d" size="1" pos="171" show="0x6d" value="6d"/>
           <field name="openais_cman.killmsg.reason" showname="Reason: Requested by cmantool (2)" size="2" pos="172" show="2" value="0200"/>
           <field name="openais_cman.killmsg.nodeid" showname="Node id: 3" size="4" pos="174" show="3" value="03000000"/>
@@ -154,7 +154,7 @@
           <field name="openais_a.header.size" showname="Size: 376" size="4" pos="183" show="376" value="78010000"/>
           <field name="openais_a.header.size_padding" showname="Padding: 32760" size="4" pos="187" show="32760" value="f87f0000"/>
           <field name="openais_a.header.id" showname="Id" size="368" pos="191" show="" value="">
-            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (MCAST)" size="2" pos="191" show="3" value="0300"/>
+            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (mcast)" size="2" pos="191" show="3" value="0300"/>
             <field name="openais_a.header.id.service" showname="Service: CPG (8) (cpg)" size="2" pos="193" show="8" value="0800"/>
           </field>
           <field name="openais_a.header.id_padding" showname="Padding: 0" size="4" pos="195" show="0" value="00000000"/>
@@ -171,10 +171,10 @@
             <field name="openais_cpg.mcast.msglen_padding" showname="Padding: 32760" size="4" pos="339" show="32760" value="f87f0000"/>
             <field name="openais_cpg.pid" showname="Pid: 11093" size="4" pos="343" show="11093" value="552b0000"/>
             <field name="openais_cpg.pid_padding" showname="Padding: 0" size="4" pos="347" show="0" value="00000000"/>
-            <field name="openais_cpg.mar_message_source" showname="Message source" size="208" pos="351" show="" value="">
-              <field name="openais_cpg.mar_message_source.nodeid" showname="Node id: 1" size="4" pos="351" show="1" value="01000000"/>
-              <field name="openais_cpg.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="355" show="0" value="00000000"/>
-              <field name="openais_cpg.mar_message_source.conn" showname="Pointer to connection object: 0x00000000022758d0" size="8" pos="359" show="0x00000000022758d0" value="d058270200000000"/>
+            <field name="openais_a.mar_message_source" showname="Message source" size="208" pos="351" show="" value="">
+              <field name="openais_a.mar_message_source.nodeid" showname="Node id: 1" size="4" pos="351" show="1" value="01000000"/>
+              <field name="openais_a.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="355" show="0" value="00000000"/>
+              <field name="openais_a.mar_message_source.conn" showname="Pointer to connection object: 0x00000000022758d0" size="8" pos="359" show="0x00000000022758d0" value="d058270200000000"/>
             </field>
             <proto name="rhcs_fenced" showname="Protocol used in fenced of rhcs" size="192" pos="367">
               <field name="rhcs_fenced.fd_header" showname="Fenced header" size="192" pos="367" show="" value="">
@@ -384,7 +384,7 @@
         <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="158" show="0" value="00000000"/>
         <field name="openais_cman.srcid" showname="Source node id: 2" size="4" pos="162" show="2" value="02000000"/>
         <field name="openais_cman.tgtid" showname="Target node id: 3" size="4" pos="166" show="3" value="03000000"/>
-        <field name="openais_cman.protmsg.cmd" showname="Command: Kill node (6)" size="1" pos="170" show="6" value="06">
+        <field name="openais_cman.protmsg.cmd" showname="Command: kill-node (6)" size="1" pos="170" show="6" value="06">
           <field name="openais_cman.killmsg.pad1" showname="Padding: 0x6d" size="1" pos="171" show="0x6d" value="6d"/>
           <field name="openais_cman.killmsg.reason" showname="Reason: Requested by cmantool (2)" size="2" pos="172" show="2" value="0200"/>
           <field name="openais_cman.killmsg.nodeid" showname="Node id: 3" size="4" pos="174" show="3" value="03000000"/>
@@ -400,7 +400,7 @@
           <field name="openais_a.header.size" showname="Size: 376" size="4" pos="183" show="376" value="78010000"/>
           <field name="openais_a.header.size_padding" showname="Padding: 32572" size="4" pos="187" show="32572" value="3c7f0000"/>
           <field name="openais_a.header.id" showname="Id" size="368" pos="191" show="" value="">
-            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (MCAST)" size="2" pos="191" show="3" value="0300"/>
+            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (mcast)" size="2" pos="191" show="3" value="0300"/>
             <field name="openais_a.header.id.service" showname="Service: CPG (8) (cpg)" size="2" pos="193" show="8" value="0800"/>
           </field>
           <field name="openais_a.header.id_padding" showname="Padding: 0" size="4" pos="195" show="0" value="00000000"/>
@@ -417,10 +417,10 @@
             <field name="openais_cpg.mcast.msglen_padding" showname="Padding: 32572" size="4" pos="339" show="32572" value="3c7f0000"/>
             <field name="openais_cpg.pid" showname="Pid: 13568" size="4" pos="343" show="13568" value="00350000"/>
             <field name="openais_cpg.pid_padding" showname="Padding: 0" size="4" pos="347" show="0" value="00000000"/>
-            <field name="openais_cpg.mar_message_source" showname="Message source" size="208" pos="351" show="" value="">
-              <field name="openais_cpg.mar_message_source.nodeid" showname="Node id: 2" size="4" pos="351" show="2" value="02000000"/>
-              <field name="openais_cpg.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="355" show="0" value="00000000"/>
-              <field name="openais_cpg.mar_message_source.conn" showname="Pointer to connection object: 0x0000000001f31430" size="8" pos="359" show="0x0000000001f31430" value="3014f30100000000"/>
+            <field name="openais_a.mar_message_source" showname="Message source" size="208" pos="351" show="" value="">
+              <field name="openais_a.mar_message_source.nodeid" showname="Node id: 2" size="4" pos="351" show="2" value="02000000"/>
+              <field name="openais_a.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="355" show="0" value="00000000"/>
+              <field name="openais_a.mar_message_source.conn" showname="Pointer to connection object: 0x0000000001f31430" size="8" pos="359" show="0x0000000001f31430" value="3014f30100000000"/>
             </field>
             <proto name="rhcs_fenced" showname="Protocol used in fenced of rhcs" size="192" pos="367">
               <field name="rhcs_fenced.fd_header" showname="Fenced header" size="192" pos="367" show="" value="">
@@ -628,7 +628,7 @@
           <field name="openais_a.header.size" showname="Size: 264" size="4" pos="151" show="264" value="08010000"/>
           <field name="openais_a.header.size_padding" showname="Padding: 32760" size="4" pos="155" show="32760" value="f87f0000"/>
           <field name="openais_a.header.id" showname="Id" size="256" pos="159" show="" value="">
-            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (MCAST)" size="2" pos="159" show="3" value="0300"/>
+            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (mcast)" size="2" pos="159" show="3" value="0300"/>
             <field name="openais_a.header.id.service" showname="Service: CPG (8) (cpg)" size="2" pos="161" show="8" value="0800"/>
           </field>
           <field name="openais_a.header.id_padding" showname="Padding: 0" size="4" pos="163" show="0" value="00000000"/>
@@ -645,10 +645,10 @@
             <field name="openais_cpg.mcast.msglen_padding" showname="Padding: 32760" size="4" pos="307" show="32760" value="f87f0000"/>
             <field name="openais_cpg.pid" showname="Pid: 11093" size="4" pos="311" show="11093" value="552b0000"/>
             <field name="openais_cpg.pid_padding" showname="Padding: 0" size="4" pos="315" show="0" value="00000000"/>
-            <field name="openais_cpg.mar_message_source" showname="Message source" size="96" pos="319" show="" value="">
-              <field name="openais_cpg.mar_message_source.nodeid" showname="Node id: 1" size="4" pos="319" show="1" value="01000000"/>
-              <field name="openais_cpg.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="323" show="0" value="00000000"/>
-              <field name="openais_cpg.mar_message_source.conn" showname="Pointer to connection object: 0x00000000022758d0" size="8" pos="327" show="0x00000000022758d0" value="d058270200000000"/>
+            <field name="openais_a.mar_message_source" showname="Message source" size="96" pos="319" show="" value="">
+              <field name="openais_a.mar_message_source.nodeid" showname="Node id: 1" size="4" pos="319" show="1" value="01000000"/>
+              <field name="openais_a.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="323" show="0" value="00000000"/>
+              <field name="openais_a.mar_message_source.conn" showname="Pointer to connection object: 0x00000000022758d0" size="8" pos="327" show="0x00000000022758d0" value="d058270200000000"/>
             </field>
             <proto name="rhcs_fenced" showname="Protocol used in fenced of rhcs" size="80" pos="335">
               <field name="rhcs_fenced.fd_header" showname="Fenced header" size="80" pos="335" show="" value="">
@@ -693,7 +693,7 @@
           <field name="openais_a.header.size" showname="Size: 376" size="4" pos="420" show="376" value="78010000"/>
           <field name="openais_a.header.size_padding" showname="Padding: 32760" size="4" pos="424" show="32760" value="f87f0000"/>
           <field name="openais_a.header.id" showname="Id" size="368" pos="428" show="" value="">
-            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (MCAST)" size="2" pos="428" show="3" value="0300"/>
+            <field name="openais_a.header.id.fn_id" showname="Function index: 3 (mcast)" size="2" pos="428" show="3" value="0300"/>
             <field name="openais_a.header.id.service" showname="Service: CPG (8) (cpg)" size="2" pos="430" show="8" value="0800"/>
           </field>
           <field name="openais_a.header.id_padding" showname="Padding: 0" size="4" pos="432" show="0" value="00000000"/>
@@ -710,10 +710,10 @@
             <field name="openais_cpg.mcast.msglen_padding" showname="Padding: 32760" size="4" pos="576" show="32760" value="f87f0000"/>
             <field name="openais_cpg.pid" showname="Pid: 11093" size="4" pos="580" show="11093" value="552b0000"/>
             <field name="openais_cpg.pid_padding" showname="Padding: 0" size="4" pos="584" show="0" value="00000000"/>
-            <field name="openais_cpg.mar_message_source" showname="Message source" size="208" pos="588" show="" value="">
-              <field name="openais_cpg.mar_message_source.nodeid" showname="Node id: 1" size="4" pos="588" show="1" value="01000000"/>
-              <field name="openais_cpg.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="592" show="0" value="00000000"/>
-              <field name="openais_cpg.mar_message_source.conn" showname="Pointer to connection object: 0x00000000022758d0" size="8" pos="596" show="0x00000000022758d0" value="d058270200000000"/>
+            <field name="openais_a.mar_message_source" showname="Message source" size="208" pos="588" show="" value="">
+              <field name="openais_a.mar_message_source.nodeid" showname="Node id: 1" size="4" pos="588" show="1" value="01000000"/>
+              <field name="openais_a.mar_message_source.nodeid_padding" showname="Padding: 0" size="4" pos="592" show="0" value="00000000"/>
+              <field name="openais_a.mar_message_source.conn" showname="Pointer to connection object: 0x00000000022758d0" size="8" pos="596" show="0x00000000022758d0" value="d058270200000000"/>
             </field>
             <proto name="rhcs_fenced" showname="Protocol used in fenced of rhcs" size="192" pos="604">
               <field name="rhcs_fenced.fd_header" showname="Fenced header" size="192" pos="604" show="" value="">

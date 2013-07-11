@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="pdml2html.xsl"?>
 <!-- You can find pdml2html.xsl in /usr/share/wireshark or at http://anonsvn.wireshark.org/trunk/wireshark/pdml2html.xsl. -->
-<pdml version="0" creator="wireshark/1.6.14" time="Sat Apr 13 14:56:52 2013" capture_file="pcap/corosync-totemsrp-encapsulated-handling--key:beta.pcap">
+<pdml version="0" creator="wireshark/1.6.14" time="Thu Jul 11 10:58:04 2013" capture_file="pcap/corosync-totemsrp-encapsulated-handling--key:beta.pcap">
 <packet>
   <proto name="geninfo" pos="0" showname="General information" size="310">
     <field name="num" pos="0" show="1" showname="Number" value="1" size="310"/>
@@ -169,7 +169,7 @@
             <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="254" show="0" value="00000000"/>
             <field name="openais_cman.srcid" showname="Source node id: 3" size="4" pos="258" show="3" value="03000000"/>
             <field name="openais_cman.tgtid" showname="Target node id: 1" size="4" pos="262" show="1" value="01000000"/>
-            <field name="openais_cman.protmsg.cmd" showname="Command: Post enqueue (9)" size="1" pos="266" show="9" value="09"/>
+            <field name="openais_cman.protmsg.cmd" showname="Command: post-enqueue (9)" size="1" pos="266" show="9" value="09"/>
           </proto>
         </field>
       </proto>

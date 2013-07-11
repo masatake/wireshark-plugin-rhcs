@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="pdml2html.xsl"?>
 <!-- You can find pdml2html.xsl in /usr/share/wireshark or at http://anonsvn.wireshark.org/trunk/wireshark/pdml2html.xsl. -->
-<pdml version="0" creator="wireshark/1.6.14" time="Sat Apr 13 14:56:54 2013" capture_file="pcap/todo-ckpt-unhandled--key:beta.pcap">
+<pdml version="0" creator="wireshark/1.6.14" time="Thu Jul 11 11:05:01 2013" capture_file="pcap/todo-ckpt-unhandled--key:beta.pcap">
 <packet>
   <proto name="geninfo" pos="0" showname="General information" size="584">
     <field name="num" pos="0" show="1" showname="Number" value="1" size="584"/>
@@ -140,7 +140,47 @@
           </field>
           <field name="openais_a.header.id_padding" showname="Padding: 32767" size="4" pos="161" show="32767" value="ff7f0000"/>
         </field>
-        <proto name="openais_ckpt" showname="ckpt protocol on &quot;a&quot; of OpenAIS" size="376" pos="165"/>
+        <proto name="openais_ckpt" showname="ckpt protocol on &quot;a&quot; of OpenAIS" size="376" pos="165">
+          <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="165" show="" value="">
+            <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="165" show="" value="">
+              <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="165" show="1" value="01000000"/>
+              <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="169" show="2" value="0200"/>
+              <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.63 (192.168.151.63)" size="4" pos="171" show="192.168.151.63" value="c0a8973f"/>
+              <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973f08000400" size="12" pos="175" show="08:00:02:00:c0:a8:97:3f:08:00:04:00" value="08000200c0a8973f08000400"/>
+            </field>
+            <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 1332" size="8" pos="187" show="1332" value="3405000000000000"/>
+          </field>
+          <field name="openais_ckpt.ring_id_padding" showname="Padding: 0x0000" size="2" pos="195" show="0x0000" value="0000"/>
+          <field name="openais_a.mar_name" showname="Mar name" size="264" pos="197" show="" value="">
+            <field name="openais_a.mar_name.length" showname="Mar name length: 51" size="2" pos="197" show="51" value="3300"/>
+            <field name="openais_a.mar_name.length_padding" showname="Padding: 0" size="6" pos="199" show="0" value="000000000000"/>
+            <field name="openais_a.mar_name.value" showname="Mar name value: global_checkpoint_name_do_not_use_in_an_application" size="51" pos="205" show="global_checkpoint_name_do_not_use_in_an_application" value="676c6f62616c5f636865636b706f696e745f6e616d655f646f5f6e6f745f7573655f696e5f616e5f6170706c69636174696f6e"/>
+            <field name="openais_a.mar_name.value_padding" showname="Padding: 00ff7f000060300234ff7f000004000000000000004d4638..." size="205" pos="256" show="00:ff:7f:00:00:60:30:02:34:ff:7f:00:00:04:00:00:00:00:00:00:00:4d:46:38:72:f8:7f:00:00:04:00:00:00:00:00:00:00:20:31:02:34:ff:7f:00:00:10:00:00:00:00:00:00:00:70:31:02:34:ff:7f:00:00:41:00:00:00:00:00:00:00:9c:23:9f:74:f8:7f:00:00:67:33:a0:72:3a:00:00:00:30:c7:26:02:00:00:00:00:04:00:00:00:00:00:00:00:05:00:00:00:3a:00:00:00:39:00:00:00:00:00:00:00:a8:83:c0:72:3a:00:00:00:d0:2b:02:34:04:00:00:00:60:2a:02:34:ff:7f:00:00:6e:64:69:6e:c9:c0:0a:00:c9:c0:0a:00:00:00:00:00:60:28:02:34:ff:7f:00:00:90:6e:c0:72:3a:00:00:00:e0:41:38:72:f8:7f:00:00:40:47:38:72:f8:7f:00:00:10:2c:02:34:ff:7f:00:00:b0:83:c0:72:3a:00:00:00" value="00ff7f000060300234ff7f000004000000000000004d463872f87f0000040000000000000020310234ff7f0000100000000000000070310234ff7f000041000000000000009c239f74f87f00006733a0723a00000030c72602000000000400000000000000050000003a0000003900000000000000a883c0723a000000d02b023404000000602a0234ff7f00006e64696ec9c00a00c9c00a000000000060280234ff7f0000906ec0723a000000e0413872f87f000040473872f87f0000102c0234ff7f0000b083c0723a000000"/>
+          </field>
+          <field name="openais_ckpt.ckpt_id" showname="Id: 36" size="4" pos="461" show="36" value="24000000"/>
+          <field name="openais_ckpt.ckpt_id_padding" showname="Padding: 58" size="4" pos="465" show="58" value="3a000000"/>
+          <field name="openais_ckpt.checkpoint_creation_attributes" showname="Creation attributes" size="8" pos="469" show="" value="">
+            <field name="openais_ckpt.checkpoint_creation_attributes.creation_flags" showname="Creation attributes flags: 0x749f6c30" size="4" pos="469" show="0x749f6c30" value="306c9f74">
+              <field name="openais_ckpt.checkpoint_creation_attributes.creation_flags.wr_all_replicas" showname=".... .... .... .... .... .... .... ...0 = WR all replicas: False" size="4" pos="469" show="0" value="0" unmaskedvalue="306c9f74"/>
+              <field name="openais_ckpt.checkpoint_creation_attributes.creation_flags.wr_active_replica" showname=".... .... .... .... .... .... .... ..0. = Active replica: False" size="4" pos="469" show="0" value="0" unmaskedvalue="306c9f74"/>
+              <field name="openais_ckpt.checkpoint_creation_attributes.creation_flags.wr_active_replica_weak" showname=".... .... .... .... .... .... .... .0.. = Active replica weak: False" size="4" pos="469" show="0" value="0" unmaskedvalue="306c9f74"/>
+              <field name="openais_ckpt.checkpoint_creation_attributes.creation_flags.checkpoint_coollocated" showname=".... .... .... .... .... .... .... 0... = Checkpoint collocated: False" size="4" pos="469" show="0" value="0" unmaskedvalue="306c9f74"/>
+            </field>
+            <field name="openais_ckpt.checkpoint_creation_attributes.creation_flags_padding" showname="Padding: 0x00007ff8" size="4" pos="473" show="0x00007ff8" value="f87f0000"/>
+            <field name="openais_ckpt.checkpoint_creation_attributes.checkpoint_size" showname="Checkpoint size: 251031204711" size="8" pos="477" show="251031204711" value="6733a0723a000000"/>
+            <field name="openais_ckpt.checkpoint_creation_attributes.retention_duration" showname="Retention_duration: 140705085202388" size="8" pos="485" show="140705085202388" value="d41f9f74f87f0000"/>
+            <field name="openais_ckpt.checkpoint_creation_attributes.max_sections" showname="Max sections: 5" size="4" pos="493" show="5" value="05000000"/>
+            <field name="openais_ckpt.checkpoint_creation_attributes.max_sections_padding" showname="Padding: 0x00000000" size="4" pos="497" show="0x00000000" value="00000000"/>
+            <field name="openais_ckpt.checkpoint_creation_attributes.max_section_size" showname="Max section size: 6" size="8" pos="501" show="6" value="0600000000000000"/>
+            <field name="openais_ckpt.checkpoint_creation_attributes.max_section_id_size" showname="Max section id size: 10" size="8" pos="509" show="10" value="0a00000000000000"/>
+          </field>
+          <field name="openais_ckpt.checkpoint_creation_attributes_set" showname="Creation attributes set: 36181760" size="4" pos="517" show="36181760" value="00172802"/>
+          <field name="openais_ckpt.checkpoint_creation_attributes_set_padding" showname="Padding: 0x00000000" size="4" pos="521" show="0x00000000" value="00000000"/>
+          <field name="openais_ckpt.active_replica_set" showname="Active replica set: 709369" size="4" pos="525" show="709369" value="f9d20a00"/>
+          <field name="openais_ckpt.active_replica_set_padding" showname="Padding: 0x00000000" size="4" pos="529" show="0x00000000" value="00000000"/>
+          <field name="openais_ckpt.unlinked" showname="Unlinked: 32767" size="4" pos="533" show="32767" value="ff7f0000"/>
+          <field name="openais_ckpt.unlinked_padding" showname="Padding: 0x00000000" size="4" pos="537" show="0x00000000" value="00000000"/>
+        </proto>
       </proto>
     </field>
   </proto>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="pdml2html.xsl"?>
 <!-- You can find pdml2html.xsl in /usr/share/wireshark or at http://anonsvn.wireshark.org/trunk/wireshark/pdml2html.xsl. -->
-<pdml version="0" creator="wireshark/1.6.14" time="Sat Apr 13 14:56:54 2013" capture_file="pcap/rgmanager--killed-key:alpha.pcap">
+<pdml version="0" creator="wireshark/1.6.14" time="Thu Jul 11 11:05:01 2013" capture_file="pcap/rgmanager--killed-key:alpha.pcap">
 <packet>
   <proto name="geninfo" pos="0" showname="General information" size="451">
     <field name="num" pos="0" show="1" showname="Number" value="1" size="451"/>
@@ -20,7 +20,7 @@
     <field name="frame.cap_len" showname="Capture Length: 451 bytes (3608 bits)" size="0" pos="0" show="451"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -77,12 +77,107 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="e967"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="6671a63d606af63ddede329629a48dc1ba9c1db451f765fa7e0088f1e6b74cf5aa2f35d5c5302bbd3302b5f8e89aed08ef9f97106e17d28d90a2871922c5a060c165923058fea142b18562b3db56613b19860ad253cda2866bffca6512b649583cef2901d8f6cba9dfc8353f6dda4e2564ed9941bd73e2cb8cce0165449964bbd1544160a339bdedc2c4f7a1c9ab2e8a1795f486b679c7d791f0bcb716b6abc3967482eb10131b5570830cb8adb25f7fad07ddba6194a40fe8b534d4173a8d846bbeec0d51888531c5d1f78177b56fdf4f8a75f5504eb4a78e10e8ee42e0139e99c8edb5d69c2ce284a4dc4db60d839dbeea383a6d51fae62f08cc9ba705855127c98c70e17a9b9f82c119186acff62aac19a0cba4c87c0e9ff7265c86daf2e1518ff192c3d5af4355197c4ef538bae19f4e0225e169bf7cc753f3bf834d027b37b8a86afcf1e5b079f5613cf1357c4b345b0049b742d9648ecc609c7d442eaaccf1e28647fe5c239bb1e892765a14a398592975b3dc37244d3db1db4065d6934f61490d5fe5d3cb4d2ca4de05e6c244707f282f6287a45100">
-      <field name="data.data" showname="Data: 6671a63d606af63ddede329629a48dc1ba9c1db451f765fa..." size="409" pos="42" show="66:71:a6:3d:60:6a:f6:3d:de:de:32:96:29:a4:8d:c1:ba:9c:1d:b4:51:f7:65:fa:7e:00:88:f1:e6:b7:4c:f5:aa:2f:35:d5:c5:30:2b:bd:33:02:b5:f8:e8:9a:ed:08:ef:9f:97:10:6e:17:d2:8d:90:a2:87:19:22:c5:a0:60:c1:65:92:30:58:fe:a1:42:b1:85:62:b3:db:56:61:3b:19:86:0a:d2:53:cd:a2:86:6b:ff:ca:65:12:b6:49:58:3c:ef:29:01:d8:f6:cb:a9:df:c8:35:3f:6d:da:4e:25:64:ed:99:41:bd:73:e2:cb:8c:ce:01:65:44:99:64:bb:d1:54:41:60:a3:39:bd:ed:c2:c4:f7:a1:c9:ab:2e:8a:17:95:f4:86:b6:79:c7:d7:91:f0:bc:b7:16:b6:ab:c3:96:74:82:eb:10:13:1b:55:70:83:0c:b8:ad:b2:5f:7f:ad:07:dd:ba:61:94:a4:0f:e8:b5:34:d4:17:3a:8d:84:6b:be:ec:0d:51:88:85:31:c5:d1:f7:81:77:b5:6f:df:4f:8a:75:f5:50:4e:b4:a7:8e:10:e8:ee:42:e0:13:9e:99:c8:ed:b5:d6:9c:2c:e2:84:a4:dc:4d:b6:0d:83:9d:be:ea:38:3a:6d:51:fa:e6:2f:08:cc:9b:a7:05:85:51:27:c9:8c:70:e1:7a:9b:9f:82:c1:19:18:6a:cf:f6:2a:ac:19:a0:cb:a4:c8:7c:0e:9f:f7:26:5c:86:da:f2:e1:51:8f:f1:92:c3:d5:af:43:55:19:7c:4e:f5:38:ba:e1:9f:4e:02:25:e1:69:bf:7c:c7:53:f3:bf:83:4d:02:7b:37:b8:a8:6a:fc:f1:e5:b0:79:f5:61:3c:f1:35:7c:4b:34:5b:00:49:b7:42:d9:64:8e:cc:60:9c:7d:44:2e:aa:cc:f1:e2:86:47:fe:5c:23:9b:b1:e8:92:76:5a:14:a3:98:59:29:75:b3:dc:37:24:4d:3d:b1:db:40:65:d6:93:4f:61:49:0d:5f:e5:d3:cb:4d:2c:a4:de:05:e6:c2:44:70:7f:28:2f:62:87:a4:51:00" value="6671a63d606af63ddede329629a48dc1ba9c1db451f765fa7e0088f1e6b74cf5aa2f35d5c5302bbd3302b5f8e89aed08ef9f97106e17d28d90a2871922c5a060c165923058fea142b18562b3db56613b19860ad253cda2866bffca6512b649583cef2901d8f6cba9dfc8353f6dda4e2564ed9941bd73e2cb8cce0165449964bbd1544160a339bdedc2c4f7a1c9ab2e8a1795f486b679c7d791f0bcb716b6abc3967482eb10131b5570830cb8adb25f7fad07ddba6194a40fe8b534d4173a8d846bbeec0d51888531c5d1f78177b56fdf4f8a75f5504eb4a78e10e8ee42e0139e99c8edb5d69c2ce284a4dc4db60d839dbeea383a6d51fae62f08cc9ba705855127c98c70e17a9b9f82c119186acff62aac19a0cba4c87c0e9ff7265c86daf2e1518ff192c3d5af4355197c4ef538bae19f4e0225e169bf7cc753f3bf834d027b37b8a86afcf1e5b079f5613cf1357c4b345b0049b742d9648ecc609c7d442eaaccf1e28647fe5c239bb1e892765a14a398592975b3dc37244d3db1db4065d6934f61490d5fe5d3cb4d2ca4de05e6c244707f282f6287a45100"/>
-      <field name="data.len" showname="Length: 409" size="0" pos="42" show="409"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="408" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 6671a63d606af63ddede329629a48dc1ba9c1db4" size="20" pos="0" show="66:71:a6:3d:60:6a:f6:3d:de:de:32:96:29:a4:8d:c1:ba:9c:1d:b4" value="6671a63d606af63ddede329629a48dc1ba9c1db4"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: 51f765fa7e0088f1e6b74cf5aa2f35d5" size="16" pos="20" show="51:f7:65:fa:7e:00:88:f1:e6:b7:4c:f5:aa:2f:35:d5" value="51f765fa7e0088f1e6b74cf5aa2f35d5"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="407" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="372" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="364" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 174" size="4" pos="88" show="174" value="ae000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 98" size="4" pos="92" show="98" value="62000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="274" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 9757" size="2" pos="136" show="9757" value="1d26"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 264 (msg index: 0)" size="2" pos="142" show="264" value="0801"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="264" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="256" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 445" size="2" pos="154" show="445" value="bd01"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="240" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 4" size="4" pos="168" show="4" value="00000004"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0x0000" size="2" pos="186" show="0x0000" value="0000"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 000000000000000000000000" size="12" pos="188" show="00:00:00:00:00:00:00:00:00:00:00:00" value="000000000000000000000000"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 208" size="4" pos="204" show="208" value="000000d0"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00003001, VF command: join view, VF flags: Unknown" size="4" pos="212" show="0x00003001" value="00003001">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0001 = VF command: join view (0x00003001)" size="4" pos="212" show="0x00003001" value="3001" unmaskedvalue="00003001"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0000 .... .... .... .... = VF flags: Unknown (0x00000000)" size="4" pos="212" show="0x00000000" value="0" unmaskedvalue="00003001"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.arg2" showname="Arguement 2: 0 (unused)" size="4" pos="216" show="0" value="00000000"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+          <field name="rgmanager.vf_msg_info" showname="View formation message" size="184" pos="224" show="" value="">
+            <field name="rgmanager.vf_msg_info.vf_command" showname=".... .... .... .... 0000 0000 0000 0000 = Command (unused): Unknown (0x00000000)" size="4" pos="224" show="0x00000000" value="0" unmaskedvalue="00000000"/>
+            <field name="rgmanager.vf_msg_info.vf_transaction" showname="Transaction: 0x00010001" size="4" pos="228" show="0x00010001" value="00010001"/>
+            <field name="rgmanager.vf_msg_info.vf_keyid" showname="Key id: rg=&quot;service:web&quot;" size="64" pos="232" show="rg=\&quot;service:web\&quot;" value="72673d22736572766963653a77656222000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+            <field name="rgmanager.vf_msg_info.vf_coordinator" showname="Coordinator: 1" size="4" pos="296" show="1" value="00000001"/>
+            <field name="rgmanager.vf_msg_info.vf_datalen" showname="Data length: 96" size="4" pos="300" show="96" value="00000060"/>
+            <field name="rgmanager.vf_msg_info.vf_view" showname="View: 0x0000000000000013" size="8" pos="304" show="0x0000000000000013" value="0000000000000013"/>
+            <field name="rgmanager.vf_msg_info.vf_data" showname="Data: service:web" size="96" pos="312" show="service:web" value="736572766963653a7765620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000020000006f000000000000005f5fa34e00000000">
+              <field name="rgmanager.rg_state.rs_name" showname="Name of resource group: service:web" size="64" pos="312" show="service:web" value="736572766963653a7765620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+              <field name="rgmanager.rg_state.rs_flags" showname="Flags of resource group : 0" size="4" pos="376" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_magic" showname="Magic : 0x00000000" size="4" pos="380" show="0x00000000" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_owner" showname="Owner of resource group : 1" size="4" pos="384" show="1" value="01000000"/>
+              <field name="rgmanager.rg_state.rs_last_owner" showname="The last owner of resource group : 2" size="4" pos="388" show="2" value="02000000"/>
+              <field name="rgmanager.rg_state.rs_state" showname="The state of resource group: starting (111)" size="4" pos="392" show="111" value="6f000000"/>
+              <field name="rgmanager.rg_state.rs_restarts" showname="The number of restarts: 0" size="4" pos="396" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_transition" showname="The last service transaction time: 1319329631" size="8" pos="400" show="1319329631" value="5f5fa34e00000000"/>
+              <field name="" show="Sun Oct 23 09:27:11 2011" size="8" pos="400" value="5f5fa34e00000000"/>
+            </field>
+          </field>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -104,7 +199,7 @@
     <field name="frame.cap_len" showname="Capture Length: 451 bytes (3608 bits)" size="0" pos="0" show="451"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -161,12 +256,107 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="fbd9"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="cae80c0b5bf718fa42c5bd974c6a5894b92a9820d10bbbab522ee8ad3f5a69587c629f719849918689ec5c721602a47dde9ab25aa8aabc96ceab871ec8ba23300afac338c73984aefd6b0454638a2cc57beb44093bd54a910c9d797784b5fab93cc2da56b37e221fe8a2707698e95c76183dfae98852ee186d5d99b3f77847f375eb317a925461158d47954f4cef3a63c7278885e55e03818377c3b26268c6541ffe291a4cb0f667adccef50cebd20781827cbe45801cd529ff8032717d2e41b2ab057690178c843547b1fb79adbb5d1a3419e6905307e48da4b6bc0d2d6d143612f95ed93dd3b56fc3f8ef7f54b3f97b090606f957358d83d1a12e361a0cf9975e6c98f9bd90ccebe11e444120c103a8355f29e6d19d68789da582d932454cdc79f073caa6ce1e8bde05f08c5b674d93dd3a9d92fa06440762721018d3711c6425d98f18c495f48dba82ac2f9885d82dcc0a49c70f39c195d42ebc224c92eee83211eeae959fcf88eaf2b4de220ec98686f56498465ef3c55a4207b13d08946465baa4eb624eabb26f3f1837e15a9c06859ee9ce270cefb00">
-      <field name="data.data" showname="Data: cae80c0b5bf718fa42c5bd974c6a5894b92a9820d10bbbab..." size="409" pos="42" show="ca:e8:0c:0b:5b:f7:18:fa:42:c5:bd:97:4c:6a:58:94:b9:2a:98:20:d1:0b:bb:ab:52:2e:e8:ad:3f:5a:69:58:7c:62:9f:71:98:49:91:86:89:ec:5c:72:16:02:a4:7d:de:9a:b2:5a:a8:aa:bc:96:ce:ab:87:1e:c8:ba:23:30:0a:fa:c3:38:c7:39:84:ae:fd:6b:04:54:63:8a:2c:c5:7b:eb:44:09:3b:d5:4a:91:0c:9d:79:77:84:b5:fa:b9:3c:c2:da:56:b3:7e:22:1f:e8:a2:70:76:98:e9:5c:76:18:3d:fa:e9:88:52:ee:18:6d:5d:99:b3:f7:78:47:f3:75:eb:31:7a:92:54:61:15:8d:47:95:4f:4c:ef:3a:63:c7:27:88:85:e5:5e:03:81:83:77:c3:b2:62:68:c6:54:1f:fe:29:1a:4c:b0:f6:67:ad:cc:ef:50:ce:bd:20:78:18:27:cb:e4:58:01:cd:52:9f:f8:03:27:17:d2:e4:1b:2a:b0:57:69:01:78:c8:43:54:7b:1f:b7:9a:db:b5:d1:a3:41:9e:69:05:30:7e:48:da:4b:6b:c0:d2:d6:d1:43:61:2f:95:ed:93:dd:3b:56:fc:3f:8e:f7:f5:4b:3f:97:b0:90:60:6f:95:73:58:d8:3d:1a:12:e3:61:a0:cf:99:75:e6:c9:8f:9b:d9:0c:ce:be:11:e4:44:12:0c:10:3a:83:55:f2:9e:6d:19:d6:87:89:da:58:2d:93:24:54:cd:c7:9f:07:3c:aa:6c:e1:e8:bd:e0:5f:08:c5:b6:74:d9:3d:d3:a9:d9:2f:a0:64:40:76:27:21:01:8d:37:11:c6:42:5d:98:f1:8c:49:5f:48:db:a8:2a:c2:f9:88:5d:82:dc:c0:a4:9c:70:f3:9c:19:5d:42:eb:c2:24:c9:2e:ee:83:21:1e:ea:e9:59:fc:f8:8e:af:2b:4d:e2:20:ec:98:68:6f:56:49:84:65:ef:3c:55:a4:20:7b:13:d0:89:46:46:5b:aa:4e:b6:24:ea:bb:26:f3:f1:83:7e:15:a9:c0:68:59:ee:9c:e2:70:ce:fb:00" value="cae80c0b5bf718fa42c5bd974c6a5894b92a9820d10bbbab522ee8ad3f5a69587c629f719849918689ec5c721602a47dde9ab25aa8aabc96ceab871ec8ba23300afac338c73984aefd6b0454638a2cc57beb44093bd54a910c9d797784b5fab93cc2da56b37e221fe8a2707698e95c76183dfae98852ee186d5d99b3f77847f375eb317a925461158d47954f4cef3a63c7278885e55e03818377c3b26268c6541ffe291a4cb0f667adccef50cebd20781827cbe45801cd529ff8032717d2e41b2ab057690178c843547b1fb79adbb5d1a3419e6905307e48da4b6bc0d2d6d143612f95ed93dd3b56fc3f8ef7f54b3f97b090606f957358d83d1a12e361a0cf9975e6c98f9bd90ccebe11e444120c103a8355f29e6d19d68789da582d932454cdc79f073caa6ce1e8bde05f08c5b674d93dd3a9d92fa06440762721018d3711c6425d98f18c495f48dba82ac2f9885d82dcc0a49c70f39c195d42ebc224c92eee83211eeae959fcf88eaf2b4de220ec98686f56498465ef3c55a4207b13d08946465baa4eb624eabb26f3f1837e15a9c06859ee9ce270cefb00"/>
-      <field name="data.len" showname="Length: 409" size="0" pos="42" show="409"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="408" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: cae80c0b5bf718fa42c5bd974c6a5894b92a9820" size="20" pos="0" show="ca:e8:0c:0b:5b:f7:18:fa:42:c5:bd:97:4c:6a:58:94:b9:2a:98:20" value="cae80c0b5bf718fa42c5bd974c6a5894b92a9820"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: d10bbbab522ee8ad3f5a69587c629f71" size="16" pos="20" show="d1:0b:bb:ab:52:2e:e8:ad:3f:5a:69:58:7c:62:9f:71" value="d10bbbab522ee8ad3f5a69587c629f71"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="407" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="372" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="364" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 177" size="4" pos="88" show="177" value="b1000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 101" size="4" pos="92" show="101" value="65000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="274" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 0" size="2" pos="136" show="0" value="0000"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 264 (msg index: 0)" size="2" pos="142" show="264" value="0801"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="264" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="256" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="240" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 5" size="4" pos="168" show="5" value="00000005"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0x0000" size="2" pos="186" show="0x0000" value="0000"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 000000000000000000000000" size="12" pos="188" show="00:00:00:00:00:00:00:00:00:00:00:00" value="000000000000000000000000"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 208" size="4" pos="204" show="208" value="000000d0"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00003001, VF command: join view, VF flags: Unknown" size="4" pos="212" show="0x00003001" value="00003001">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0001 = VF command: join view (0x00003001)" size="4" pos="212" show="0x00003001" value="3001" unmaskedvalue="00003001"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0000 .... .... .... .... = VF flags: Unknown (0x00000000)" size="4" pos="212" show="0x00000000" value="0" unmaskedvalue="00003001"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.arg2" showname="Arguement 2: 0 (unused)" size="4" pos="216" show="0" value="00000000"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+          <field name="rgmanager.vf_msg_info" showname="View formation message" size="184" pos="224" show="" value="">
+            <field name="rgmanager.vf_msg_info.vf_command" showname=".... .... .... .... 0000 0000 0000 0000 = Command (unused): Unknown (0x00000000)" size="4" pos="224" show="0x00000000" value="0" unmaskedvalue="00000000"/>
+            <field name="rgmanager.vf_msg_info.vf_transaction" showname="Transaction: 0x00010002" size="4" pos="228" show="0x00010002" value="00010002"/>
+            <field name="rgmanager.vf_msg_info.vf_keyid" showname="Key id: rg=&quot;service:web&quot;" size="64" pos="232" show="rg=\&quot;service:web\&quot;" value="72673d22736572766963653a77656222000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+            <field name="rgmanager.vf_msg_info.vf_coordinator" showname="Coordinator: 1" size="4" pos="296" show="1" value="00000001"/>
+            <field name="rgmanager.vf_msg_info.vf_datalen" showname="Data length: 96" size="4" pos="300" show="96" value="00000060"/>
+            <field name="rgmanager.vf_msg_info.vf_view" showname="View: 0x0000000000000014" size="8" pos="304" show="0x0000000000000014" value="0000000000000014"/>
+            <field name="rgmanager.vf_msg_info.vf_data" showname="Data: service:web" size="96" pos="312" show="service:web" value="736572766963653a77656200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000200000070000000000000005f5fa34e00000000">
+              <field name="rgmanager.rg_state.rs_name" showname="Name of resource group: service:web" size="64" pos="312" show="service:web" value="736572766963653a7765620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+              <field name="rgmanager.rg_state.rs_flags" showname="Flags of resource group : 0" size="4" pos="376" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_magic" showname="Magic : 0x00000000" size="4" pos="380" show="0x00000000" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_owner" showname="Owner of resource group : 1" size="4" pos="384" show="1" value="01000000"/>
+              <field name="rgmanager.rg_state.rs_last_owner" showname="The last owner of resource group : 2" size="4" pos="388" show="2" value="02000000"/>
+              <field name="rgmanager.rg_state.rs_state" showname="The state of resource group: started (112)" size="4" pos="392" show="112" value="70000000"/>
+              <field name="rgmanager.rg_state.rs_restarts" showname="The number of restarts: 0" size="4" pos="396" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_transition" showname="The last service transaction time: 1319329631" size="8" pos="400" show="1319329631" value="5f5fa34e00000000"/>
+              <field name="" show="Sun Oct 23 09:27:11 2011" size="8" pos="400" value="5f5fa34e00000000"/>
+            </field>
+          </field>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -188,7 +378,7 @@
     <field name="frame.cap_len" showname="Capture Length: 267 bytes (2136 bits)" size="0" pos="0" show="267"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -245,12 +435,88 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="5ca6"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="a383a3b4b19594f59b61d88d4db0238be35b4816c2f485b4befa7e0f47aac7a8b8348f29a129008ddc5132896d229c7f68e844028fae80b3ff54a80965de991049faa2107a2b99febc18f30237b9545360416d01a4b34b591033db9aae3051b1c4b1d2e52e7b2fb84c4223d3b04ee54c050245ac8b146b4af1800c3c74c1eb6d4d17b6948fe6ee29bd96ed5fa60b4fb4ab08c575b8d10642315a9697278cd0369f70db7f8453e02ff6fb73231848b1ab09e25214fc74d14a7c9eddc423b8c9bc22718bb89c5c06bb5bee40a4d62ca458c178a1ba4e15448b1cc73f7c08be8de100">
-      <field name="data.data" showname="Data: a383a3b4b19594f59b61d88d4db0238be35b4816c2f485b4..." size="225" pos="42" show="a3:83:a3:b4:b1:95:94:f5:9b:61:d8:8d:4d:b0:23:8b:e3:5b:48:16:c2:f4:85:b4:be:fa:7e:0f:47:aa:c7:a8:b8:34:8f:29:a1:29:00:8d:dc:51:32:89:6d:22:9c:7f:68:e8:44:02:8f:ae:80:b3:ff:54:a8:09:65:de:99:10:49:fa:a2:10:7a:2b:99:fe:bc:18:f3:02:37:b9:54:53:60:41:6d:01:a4:b3:4b:59:10:33:db:9a:ae:30:51:b1:c4:b1:d2:e5:2e:7b:2f:b8:4c:42:23:d3:b0:4e:e5:4c:05:02:45:ac:8b:14:6b:4a:f1:80:0c:3c:74:c1:eb:6d:4d:17:b6:94:8f:e6:ee:29:bd:96:ed:5f:a6:0b:4f:b4:ab:08:c5:75:b8:d1:06:42:31:5a:96:97:27:8c:d0:36:9f:70:db:7f:84:53:e0:2f:f6:fb:73:23:18:48:b1:ab:09:e2:52:14:fc:74:d1:4a:7c:9e:dd:c4:23:b8:c9:bc:22:71:8b:b8:9c:5c:06:bb:5b:ee:40:a4:d6:2c:a4:58:c1:78:a1:ba:4e:15:44:8b:1c:c7:3f:7c:08:be:8d:e1:00" value="a383a3b4b19594f59b61d88d4db0238be35b4816c2f485b4befa7e0f47aac7a8b8348f29a129008ddc5132896d229c7f68e844028fae80b3ff54a80965de991049faa2107a2b99febc18f30237b9545360416d01a4b34b591033db9aae3051b1c4b1d2e52e7b2fb84c4223d3b04ee54c050245ac8b146b4af1800c3c74c1eb6d4d17b6948fe6ee29bd96ed5fa60b4fb4ab08c575b8d10642315a9697278cd0369f70db7f8453e02ff6fb73231848b1ab09e25214fc74d14a7c9eddc423b8c9bc22718bb89c5c06bb5bee40a4d62ca458c178a1ba4e15448b1cc73f7c08be8de100"/>
-      <field name="data.len" showname="Length: 225" size="0" pos="42" show="225"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="224" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: a383a3b4b19594f59b61d88d4db0238be35b4816" size="20" pos="0" show="a3:83:a3:b4:b1:95:94:f5:9b:61:d8:8d:4d:b0:23:8b:e3:5b:48:16" value="a383a3b4b19594f59b61d88d4db0238be35b4816"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: c2f485b4befa7e0f47aac7a8b8348f29" size="16" pos="20" show="c2:f4:85:b4:be:fa:7e:0f:47:aa:c7:a8:b8:34:8f:29" value="c2f485b4befa7e0f47aac7a8b8348f29"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="223" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="188" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="180" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 179" size="4" pos="88" show="179" value="b3000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 103" size="4" pos="92" show="103" value="67000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="90" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 0" size="2" pos="136" show="0" value="0000"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 80 (msg index: 0)" size="2" pos="142" show="80" value="5000"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="80" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="72" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="56" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 5" size="4" pos="168" show="5" value="00000005"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0x0000" size="2" pos="186" show="0x0000" value="0000"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 00000000b100000016000000" size="12" pos="188" show="00:00:00:00:b1:00:00:00:16:00:00:00" value="00000000b100000016000000"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 24" size="4" pos="204" show="24" value="00000018"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00003005, VF command: view formed, VF flags: Unknown" size="4" pos="212" show="0x00003005" value="00003005">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0101 = VF command: view formed (0x00003005)" size="4" pos="212" show="0x00003005" value="3005" unmaskedvalue="00003005"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0000 .... .... .... .... = VF flags: Unknown (0x00000000)" size="4" pos="212" show="0x00000000" value="0" unmaskedvalue="00003005"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.vf_trans" showname="View formed transaction: 0x00010002" size="4" pos="216" show="0x00010002" value="00010002"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -272,7 +538,7 @@
     <field name="frame.cap_len" showname="Capture Length: 451 bytes (3608 bits)" size="0" pos="0" show="451"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -329,12 +595,107 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="4ef1"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="d77d67f628cf69c0d6b7c3b523dea2d6a040ba2b8dcf726c49d48ba335154df9c427ff9c2fffa650ac423acae39382cd895304d31c75bee812d6e2979626a45964275f2c15907bb027a48fd0ffaadb236e9e3bbbffe427fedc50eacd977eac0750efd63fb9b91e354a507e64cb8b1b73456d862c2741fdcd71788e63db5b8d0bd5ec4a3a66e1fa470a0dfb6e7a3a94f8d9c0491b1623e44f2ceb63a367cede10e535e9dfdbf5d5cd8691ac16b2878b99a9c2911025e1f559a798fbb2ff930eead8f851ec0e7c7f411ee884dfb3e2b530d2b03fdbf2af21bed06ef665e9d741985ff474f43cc55443c50e24fb0feb60f2e067f16cb628c3b32efe8186622ab5ab7a29a3dd1a267c5c2249000312a9bf74fc602b77929d0be063a7f9ffc13f1f48f95cf0984c48a52b7d146997904a5831ffa6b91ba0ba890024dcefc2f469652be14573e956370204e479eb251115ac39074c0f4831a2e9c1cd02ed3a3bce75e928aff1f220047811d5974fdb490d17939efb0b1edbb90100b078461dcbfaa36a7327056007586efcf61e6ce46920b593e29db71a592c97d900">
-      <field name="data.data" showname="Data: d77d67f628cf69c0d6b7c3b523dea2d6a040ba2b8dcf726c..." size="409" pos="42" show="d7:7d:67:f6:28:cf:69:c0:d6:b7:c3:b5:23:de:a2:d6:a0:40:ba:2b:8d:cf:72:6c:49:d4:8b:a3:35:15:4d:f9:c4:27:ff:9c:2f:ff:a6:50:ac:42:3a:ca:e3:93:82:cd:89:53:04:d3:1c:75:be:e8:12:d6:e2:97:96:26:a4:59:64:27:5f:2c:15:90:7b:b0:27:a4:8f:d0:ff:aa:db:23:6e:9e:3b:bb:ff:e4:27:fe:dc:50:ea:cd:97:7e:ac:07:50:ef:d6:3f:b9:b9:1e:35:4a:50:7e:64:cb:8b:1b:73:45:6d:86:2c:27:41:fd:cd:71:78:8e:63:db:5b:8d:0b:d5:ec:4a:3a:66:e1:fa:47:0a:0d:fb:6e:7a:3a:94:f8:d9:c0:49:1b:16:23:e4:4f:2c:eb:63:a3:67:ce:de:10:e5:35:e9:df:db:f5:d5:cd:86:91:ac:16:b2:87:8b:99:a9:c2:91:10:25:e1:f5:59:a7:98:fb:b2:ff:93:0e:ea:d8:f8:51:ec:0e:7c:7f:41:1e:e8:84:df:b3:e2:b5:30:d2:b0:3f:db:f2:af:21:be:d0:6e:f6:65:e9:d7:41:98:5f:f4:74:f4:3c:c5:54:43:c5:0e:24:fb:0f:eb:60:f2:e0:67:f1:6c:b6:28:c3:b3:2e:fe:81:86:62:2a:b5:ab:7a:29:a3:dd:1a:26:7c:5c:22:49:00:03:12:a9:bf:74:fc:60:2b:77:92:9d:0b:e0:63:a7:f9:ff:c1:3f:1f:48:f9:5c:f0:98:4c:48:a5:2b:7d:14:69:97:90:4a:58:31:ff:a6:b9:1b:a0:ba:89:00:24:dc:ef:c2:f4:69:65:2b:e1:45:73:e9:56:37:02:04:e4:79:eb:25:11:15:ac:39:07:4c:0f:48:31:a2:e9:c1:cd:02:ed:3a:3b:ce:75:e9:28:af:f1:f2:20:04:78:11:d5:97:4f:db:49:0d:17:93:9e:fb:0b:1e:db:b9:01:00:b0:78:46:1d:cb:fa:a3:6a:73:27:05:60:07:58:6e:fc:f6:1e:6c:e4:69:20:b5:93:e2:9d:b7:1a:59:2c:97:d9:00" value="d77d67f628cf69c0d6b7c3b523dea2d6a040ba2b8dcf726c49d48ba335154df9c427ff9c2fffa650ac423acae39382cd895304d31c75bee812d6e2979626a45964275f2c15907bb027a48fd0ffaadb236e9e3bbbffe427fedc50eacd977eac0750efd63fb9b91e354a507e64cb8b1b73456d862c2741fdcd71788e63db5b8d0bd5ec4a3a66e1fa470a0dfb6e7a3a94f8d9c0491b1623e44f2ceb63a367cede10e535e9dfdbf5d5cd8691ac16b2878b99a9c2911025e1f559a798fbb2ff930eead8f851ec0e7c7f411ee884dfb3e2b530d2b03fdbf2af21bed06ef665e9d741985ff474f43cc55443c50e24fb0feb60f2e067f16cb628c3b32efe8186622ab5ab7a29a3dd1a267c5c2249000312a9bf74fc602b77929d0be063a7f9ffc13f1f48f95cf0984c48a52b7d146997904a5831ffa6b91ba0ba890024dcefc2f469652be14573e956370204e479eb251115ac39074c0f4831a2e9c1cd02ed3a3bce75e928aff1f220047811d5974fdb490d17939efb0b1edbb90100b078461dcbfaa36a7327056007586efcf61e6ce46920b593e29db71a592c97d900"/>
-      <field name="data.len" showname="Length: 409" size="0" pos="42" show="409"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="408" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: d77d67f628cf69c0d6b7c3b523dea2d6a040ba2b" size="20" pos="0" show="d7:7d:67:f6:28:cf:69:c0:d6:b7:c3:b5:23:de:a2:d6:a0:40:ba:2b" value="d77d67f628cf69c0d6b7c3b523dea2d6a040ba2b"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: 8dcf726c49d48ba335154df9c427ff9c" size="16" pos="20" show="8d:cf:72:6c:49:d4:8b:a3:35:15:4d:f9:c4:27:ff:9c" value="8dcf726c49d48ba335154df9c427ff9c"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="407" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="372" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="364" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 180" size="4" pos="88" show="180" value="b4000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 104" size="4" pos="92" show="104" value="68000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="274" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 9757" size="2" pos="136" show="9757" value="1d26"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 264 (msg index: 0)" size="2" pos="142" show="264" value="0801"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="264" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="256" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="240" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 6" size="4" pos="168" show="6" value="00000006"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0xbc00" size="2" pos="186" show="0xbc00" value="bc00"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 000000180000300000003005" size="12" pos="188" show="00:00:00:18:00:00:30:00:00:00:30:05" value="000000180000300000003005"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 208" size="4" pos="204" show="208" value="000000d0"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00003001, VF command: join view, VF flags: Unknown" size="4" pos="212" show="0x00003001" value="00003001">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0001 = VF command: join view (0x00003001)" size="4" pos="212" show="0x00003001" value="3001" unmaskedvalue="00003001"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0000 .... .... .... .... = VF flags: Unknown (0x00000000)" size="4" pos="212" show="0x00000000" value="0" unmaskedvalue="00003001"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.arg2" showname="Arguement 2: 0 (unused)" size="4" pos="216" show="0" value="00000000"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+          <field name="rgmanager.vf_msg_info" showname="View formation message" size="184" pos="224" show="" value="">
+            <field name="rgmanager.vf_msg_info.vf_command" showname=".... .... .... .... 0000 0000 0000 0000 = Command (unused): Unknown (0x00000000)" size="4" pos="224" show="0x00000000" value="0" unmaskedvalue="00000000"/>
+            <field name="rgmanager.vf_msg_info.vf_transaction" showname="Transaction: 0x00010003" size="4" pos="228" show="0x00010003" value="00010003"/>
+            <field name="rgmanager.vf_msg_info.vf_keyid" showname="Key id: rg=&quot;service:web&quot;" size="64" pos="232" show="rg=\&quot;service:web\&quot;" value="72673d22736572766963653a77656222000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+            <field name="rgmanager.vf_msg_info.vf_coordinator" showname="Coordinator: 1" size="4" pos="296" show="1" value="00000001"/>
+            <field name="rgmanager.vf_msg_info.vf_datalen" showname="Data length: 96" size="4" pos="300" show="96" value="00000060"/>
+            <field name="rgmanager.vf_msg_info.vf_view" showname="View: 0x0000000000000015" size="8" pos="304" show="0x0000000000000015" value="0000000000000015"/>
+            <field name="rgmanager.vf_msg_info.vf_data" showname="Data: service:web" size="96" pos="312" show="service:web" value="736572766963653a7765620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000020000007500000000000000605fa34e00000000">
+              <field name="rgmanager.rg_state.rs_name" showname="Name of resource group: service:web" size="64" pos="312" show="service:web" value="736572766963653a7765620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+              <field name="rgmanager.rg_state.rs_flags" showname="Flags of resource group : 0" size="4" pos="376" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_magic" showname="Magic : 0x00000000" size="4" pos="380" show="0x00000000" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_owner" showname="Owner of resource group : 1" size="4" pos="384" show="1" value="01000000"/>
+              <field name="rgmanager.rg_state.rs_last_owner" showname="The last owner of resource group : 2" size="4" pos="388" show="2" value="02000000"/>
+              <field name="rgmanager.rg_state.rs_state" showname="The state of resource group: error (117)" size="4" pos="392" show="117" value="75000000"/>
+              <field name="rgmanager.rg_state.rs_restarts" showname="The number of restarts: 0" size="4" pos="396" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_transition" showname="The last service transaction time: 1319329632" size="8" pos="400" show="1319329632" value="605fa34e00000000"/>
+              <field name="" show="Sun Oct 23 09:27:12 2011" size="8" pos="400" value="605fa34e00000000"/>
+            </field>
+          </field>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -356,7 +717,7 @@
     <field name="frame.cap_len" showname="Capture Length: 267 bytes (2136 bits)" size="0" pos="0" show="267"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -413,12 +774,88 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="05be"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="0e8667faa12274bc66e6afe804f0c33b70567508f6506f24ba50a7cf825f50b838539c13131e65b201749a433df9938a1d7bc33ed8b08a31f617933eae115a1012f40757c9c89e22daf13b82ed282fe492279f953cc341ca60788bee56f518b9da2392fc8d5447716e4eed32578757ab340f39ae69d153e34ea2155f7bf80428e7870f76908e13a18120e78d660ab3f5c57ead4b2b51314c09d43bd35dda021258fe7fae16a080aa6e1e7f0e8aa94db33109344aebfe8293dd763be5162f309d2ca022abf0572af7abeef942118c86f637e258c0a43c188ba9283d24c8fe1b8e00">
-      <field name="data.data" showname="Data: 0e8667faa12274bc66e6afe804f0c33b70567508f6506f24..." size="225" pos="42" show="0e:86:67:fa:a1:22:74:bc:66:e6:af:e8:04:f0:c3:3b:70:56:75:08:f6:50:6f:24:ba:50:a7:cf:82:5f:50:b8:38:53:9c:13:13:1e:65:b2:01:74:9a:43:3d:f9:93:8a:1d:7b:c3:3e:d8:b0:8a:31:f6:17:93:3e:ae:11:5a:10:12:f4:07:57:c9:c8:9e:22:da:f1:3b:82:ed:28:2f:e4:92:27:9f:95:3c:c3:41:ca:60:78:8b:ee:56:f5:18:b9:da:23:92:fc:8d:54:47:71:6e:4e:ed:32:57:87:57:ab:34:0f:39:ae:69:d1:53:e3:4e:a2:15:5f:7b:f8:04:28:e7:87:0f:76:90:8e:13:a1:81:20:e7:8d:66:0a:b3:f5:c5:7e:ad:4b:2b:51:31:4c:09:d4:3b:d3:5d:da:02:12:58:fe:7f:ae:16:a0:80:aa:6e:1e:7f:0e:8a:a9:4d:b3:31:09:34:4a:eb:fe:82:93:dd:76:3b:e5:16:2f:30:9d:2c:a0:22:ab:f0:57:2a:f7:ab:ee:f9:42:11:8c:86:f6:37:e2:58:c0:a4:3c:18:8b:a9:28:3d:24:c8:fe:1b:8e:00" value="0e8667faa12274bc66e6afe804f0c33b70567508f6506f24ba50a7cf825f50b838539c13131e65b201749a433df9938a1d7bc33ed8b08a31f617933eae115a1012f40757c9c89e22daf13b82ed282fe492279f953cc341ca60788bee56f518b9da2392fc8d5447716e4eed32578757ab340f39ae69d153e34ea2155f7bf80428e7870f76908e13a18120e78d660ab3f5c57ead4b2b51314c09d43bd35dda021258fe7fae16a080aa6e1e7f0e8aa94db33109344aebfe8293dd763be5162f309d2ca022abf0572af7abeef942118c86f637e258c0a43c188ba9283d24c8fe1b8e00"/>
-      <field name="data.len" showname="Length: 225" size="0" pos="42" show="225"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="224" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 0e8667faa12274bc66e6afe804f0c33b70567508" size="20" pos="0" show="0e:86:67:fa:a1:22:74:bc:66:e6:af:e8:04:f0:c3:3b:70:56:75:08" value="0e8667faa12274bc66e6afe804f0c33b70567508"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: f6506f24ba50a7cf825f50b838539c13" size="16" pos="20" show="f6:50:6f:24:ba:50:a7:cf:82:5f:50:b8:38:53:9c:13" value="f6506f24ba50a7cf825f50b838539c13"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="223" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="188" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="180" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 181" size="4" pos="88" show="181" value="b5000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 105" size="4" pos="92" show="105" value="69000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="90" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 444" size="2" pos="136" show="444" value="bc01"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 80 (msg index: 0)" size="2" pos="142" show="80" value="5000"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="80" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="72" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="56" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 2" size="4" pos="168" show="2" value="00000002"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0x8600" size="2" pos="186" show="0x8600" value="8600"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 000000007011000ce37f0000" size="12" pos="188" show="00:00:00:00:70:11:00:0c:e3:7f:00:00" value="000000007011000ce37f0000"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 24" size="4" pos="204" show="24" value="00000018"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00013002, VF command: vote, VF flags: affirm" size="4" pos="212" show="0x00013002" value="00013002">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0010 = VF command: vote (0x00003002)" size="4" pos="212" show="0x00003002" value="3002" unmaskedvalue="00013002"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0001 .... .... .... .... = VF flags: affirm (0x00000001)" size="4" pos="212" show="0x00000001" value="1" unmaskedvalue="00013002"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.vf_trans" showname="View formed transaction: 0x00010003" size="4" pos="216" show="0x00010003" value="00010003"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -440,7 +877,7 @@
     <field name="frame.cap_len" showname="Capture Length: 267 bytes (2136 bits)" size="0" pos="0" show="267"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -497,12 +934,88 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="2238"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="44632a62c3f947e24e5ebac38f3ee9fc7ef7d7c1384ddb54620720b99b8a64a39b1a665817032bc38028ee56abbf2735a4a0cbc5625c66fe28f4ee07df103597a9f9f59eecf2a775c1235c2894678453500fadcf5cdbce05b6716f7b2472b1a57441c36cde198ff4ecd248948f8579e97480604878905187540e30ca7b8003d7ffdcc4b647740ab63e1cde557506e22bbf7801f5da69aa14ef2997bdd007199ebbf830a33625372e6709c00c5c85dda7b1fc18ec7818fb2c2bc79d660d8d37ebc51a720b8e61dc0c028a05c43682e03f9882aa7a051b27498b01f4ff988cbc6f00">
-      <field name="data.data" showname="Data: 44632a62c3f947e24e5ebac38f3ee9fc7ef7d7c1384ddb54..." size="225" pos="42" show="44:63:2a:62:c3:f9:47:e2:4e:5e:ba:c3:8f:3e:e9:fc:7e:f7:d7:c1:38:4d:db:54:62:07:20:b9:9b:8a:64:a3:9b:1a:66:58:17:03:2b:c3:80:28:ee:56:ab:bf:27:35:a4:a0:cb:c5:62:5c:66:fe:28:f4:ee:07:df:10:35:97:a9:f9:f5:9e:ec:f2:a7:75:c1:23:5c:28:94:67:84:53:50:0f:ad:cf:5c:db:ce:05:b6:71:6f:7b:24:72:b1:a5:74:41:c3:6c:de:19:8f:f4:ec:d2:48:94:8f:85:79:e9:74:80:60:48:78:90:51:87:54:0e:30:ca:7b:80:03:d7:ff:dc:c4:b6:47:74:0a:b6:3e:1c:de:55:75:06:e2:2b:bf:78:01:f5:da:69:aa:14:ef:29:97:bd:d0:07:19:9e:bb:f8:30:a3:36:25:37:2e:67:09:c0:0c:5c:85:dd:a7:b1:fc:18:ec:78:18:fb:2c:2b:c7:9d:66:0d:8d:37:eb:c5:1a:72:0b:8e:61:dc:0c:02:8a:05:c4:36:82:e0:3f:98:82:aa:7a:05:1b:27:49:8b:01:f4:ff:98:8c:bc:6f:00" value="44632a62c3f947e24e5ebac38f3ee9fc7ef7d7c1384ddb54620720b99b8a64a39b1a665817032bc38028ee56abbf2735a4a0cbc5625c66fe28f4ee07df103597a9f9f59eecf2a775c1235c2894678453500fadcf5cdbce05b6716f7b2472b1a57441c36cde198ff4ecd248948f8579e97480604878905187540e30ca7b8003d7ffdcc4b647740ab63e1cde557506e22bbf7801f5da69aa14ef2997bdd007199ebbf830a33625372e6709c00c5c85dda7b1fc18ec7818fb2c2bc79d660d8d37ebc51a720b8e61dc0c028a05c43682e03f9882aa7a051b27498b01f4ff988cbc6f00"/>
-      <field name="data.len" showname="Length: 225" size="0" pos="42" show="225"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="224" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 44632a62c3f947e24e5ebac38f3ee9fc7ef7d7c1" size="20" pos="0" show="44:63:2a:62:c3:f9:47:e2:4e:5e:ba:c3:8f:3e:e9:fc:7e:f7:d7:c1" value="44632a62c3f947e24e5ebac38f3ee9fc7ef7d7c1"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: 384ddb54620720b99b8a64a39b1a6658" size="16" pos="20" show="38:4d:db:54:62:07:20:b9:9b:8a:64:a3:9b:1a:66:58" value="384ddb54620720b99b8a64a39b1a6658"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="223" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="188" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="180" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 182" size="4" pos="88" show="182" value="b6000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 106" size="4" pos="92" show="106" value="6a000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="90" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 444" size="2" pos="136" show="444" value="bc01"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 80 (msg index: 0)" size="2" pos="142" show="80" value="5000"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="80" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="72" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="56" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 6" size="4" pos="168" show="6" value="00000006"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0x0000" size="2" pos="186" show="0x0000" value="0000"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 00000000b100000000000000" size="12" pos="188" show="00:00:00:00:b1:00:00:00:00:00:00:00" value="00000000b100000000000000"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 24" size="4" pos="204" show="24" value="00000018"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00003005, VF command: view formed, VF flags: Unknown" size="4" pos="212" show="0x00003005" value="00003005">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0101 = VF command: view formed (0x00003005)" size="4" pos="212" show="0x00003005" value="3005" unmaskedvalue="00003005"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0000 .... .... .... .... = VF flags: Unknown (0x00000000)" size="4" pos="212" show="0x00000000" value="0" unmaskedvalue="00003005"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.vf_trans" showname="View formed transaction: 0x00010003" size="4" pos="216" show="0x00010003" value="00010003"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -524,7 +1037,7 @@
     <field name="frame.cap_len" showname="Capture Length: 451 bytes (3608 bits)" size="0" pos="0" show="451"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -581,12 +1094,107 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="273f"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="ac32dc5b0db39bcdc67c1d51ab99aea8981ed7bb7d9d92dd6e61d20f84cd75de01a4e627b0d026193abf628dcdaf48747a7ee490fc1ac2ef16921bd7d67cafb0daaa1bfe7393f16a942b2cb077522eb1f47af7c73fd89dba7d4edb176ed6e7e4885df1822412233a80c3fb5cd3204e6fd12299bb2967432ed5eefca5171afea6da0c0f3e91ac0aebe05db8353e28087bef185ab75664b8385dd3e473b9fb26fa998e494dedf23c6803e702aa4774b59662bb75d4cc562ae40e24426663fe3f576084ecbf75b27a0120c6ebeb2c224437b4c36124aa56835c46f64796980f98a2ad2003e94864cdd93960db2827d4576f5797cccba405cd35096a453ae64bebb8e252c235a8ddcf6206b48bed1b38315b17ba7fa440608de63ef88855f4c27ceb91ea2d13a0cf4ddba86145f3aa2214ce8f0a55ff56c2b39042f06c23e36a7461309deb222f3d0a919f60da300c309665686c92796b1f35ccb0af2d8bfe74b1c5792cc304e1416ddd9d6b4aaa09fd6aa3dd78c1a8dde04267c205c42549f9466057138dbc273e6ba12581eea6f577b0cfd555bf24a76f2d6c00">
-      <field name="data.data" showname="Data: ac32dc5b0db39bcdc67c1d51ab99aea8981ed7bb7d9d92dd..." size="409" pos="42" show="ac:32:dc:5b:0d:b3:9b:cd:c6:7c:1d:51:ab:99:ae:a8:98:1e:d7:bb:7d:9d:92:dd:6e:61:d2:0f:84:cd:75:de:01:a4:e6:27:b0:d0:26:19:3a:bf:62:8d:cd:af:48:74:7a:7e:e4:90:fc:1a:c2:ef:16:92:1b:d7:d6:7c:af:b0:da:aa:1b:fe:73:93:f1:6a:94:2b:2c:b0:77:52:2e:b1:f4:7a:f7:c7:3f:d8:9d:ba:7d:4e:db:17:6e:d6:e7:e4:88:5d:f1:82:24:12:23:3a:80:c3:fb:5c:d3:20:4e:6f:d1:22:99:bb:29:67:43:2e:d5:ee:fc:a5:17:1a:fe:a6:da:0c:0f:3e:91:ac:0a:eb:e0:5d:b8:35:3e:28:08:7b:ef:18:5a:b7:56:64:b8:38:5d:d3:e4:73:b9:fb:26:fa:99:8e:49:4d:ed:f2:3c:68:03:e7:02:aa:47:74:b5:96:62:bb:75:d4:cc:56:2a:e4:0e:24:42:66:63:fe:3f:57:60:84:ec:bf:75:b2:7a:01:20:c6:eb:eb:2c:22:44:37:b4:c3:61:24:aa:56:83:5c:46:f6:47:96:98:0f:98:a2:ad:20:03:e9:48:64:cd:d9:39:60:db:28:27:d4:57:6f:57:97:cc:cb:a4:05:cd:35:09:6a:45:3a:e6:4b:eb:b8:e2:52:c2:35:a8:dd:cf:62:06:b4:8b:ed:1b:38:31:5b:17:ba:7f:a4:40:60:8d:e6:3e:f8:88:55:f4:c2:7c:eb:91:ea:2d:13:a0:cf:4d:db:a8:61:45:f3:aa:22:14:ce:8f:0a:55:ff:56:c2:b3:90:42:f0:6c:23:e3:6a:74:61:30:9d:eb:22:2f:3d:0a:91:9f:60:da:30:0c:30:96:65:68:6c:92:79:6b:1f:35:cc:b0:af:2d:8b:fe:74:b1:c5:79:2c:c3:04:e1:41:6d:dd:9d:6b:4a:aa:09:fd:6a:a3:dd:78:c1:a8:dd:e0:42:67:c2:05:c4:25:49:f9:46:60:57:13:8d:bc:27:3e:6b:a1:25:81:ee:a6:f5:77:b0:cf:d5:55:bf:24:a7:6f:2d:6c:00" value="ac32dc5b0db39bcdc67c1d51ab99aea8981ed7bb7d9d92dd6e61d20f84cd75de01a4e627b0d026193abf628dcdaf48747a7ee490fc1ac2ef16921bd7d67cafb0daaa1bfe7393f16a942b2cb077522eb1f47af7c73fd89dba7d4edb176ed6e7e4885df1822412233a80c3fb5cd3204e6fd12299bb2967432ed5eefca5171afea6da0c0f3e91ac0aebe05db8353e28087bef185ab75664b8385dd3e473b9fb26fa998e494dedf23c6803e702aa4774b59662bb75d4cc562ae40e24426663fe3f576084ecbf75b27a0120c6ebeb2c224437b4c36124aa56835c46f64796980f98a2ad2003e94864cdd93960db2827d4576f5797cccba405cd35096a453ae64bebb8e252c235a8ddcf6206b48bed1b38315b17ba7fa440608de63ef88855f4c27ceb91ea2d13a0cf4ddba86145f3aa2214ce8f0a55ff56c2b39042f06c23e36a7461309deb222f3d0a919f60da300c309665686c92796b1f35ccb0af2d8bfe74b1c5792cc304e1416ddd9d6b4aaa09fd6aa3dd78c1a8dde04267c205c42549f9466057138dbc273e6ba12581eea6f577b0cfd555bf24a76f2d6c00"/>
-      <field name="data.len" showname="Length: 409" size="0" pos="42" show="409"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="408" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: ac32dc5b0db39bcdc67c1d51ab99aea8981ed7bb" size="20" pos="0" show="ac:32:dc:5b:0d:b3:9b:cd:c6:7c:1d:51:ab:99:ae:a8:98:1e:d7:bb" value="ac32dc5b0db39bcdc67c1d51ab99aea8981ed7bb"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: 7d9d92dd6e61d20f84cd75de01a4e627" size="16" pos="20" show="7d:9d:92:dd:6e:61:d2:0f:84:cd:75:de:01:a4:e6:27" value="7d9d92dd6e61d20f84cd75de01a4e627"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="407" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="372" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="364" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 183" size="4" pos="88" show="183" value="b7000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 107" size="4" pos="92" show="107" value="6b000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="274" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 0" size="2" pos="136" show="0" value="0000"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 264 (msg index: 0)" size="2" pos="142" show="264" value="0801"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="264" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="256" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="240" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 7" size="4" pos="168" show="7" value="00000007"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0xff03" size="2" pos="186" show="0xff03" value="ff03"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: e37f0000a8f6ff03e37f0000" size="12" pos="188" show="e3:7f:00:00:a8:f6:ff:03:e3:7f:00:00" value="e37f0000a8f6ff03e37f0000"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 208" size="4" pos="204" show="208" value="000000d0"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00003001, VF command: join view, VF flags: Unknown" size="4" pos="212" show="0x00003001" value="00003001">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0001 = VF command: join view (0x00003001)" size="4" pos="212" show="0x00003001" value="3001" unmaskedvalue="00003001"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0000 .... .... .... .... = VF flags: Unknown (0x00000000)" size="4" pos="212" show="0x00000000" value="0" unmaskedvalue="00003001"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.arg2" showname="Arguement 2: 0 (unused)" size="4" pos="216" show="0" value="00000000"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+          <field name="rgmanager.vf_msg_info" showname="View formation message" size="184" pos="224" show="" value="">
+            <field name="rgmanager.vf_msg_info.vf_command" showname=".... .... .... .... 0000 0000 0000 0000 = Command (unused): Unknown (0x00000000)" size="4" pos="224" show="0x00000000" value="0" unmaskedvalue="00000000"/>
+            <field name="rgmanager.vf_msg_info.vf_transaction" showname="Transaction: 0x00010004" size="4" pos="228" show="0x00010004" value="00010004"/>
+            <field name="rgmanager.vf_msg_info.vf_keyid" showname="Key id: rg=&quot;service:web&quot;" size="64" pos="232" show="rg=\&quot;service:web\&quot;" value="72673d22736572766963653a77656222000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+            <field name="rgmanager.vf_msg_info.vf_coordinator" showname="Coordinator: 1" size="4" pos="296" show="1" value="00000001"/>
+            <field name="rgmanager.vf_msg_info.vf_datalen" showname="Data length: 96" size="4" pos="300" show="96" value="00000060"/>
+            <field name="rgmanager.vf_msg_info.vf_view" showname="View: 0x0000000000000016" size="8" pos="304" show="0x0000000000000016" value="0000000000000016"/>
+            <field name="rgmanager.vf_msg_info.vf_data" showname="Data: service:web" size="96" pos="312" show="service:web" value="736572766963653a7765620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000007600000000000000605fa34e00000000">
+              <field name="rgmanager.rg_state.rs_name" showname="Name of resource group: service:web" size="64" pos="312" show="service:web" value="736572766963653a7765620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+              <field name="rgmanager.rg_state.rs_flags" showname="Flags of resource group : 0" size="4" pos="376" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_magic" showname="Magic : 0x00000000" size="4" pos="380" show="0x00000000" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_owner" showname="Owner of resource group : 0" size="4" pos="384" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_last_owner" showname="The last owner of resource group : 1" size="4" pos="388" show="1" value="01000000"/>
+              <field name="rgmanager.rg_state.rs_state" showname="The state of resource group: recover (118)" size="4" pos="392" show="118" value="76000000"/>
+              <field name="rgmanager.rg_state.rs_restarts" showname="The number of restarts: 0" size="4" pos="396" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_transition" showname="The last service transaction time: 1319329632" size="8" pos="400" show="1319329632" value="605fa34e00000000"/>
+              <field name="" show="Sun Oct 23 09:27:12 2011" size="8" pos="400" value="605fa34e00000000"/>
+            </field>
+          </field>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -608,7 +1216,7 @@
     <field name="frame.cap_len" showname="Capture Length: 267 bytes (2136 bits)" size="0" pos="0" show="267"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -665,12 +1273,88 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="14ef"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="17e65f3f3db8f70f03c60363bb0059ded6c7ae41ea6a88a320d1145a113d5281f885aa411dfc63cc8d73c907e430b65720a4b660ba971cebb935e04d6104f15bcd7301fe2562872dee9ebf6b24df626229c23a9ce4d58571f7752c619a66a65c550e48685cd0c3afad39519170d016f38f393d7d6d18d96d7e8923620a00fbece6e70e6625bd15c6ec966ba043cb7079bb6fa6083eee99359e243cf39325c8d4d2d442e60580d51af64019cc8a5e7c8321becdb36e67367f55f8faff0bb5d377ae245163040376d467aeab44d2e887fca4f3cae25ad32783616f8d9f22ebf3bf00">
-      <field name="data.data" showname="Data: 17e65f3f3db8f70f03c60363bb0059ded6c7ae41ea6a88a3..." size="225" pos="42" show="17:e6:5f:3f:3d:b8:f7:0f:03:c6:03:63:bb:00:59:de:d6:c7:ae:41:ea:6a:88:a3:20:d1:14:5a:11:3d:52:81:f8:85:aa:41:1d:fc:63:cc:8d:73:c9:07:e4:30:b6:57:20:a4:b6:60:ba:97:1c:eb:b9:35:e0:4d:61:04:f1:5b:cd:73:01:fe:25:62:87:2d:ee:9e:bf:6b:24:df:62:62:29:c2:3a:9c:e4:d5:85:71:f7:75:2c:61:9a:66:a6:5c:55:0e:48:68:5c:d0:c3:af:ad:39:51:91:70:d0:16:f3:8f:39:3d:7d:6d:18:d9:6d:7e:89:23:62:0a:00:fb:ec:e6:e7:0e:66:25:bd:15:c6:ec:96:6b:a0:43:cb:70:79:bb:6f:a6:08:3e:ee:99:35:9e:24:3c:f3:93:25:c8:d4:d2:d4:42:e6:05:80:d5:1a:f6:40:19:cc:8a:5e:7c:83:21:be:cd:b3:6e:67:36:7f:55:f8:fa:ff:0b:b5:d3:77:ae:24:51:63:04:03:76:d4:67:ae:ab:44:d2:e8:87:fc:a4:f3:ca:e2:5a:d3:27:83:61:6f:8d:9f:22:eb:f3:bf:00" value="17e65f3f3db8f70f03c60363bb0059ded6c7ae41ea6a88a320d1145a113d5281f885aa411dfc63cc8d73c907e430b65720a4b660ba971cebb935e04d6104f15bcd7301fe2562872dee9ebf6b24df626229c23a9ce4d58571f7752c619a66a65c550e48685cd0c3afad39519170d016f38f393d7d6d18d96d7e8923620a00fbece6e70e6625bd15c6ec966ba043cb7079bb6fa6083eee99359e243cf39325c8d4d2d442e60580d51af64019cc8a5e7c8321becdb36e67367f55f8faff0bb5d377ae245163040376d467aeab44d2e887fca4f3cae25ad32783616f8d9f22ebf3bf00"/>
-      <field name="data.len" showname="Length: 225" size="0" pos="42" show="225"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="224" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 17e65f3f3db8f70f03c60363bb0059ded6c7ae41" size="20" pos="0" show="17:e6:5f:3f:3d:b8:f7:0f:03:c6:03:63:bb:00:59:de:d6:c7:ae:41" value="17e65f3f3db8f70f03c60363bb0059ded6c7ae41"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: ea6a88a320d1145a113d5281f885aa41" size="16" pos="20" show="ea:6a:88:a3:20:d1:14:5a:11:3d:52:81:f8:85:aa:41" value="ea6a88a320d1145a113d5281f885aa41"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="223" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="188" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="180" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 184" size="4" pos="88" show="184" value="b8000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 108" size="4" pos="92" show="108" value="6c000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="90" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 444" size="2" pos="136" show="444" value="bc01"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 80 (msg index: 0)" size="2" pos="142" show="80" value="5000"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="80" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="72" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="56" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 2" size="4" pos="168" show="2" value="00000002"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0x8600" size="2" pos="186" show="0x8600" value="8600"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 000000007011000ce37f0000" size="12" pos="188" show="00:00:00:00:70:11:00:0c:e3:7f:00:00" value="000000007011000ce37f0000"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 24" size="4" pos="204" show="24" value="00000018"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00013002, VF command: vote, VF flags: affirm" size="4" pos="212" show="0x00013002" value="00013002">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0010 = VF command: vote (0x00003002)" size="4" pos="212" show="0x00003002" value="3002" unmaskedvalue="00013002"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0001 .... .... .... .... = VF flags: affirm (0x00000001)" size="4" pos="212" show="0x00000001" value="1" unmaskedvalue="00013002"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.vf_trans" showname="View formed transaction: 0x00010004" size="4" pos="216" show="0x00010004" value="00010004"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -692,7 +1376,7 @@
     <field name="frame.cap_len" showname="Capture Length: 267 bytes (2136 bits)" size="0" pos="0" show="267"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -749,12 +1433,88 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="3e02"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="7d7acbce12703326afc02d290bc6723498f19150ccb6ad4ddbbcd01542ca754cfc19abf8ce3df4816eb9baafe43efea8022a1bcd43e23970c55fbe4ab0dd19670d0640929a13007d66093bb9222a5b37f0ab6c6f7e00ab4f6bc1cd161963630832c50d53dd71ef0612e7d6c75bb2584913f281d7a98a90351ad11b388448de74a192932755f3093a0fe8df96eef9a68f3d0c9aee7c61df713ac2ef779a8053f21b271f8d6833a969f6da722b53b2d47795c176cf3baaa91481780d4dac47266e1234549c0eaa09d87c6d25afa97607db359f5e637822b24bc672b540b5301e4300">
-      <field name="data.data" showname="Data: 7d7acbce12703326afc02d290bc6723498f19150ccb6ad4d..." size="225" pos="42" show="7d:7a:cb:ce:12:70:33:26:af:c0:2d:29:0b:c6:72:34:98:f1:91:50:cc:b6:ad:4d:db:bc:d0:15:42:ca:75:4c:fc:19:ab:f8:ce:3d:f4:81:6e:b9:ba:af:e4:3e:fe:a8:02:2a:1b:cd:43:e2:39:70:c5:5f:be:4a:b0:dd:19:67:0d:06:40:92:9a:13:00:7d:66:09:3b:b9:22:2a:5b:37:f0:ab:6c:6f:7e:00:ab:4f:6b:c1:cd:16:19:63:63:08:32:c5:0d:53:dd:71:ef:06:12:e7:d6:c7:5b:b2:58:49:13:f2:81:d7:a9:8a:90:35:1a:d1:1b:38:84:48:de:74:a1:92:93:27:55:f3:09:3a:0f:e8:df:96:ee:f9:a6:8f:3d:0c:9a:ee:7c:61:df:71:3a:c2:ef:77:9a:80:53:f2:1b:27:1f:8d:68:33:a9:69:f6:da:72:2b:53:b2:d4:77:95:c1:76:cf:3b:aa:a9:14:81:78:0d:4d:ac:47:26:6e:12:34:54:9c:0e:aa:09:d8:7c:6d:25:af:a9:76:07:db:35:9f:5e:63:78:22:b2:4b:c6:72:b5:40:b5:30:1e:43:00" value="7d7acbce12703326afc02d290bc6723498f19150ccb6ad4ddbbcd01542ca754cfc19abf8ce3df4816eb9baafe43efea8022a1bcd43e23970c55fbe4ab0dd19670d0640929a13007d66093bb9222a5b37f0ab6c6f7e00ab4f6bc1cd161963630832c50d53dd71ef0612e7d6c75bb2584913f281d7a98a90351ad11b388448de74a192932755f3093a0fe8df96eef9a68f3d0c9aee7c61df713ac2ef779a8053f21b271f8d6833a969f6da722b53b2d47795c176cf3baaa91481780d4dac47266e1234549c0eaa09d87c6d25afa97607db359f5e637822b24bc672b540b5301e4300"/>
-      <field name="data.len" showname="Length: 225" size="0" pos="42" show="225"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="224" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 7d7acbce12703326afc02d290bc6723498f19150" size="20" pos="0" show="7d:7a:cb:ce:12:70:33:26:af:c0:2d:29:0b:c6:72:34:98:f1:91:50" value="7d7acbce12703326afc02d290bc6723498f19150"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: ccb6ad4ddbbcd01542ca754cfc19abf8" size="16" pos="20" show="cc:b6:ad:4d:db:bc:d0:15:42:ca:75:4c:fc:19:ab:f8" value="ccb6ad4ddbbcd01542ca754cfc19abf8"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="223" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="188" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="180" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 185" size="4" pos="88" show="185" value="b9000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 109" size="4" pos="92" show="109" value="6d000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="90" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 444" size="2" pos="136" show="444" value="bc01"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 80 (msg index: 0)" size="2" pos="142" show="80" value="5000"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="80" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="72" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="56" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 7" size="4" pos="168" show="7" value="00000007"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0x0000" size="2" pos="186" show="0x0000" value="0000"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 00000000b1000000e37f0000" size="12" pos="188" show="00:00:00:00:b1:00:00:00:e3:7f:00:00" value="00000000b1000000e37f0000"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 24" size="4" pos="204" show="24" value="00000018"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00003005, VF command: view formed, VF flags: Unknown" size="4" pos="212" show="0x00003005" value="00003005">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0101 = VF command: view formed (0x00003005)" size="4" pos="212" show="0x00003005" value="3005" unmaskedvalue="00003005"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0000 .... .... .... .... = VF flags: Unknown (0x00000000)" size="4" pos="212" show="0x00000000" value="0" unmaskedvalue="00003005"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.vf_trans" showname="View formed transaction: 0x00010004" size="4" pos="216" show="0x00010004" value="00010004"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -776,7 +1536,7 @@
     <field name="frame.cap_len" showname="Capture Length: 451 bytes (3608 bits)" size="0" pos="0" show="451"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -833,12 +1593,107 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="bcd4"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="95163241f00345f9493b4718be7b0f30c509f439fa2b2ec48741668e5d4540e22b71849410bce2ef484623dde0a24ec5ee2b63f18b652de54ba10ac6cb781a122c302a767fdbd331dfb8f09cae0773f6d201870e190866a2e1c0400c68401cba608fd0cfee0d898c6eae393444c1d61a3347961621fc33be5421de02f82acde1423885751650029e33ffb0b6a2eedb2c78cd036fce4a37e69153eb8ee83542bd7034bbec9ec90001b76989d2d5adc94ef19074795193e4cf03360d1d5284873781b49d469daf0d7c8b3de162781e2655412183af10ee68c8ab90056843a02c6c5a0c63515c0063dc0e3c6bae80ffd3a4509b0c0f196bedb5c81068f831846dce7dabcaae58ce65e6985fe448aefd25dcbfa2a76f39887cfac86aa7a58043fab640c2d9d3c1ca10fb80a3102b4d1da4fe733610e46a3bed3a3f5e582fc887261feef5b16575cc9a905ed00a9aabf0986e37faab55ef1176ecedc1d9ef9f51fe3048b6ad86df59375d7b5237b886a89645a2bbd700cf7cf560c81aac2f6bfa24aee648182709c8c688cc65b22b46f883b6c7fd2047e064199400">
-      <field name="data.data" showname="Data: 95163241f00345f9493b4718be7b0f30c509f439fa2b2ec4..." size="409" pos="42" show="95:16:32:41:f0:03:45:f9:49:3b:47:18:be:7b:0f:30:c5:09:f4:39:fa:2b:2e:c4:87:41:66:8e:5d:45:40:e2:2b:71:84:94:10:bc:e2:ef:48:46:23:dd:e0:a2:4e:c5:ee:2b:63:f1:8b:65:2d:e5:4b:a1:0a:c6:cb:78:1a:12:2c:30:2a:76:7f:db:d3:31:df:b8:f0:9c:ae:07:73:f6:d2:01:87:0e:19:08:66:a2:e1:c0:40:0c:68:40:1c:ba:60:8f:d0:cf:ee:0d:89:8c:6e:ae:39:34:44:c1:d6:1a:33:47:96:16:21:fc:33:be:54:21:de:02:f8:2a:cd:e1:42:38:85:75:16:50:02:9e:33:ff:b0:b6:a2:ee:db:2c:78:cd:03:6f:ce:4a:37:e6:91:53:eb:8e:e8:35:42:bd:70:34:bb:ec:9e:c9:00:01:b7:69:89:d2:d5:ad:c9:4e:f1:90:74:79:51:93:e4:cf:03:36:0d:1d:52:84:87:37:81:b4:9d:46:9d:af:0d:7c:8b:3d:e1:62:78:1e:26:55:41:21:83:af:10:ee:68:c8:ab:90:05:68:43:a0:2c:6c:5a:0c:63:51:5c:00:63:dc:0e:3c:6b:ae:80:ff:d3:a4:50:9b:0c:0f:19:6b:ed:b5:c8:10:68:f8:31:84:6d:ce:7d:ab:ca:ae:58:ce:65:e6:98:5f:e4:48:ae:fd:25:dc:bf:a2:a7:6f:39:88:7c:fa:c8:6a:a7:a5:80:43:fa:b6:40:c2:d9:d3:c1:ca:10:fb:80:a3:10:2b:4d:1d:a4:fe:73:36:10:e4:6a:3b:ed:3a:3f:5e:58:2f:c8:87:26:1f:ee:f5:b1:65:75:cc:9a:90:5e:d0:0a:9a:ab:f0:98:6e:37:fa:ab:55:ef:11:76:ec:ed:c1:d9:ef:9f:51:fe:30:48:b6:ad:86:df:59:37:5d:7b:52:37:b8:86:a8:96:45:a2:bb:d7:00:cf:7c:f5:60:c8:1a:ac:2f:6b:fa:24:ae:e6:48:18:27:09:c8:c6:88:cc:65:b2:2b:46:f8:83:b6:c7:fd:20:47:e0:64:19:94:00" value="95163241f00345f9493b4718be7b0f30c509f439fa2b2ec48741668e5d4540e22b71849410bce2ef484623dde0a24ec5ee2b63f18b652de54ba10ac6cb781a122c302a767fdbd331dfb8f09cae0773f6d201870e190866a2e1c0400c68401cba608fd0cfee0d898c6eae393444c1d61a3347961621fc33be5421de02f82acde1423885751650029e33ffb0b6a2eedb2c78cd036fce4a37e69153eb8ee83542bd7034bbec9ec90001b76989d2d5adc94ef19074795193e4cf03360d1d5284873781b49d469daf0d7c8b3de162781e2655412183af10ee68c8ab90056843a02c6c5a0c63515c0063dc0e3c6bae80ffd3a4509b0c0f196bedb5c81068f831846dce7dabcaae58ce65e6985fe448aefd25dcbfa2a76f39887cfac86aa7a58043fab640c2d9d3c1ca10fb80a3102b4d1da4fe733610e46a3bed3a3f5e582fc887261feef5b16575cc9a905ed00a9aabf0986e37faab55ef1176ecedc1d9ef9f51fe3048b6ad86df59375d7b5237b886a89645a2bbd700cf7cf560c81aac2f6bfa24aee648182709c8c688cc65b22b46f883b6c7fd2047e064199400"/>
-      <field name="data.len" showname="Length: 409" size="0" pos="42" show="409"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="408" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 95163241f00345f9493b4718be7b0f30c509f439" size="20" pos="0" show="95:16:32:41:f0:03:45:f9:49:3b:47:18:be:7b:0f:30:c5:09:f4:39" value="95163241f00345f9493b4718be7b0f30c509f439"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: fa2b2ec48741668e5d4540e22b718494" size="16" pos="20" show="fa:2b:2e:c4:87:41:66:8e:5d:45:40:e2:2b:71:84:94" value="fa2b2ec48741668e5d4540e22b718494"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="407" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="372" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="364" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 187" size="4" pos="88" show="187" value="bb000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 111" size="4" pos="92" show="111" value="6f000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="274" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 9757" size="2" pos="136" show="9757" value="1d26"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 264 (msg index: 0)" size="2" pos="142" show="264" value="0801"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="264" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="256" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="240" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 9" size="4" pos="168" show="9" value="00000009"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0xbc00" size="2" pos="186" show="0xbc00" value="bc00"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 000000d00000300000003001" size="12" pos="188" show="00:00:00:d0:00:00:30:00:00:00:30:01" value="000000d00000300000003001"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 208" size="4" pos="204" show="208" value="000000d0"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00003001, VF command: join view, VF flags: Unknown" size="4" pos="212" show="0x00003001" value="00003001">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0001 = VF command: join view (0x00003001)" size="4" pos="212" show="0x00003001" value="3001" unmaskedvalue="00003001"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0000 .... .... .... .... = VF flags: Unknown (0x00000000)" size="4" pos="212" show="0x00000000" value="0" unmaskedvalue="00003001"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.arg2" showname="Arguement 2: 0 (unused)" size="4" pos="216" show="0" value="00000000"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+          <field name="rgmanager.vf_msg_info" showname="View formation message" size="184" pos="224" show="" value="">
+            <field name="rgmanager.vf_msg_info.vf_command" showname=".... .... .... .... 0000 0000 0000 0000 = Command (unused): Unknown (0x00000000)" size="4" pos="224" show="0x00000000" value="0" unmaskedvalue="00000000"/>
+            <field name="rgmanager.vf_msg_info.vf_transaction" showname="Transaction: 0x00010005" size="4" pos="228" show="0x00010005" value="00010005"/>
+            <field name="rgmanager.vf_msg_info.vf_keyid" showname="Key id: rg=&quot;service:web&quot;" size="64" pos="232" show="rg=\&quot;service:web\&quot;" value="72673d22736572766963653a77656222000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+            <field name="rgmanager.vf_msg_info.vf_coordinator" showname="Coordinator: 1" size="4" pos="296" show="1" value="00000001"/>
+            <field name="rgmanager.vf_msg_info.vf_datalen" showname="Data length: 96" size="4" pos="300" show="96" value="00000060"/>
+            <field name="rgmanager.vf_msg_info.vf_view" showname="View: 0x0000000000000017" size="8" pos="304" show="0x0000000000000017" value="0000000000000017"/>
+            <field name="rgmanager.vf_msg_info.vf_data" showname="Data: service:web" size="96" pos="312" show="service:web" value="736572766963653a7765620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006e00000000000000605fa34e00000000">
+              <field name="rgmanager.rg_state.rs_name" showname="Name of resource group: service:web" size="64" pos="312" show="service:web" value="736572766963653a7765620000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+              <field name="rgmanager.rg_state.rs_flags" showname="Flags of resource group : 0" size="4" pos="376" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_magic" showname="Magic : 0x00000000" size="4" pos="380" show="0x00000000" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_owner" showname="Owner of resource group : 0" size="4" pos="384" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_last_owner" showname="The last owner of resource group : 0" size="4" pos="388" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_state" showname="The state of resource group: stopped (110)" size="4" pos="392" show="110" value="6e000000"/>
+              <field name="rgmanager.rg_state.rs_restarts" showname="The number of restarts: 0" size="4" pos="396" show="0" value="00000000"/>
+              <field name="rgmanager.rg_state.rs_transition" showname="The last service transaction time: 1319329632" size="8" pos="400" show="1319329632" value="605fa34e00000000"/>
+              <field name="" show="Sun Oct 23 09:27:12 2011" size="8" pos="400" value="605fa34e00000000"/>
+            </field>
+          </field>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -860,7 +1715,7 @@
     <field name="frame.cap_len" showname="Capture Length: 267 bytes (2136 bits)" size="0" pos="0" show="267"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -917,12 +1772,88 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="eca7"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="6bd76832f64d3c0b2ec3a48ccf7c8668ba724fe5167f56f7687595942ff5f02d15c0e6fb58652d8d38fdd394fc00b6dd63431b3f8e05224a13b906606908baafd81120328a54e0b345540fcbd5dec7e477f66b21b0475e602e30eabac6c5698f351ce183db79f784a46bc490aa6aff6f406bdd3648594a3357aa23941a174173189dc4dbd5577fbf132065ab139cf99706ce0c7b0922ca429757efefda4577f7e199d7427fe9dfd83c79e6a59cedbd96886d047799597bb2bef196fc9c005418d2d22e01e791067df91827afbf90398beb6b9053b2760b90f9ae2e0c4e77369400">
-      <field name="data.data" showname="Data: 6bd76832f64d3c0b2ec3a48ccf7c8668ba724fe5167f56f7..." size="225" pos="42" show="6b:d7:68:32:f6:4d:3c:0b:2e:c3:a4:8c:cf:7c:86:68:ba:72:4f:e5:16:7f:56:f7:68:75:95:94:2f:f5:f0:2d:15:c0:e6:fb:58:65:2d:8d:38:fd:d3:94:fc:00:b6:dd:63:43:1b:3f:8e:05:22:4a:13:b9:06:60:69:08:ba:af:d8:11:20:32:8a:54:e0:b3:45:54:0f:cb:d5:de:c7:e4:77:f6:6b:21:b0:47:5e:60:2e:30:ea:ba:c6:c5:69:8f:35:1c:e1:83:db:79:f7:84:a4:6b:c4:90:aa:6a:ff:6f:40:6b:dd:36:48:59:4a:33:57:aa:23:94:1a:17:41:73:18:9d:c4:db:d5:57:7f:bf:13:20:65:ab:13:9c:f9:97:06:ce:0c:7b:09:22:ca:42:97:57:ef:ef:da:45:77:f7:e1:99:d7:42:7f:e9:df:d8:3c:79:e6:a5:9c:ed:bd:96:88:6d:04:77:99:59:7b:b2:be:f1:96:fc:9c:00:54:18:d2:d2:2e:01:e7:91:06:7d:f9:18:27:af:bf:90:39:8b:eb:6b:90:53:b2:76:0b:90:f9:ae:2e:0c:4e:77:36:94:00" value="6bd76832f64d3c0b2ec3a48ccf7c8668ba724fe5167f56f7687595942ff5f02d15c0e6fb58652d8d38fdd394fc00b6dd63431b3f8e05224a13b906606908baafd81120328a54e0b345540fcbd5dec7e477f66b21b0475e602e30eabac6c5698f351ce183db79f784a46bc490aa6aff6f406bdd3648594a3357aa23941a174173189dc4dbd5577fbf132065ab139cf99706ce0c7b0922ca429757efefda4577f7e199d7427fe9dfd83c79e6a59cedbd96886d047799597bb2bef196fc9c005418d2d22e01e791067df91827afbf90398beb6b9053b2760b90f9ae2e0c4e77369400"/>
-      <field name="data.len" showname="Length: 225" size="0" pos="42" show="225"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="224" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 6bd76832f64d3c0b2ec3a48ccf7c8668ba724fe5" size="20" pos="0" show="6b:d7:68:32:f6:4d:3c:0b:2e:c3:a4:8c:cf:7c:86:68:ba:72:4f:e5" value="6bd76832f64d3c0b2ec3a48ccf7c8668ba724fe5"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: 167f56f7687595942ff5f02d15c0e6fb" size="16" pos="20" show="16:7f:56:f7:68:75:95:94:2f:f5:f0:2d:15:c0:e6:fb" value="167f56f7687595942ff5f02d15c0e6fb"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="223" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="188" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="180" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 188" size="4" pos="88" show="188" value="bc000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 112" size="4" pos="92" show="112" value="70000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="90" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 444" size="2" pos="136" show="444" value="bc01"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 80 (msg index: 0)" size="2" pos="142" show="80" value="5000"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="80" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="72" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="56" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 2" size="4" pos="168" show="2" value="00000002"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0x8600" size="2" pos="186" show="0x8600" value="8600"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 000000008010000ce37f0000" size="12" pos="188" show="00:00:00:00:80:10:00:0c:e3:7f:00:00" value="000000008010000ce37f0000"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 24" size="4" pos="204" show="24" value="00000018"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00013002, VF command: vote, VF flags: affirm" size="4" pos="212" show="0x00013002" value="00013002">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0010 = VF command: vote (0x00003002)" size="4" pos="212" show="0x00003002" value="3002" unmaskedvalue="00013002"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0001 .... .... .... .... = VF flags: affirm (0x00000001)" size="4" pos="212" show="0x00000001" value="1" unmaskedvalue="00013002"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.vf_trans" showname="View formed transaction: 0x00010005" size="4" pos="216" show="0x00010005" value="00010005"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
@@ -944,7 +1875,7 @@
     <field name="frame.cap_len" showname="Capture Length: 267 bytes (2136 bits)" size="0" pos="0" show="267"/>
     <field name="frame.marked" showname="Frame is marked: False" size="0" pos="0" show="0"/>
     <field name="frame.ignored" showname="Frame is ignored: False" size="0" pos="0" show="0"/>
-    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:data" size="0" pos="0" show="eth:ip:udp:data"/>
+    <field name="frame.protocols" showname="Protocols in frame: eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager" size="0" pos="0" show="eth:ip:udp:corosync_totemnet:corosync_totempg:openais_cman:rgmanager"/>
   </proto>
   <proto name="eth" showname="Ethernet II, Src: 54:52:00:01:00:61 (54:52:00:01:00:61), Dst: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="14" pos="0">
     <field name="eth.dst" showname="Destination: IPv4mcast_40:30:50 (01:00:5e:40:30:50)" size="6" pos="0" show="01:00:5e:40:30:50" value="01005e403050">
@@ -1001,12 +1932,88 @@
       <field name="udp.checksum_bad" showname="Bad Checksum: False" size="2" pos="40" show="0" value="1d01"/>
     </field>
   </proto>
-  <proto name="fake-field-wrapper">
-    <field name="data" value="3095ac2b23718c68076cb2363f9af146c902fd566a0e1fc90577e665604d389931a2ffeaba66e3c8de9596ac7117d145490f1769dede29b3e46bc4b7449b9573d66eca5e1682d7815746bd0a9ecb27e8ec63be5efc3d28769aa732ed290c4382158159fb3b007e3eb8311b88ed90922363d39db27c0c4f5235181891c7679a581dcac274bc8878aa9a9ced974705d8084b73a72654dee9325f0f66bc34a88ec4995d9ec40475ac4628a19d3c7c02f32645e061aecd21d57e8533e9c6b3ac28dd3faba125e672126650568ad57628610aa18b6d3a49ddda9f4ad107302cd1ab0600">
-      <field name="data.data" showname="Data: 3095ac2b23718c68076cb2363f9af146c902fd566a0e1fc9..." size="225" pos="42" show="30:95:ac:2b:23:71:8c:68:07:6c:b2:36:3f:9a:f1:46:c9:02:fd:56:6a:0e:1f:c9:05:77:e6:65:60:4d:38:99:31:a2:ff:ea:ba:66:e3:c8:de:95:96:ac:71:17:d1:45:49:0f:17:69:de:de:29:b3:e4:6b:c4:b7:44:9b:95:73:d6:6e:ca:5e:16:82:d7:81:57:46:bd:0a:9e:cb:27:e8:ec:63:be:5e:fc:3d:28:76:9a:a7:32:ed:29:0c:43:82:15:81:59:fb:3b:00:7e:3e:b8:31:1b:88:ed:90:92:23:63:d3:9d:b2:7c:0c:4f:52:35:18:18:91:c7:67:9a:58:1d:ca:c2:74:bc:88:78:aa:9a:9c:ed:97:47:05:d8:08:4b:73:a7:26:54:de:e9:32:5f:0f:66:bc:34:a8:8e:c4:99:5d:9e:c4:04:75:ac:46:28:a1:9d:3c:7c:02:f3:26:45:e0:61:ae:cd:21:d5:7e:85:33:e9:c6:b3:ac:28:dd:3f:ab:a1:25:e6:72:12:66:50:56:8a:d5:76:28:61:0a:a1:8b:6d:3a:49:dd:da:9f:4a:d1:07:30:2c:d1:ab:06:00" value="3095ac2b23718c68076cb2363f9af146c902fd566a0e1fc90577e665604d389931a2ffeaba66e3c8de9596ac7117d145490f1769dede29b3e46bc4b7449b9573d66eca5e1682d7815746bd0a9ecb27e8ec63be5efc3d28769aa732ed290c4382158159fb3b007e3eb8311b88ed90922363d39db27c0c4f5235181891c7679a581dcac274bc8878aa9a9ced974705d8084b73a72654dee9325f0f66bc34a88ec4995d9ec40475ac4628a19d3c7c02f32645e061aecd21d57e8533e9c6b3ac28dd3faba125e672126650568ad57628610aa18b6d3a49ddda9f4ad107302cd1ab0600"/>
-      <field name="data.len" showname="Length: 225" size="0" pos="42" show="225"/>
-  </field>
-</proto>
+  <proto name="corosync_totemnet" showname="Totemnet Layer of Corosync Cluster Engine" size="224" pos="0">
+    <field name="corosync_totemnet.security_header_hash_digest" showname="Hash digest: 3095ac2b23718c68076cb2363f9af146c902fd56" size="20" pos="0" show="30:95:ac:2b:23:71:8c:68:07:6c:b2:36:3f:9a:f1:46:c9:02:fd:56" value="3095ac2b23718c68076cb2363f9af146c902fd56"/>
+    <field name="corosync_totemnet.security_header_salt" showname="Salt: 6a0e1fc90577e665604d389931a2ffea" size="16" pos="20" show="6a:0e:1f:c9:05:77:e6:65:60:4d:38:99:31:a2:ff:ea" value="6a0e1fc90577e665604d389931a2ffea"/>
+    <field name="corosync_totemnet.security_crypto_type" showname="Cryptographic Type: SOBER (0)" size="1" pos="223" show="0" value="00"/>
+    <field name="corosync_totemnet.security_crypto_key" showname="alpha" size="0" pos="0" show="" value=""/>
+  </proto>
+  <proto name="corosync_totemsrp" showname="Totem Single Ring Protocol implemented in Corosync Cluster Engine" size="188" pos="36">
+    <field name="corosync_totemsrp.message_header.type" showname="Type: mcast (1)" size="1" pos="36" show="1" value="01"/>
+    <field name="corosync_totemsrp.message_header.encapsulated" showname="Encapsulated: not encapsulated (2)" size="1" pos="37" show="2" value="02"/>
+    <field name="corosync_totemsrp.message_header.endian_detector" showname="Endian detector: 0xff22" size="2" pos="38" show="0xff22" value="22ff"/>
+    <field name="corosync_totemsrp.message_header.nodeid" showname="Node ID: 1" size="4" pos="40" show="1" value="01000000"/>
+    <field name="corosync_totemsrp.mcast" showname="ring ordered multicast message" size="180" pos="44" show="" value="">
+      <field name="corosync_totemsrp.mcast.system_from" showname="System from address" size="44" pos="44" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 0; node: 1)" size="22" pos="44" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="44" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="48" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="50" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="54" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (interface: 1; node: 0)" size="22" pos="66" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 0" size="4" pos="66" show="0" value="00000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: Unknown (0)" size="2" pos="70" show="0" value="0000"/>
+          <field name="corosync_totemsrp.ip_address.addr" showname="Address: 00000000000000000000000000000000" size="16" pos="72" show="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" value="00000000000000000000000000000000"/>
+        </field>
+      </field>
+      <field name="corosync_totemsrp.mcast.seq" showname="Multicast sequence number: 189" size="4" pos="88" show="189" value="bd000000"/>
+      <field name="corosync_totemsrp.mcast.this_seqno" showname="This Sequence number: 113" size="4" pos="92" show="113" value="71000000"/>
+      <field name="corosync_totemsrp.memb_ring_id" showname="Member ring id (node: 1)" size="30" pos="96" show="" value="">
+        <field name="corosync_totemsrp.ip_address" showname="Node IP address (node: 1)" size="22" pos="96" show="" value="">
+          <field name="corosync_totemsrp.ip_address.nodeid" showname="Node ID: 1" size="4" pos="96" show="1" value="01000000"/>
+          <field name="corosync_totemsrp.ip_address.family" showname="Address family: AF_INET (2)" size="2" pos="100" show="2" value="0200"/>
+          <field name="corosync_totemsrp.ip_address.addr4" showname="Address: 192.168.151.61 (192.168.151.61)" size="4" pos="102" show="192.168.151.61" value="c0a8973d"/>
+          <field name="corosync_totemsrp.ip_address.addr4_padding" showname="Address padding: 08000200c0a8973d08000400" size="12" pos="106" show="08:00:02:00:c0:a8:97:3d:08:00:04:00" value="08000200c0a8973d08000400"/>
+        </field>
+        <field name="corosync_totemsrp.memb_ring_id.seq" showname="Squence in member ring id: 30000" size="8" pos="118" show="30000" value="3075000000000000"/>
+      </field>
+      <field name="corosync_totemsrp.mcast.node_id" showname="Node id(unused?): 0" size="4" pos="126" show="0" value="00000000"/>
+      <field name="corosync_totemsrp.mcast.guarantee" showname="Guarantee: 0" size="4" pos="130" show="0" value="00000000"/>
+    </field>
+  </proto>
+  <proto name="corosync_totempg" showname="Process Group Layer of Corosync Cluster Engine" size="90" pos="134">
+    <field name="corosync_totempg.mcast_header" showname="Multicast packet header" size="4" pos="134" show="" value="">
+      <field name="corosync_totempg.mcast_header.version" showname="Version: 0" size="2" pos="134" show="0" value="0000"/>
+      <field name="corosync_totempg.mcast_header.type" showname="Type: 444" size="2" pos="136" show="444" value="bc01"/>
+    </field>
+    <field name="corosync_totempg.fragmented" showname="Fragment flag: 0" size="1" pos="138" show="0" value="00"/>
+    <field name="corosync_totempg.continuation" showname="Continuation flag: 0" size="1" pos="139" show="0" value="00"/>
+    <field name="corosync_totempg.msg_count" showname="Count of messages: 1" size="2" pos="140" show="1" value="0100"/>
+    <field name="corosync_totempg.msg_len" showname="Length of message: 80 (msg index: 0)" size="2" pos="142" show="80" value="5000"/>
+    <field name="corosync_totempg.mcast_message" showname="Multicast packet message (msg index: 0)" size="80" pos="144" show="" value="">
+      <field name="corosync_totempg.group_count" showname="Group count: 1" size="2" pos="144" show="1" value="0100"/>
+      <field name="corosync_totempg.group_len" showname="Length of group name: 4 (group index: 0)" size="2" pos="146" show="4" value="0400"/>
+      <field name="corosync_totempg.group_name" showname="Group name: CMAN (group index: 0)" size="4" pos="148" show="CMAN" value="434d414e"/>
+      <proto name="openais_cman" showname="Cman running on OpenAIS" size="72" pos="152">
+        <field name="openais_cman.tgtport" showname="Target port number: 177 (RGMANAGER)" size="1" pos="152" show="177" value="b1"/>
+        <field name="openais_cman.srcport" showname="Source port number: 177" size="1" pos="153" show="177" value="b1"/>
+        <field name="openais_cman.pad" showname="Padding: 62395" size="2" pos="154" show="62395" value="bbf3"/>
+        <field name="openais_cman.flags" showname="Flags: 0" size="4" pos="156" show="0" value="00000000"/>
+        <field name="openais_cman.srcid" showname="Source node id: 1" size="4" pos="160" show="1" value="01000000"/>
+        <field name="openais_cman.tgtid" showname="Target node id: 0 (whole cluster)" size="4" pos="164" show="0" value="00000000"/>
+        <proto name="rgmanager" showname="Resource group manager" size="56" pos="168">
+          <field name="rgmanager.cluster_msg_header.src_ctx" showname="Source context: 9" size="4" pos="168" show="9" value="00000009"/>
+          <field name="rgmanager.cluster_msg_header.src_nodeid" showname="Source node id: 1" size="4" pos="172" show="1" value="00000001"/>
+          <field name="rgmanager.cluster_msg_header.dest_ctx" showname="Destination context: 0 (broadcast)" size="4" pos="176" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.dest_nodeid" showname="Destination node id: 0" size="4" pos="180" show="0" value="00000000"/>
+          <field name="rgmanager.cluster_msg_header.msg_contorol" showname="Message contorol: data (4)" size="1" pos="184" show="4" value="04"/>
+          <field name="rgmanager.cluster_msg_header.msg_port" showname="Message port: 177" size="1" pos="185" show="177" value="b1"/>
+          <field name="rgmanager.cluster_msg_header.pad" showname="Padding: 0x0000" size="2" pos="186" show="0x0000" value="0000"/>
+          <field name="rgmanager.cluster_msg_header.reserved" showname="Reserved: 00000000b100000000003005" size="12" pos="188" show="00:00:00:00:b1:00:00:00:00:00:30:05" value="00000000b100000000003005"/>
+          <field name="rgmanager.generic_msg_hdr.magic" showname="Magic: version 0 (0x123abc00)" size="4" pos="200" show="0x123abc00" value="123abc00"/>
+          <field name="rgmanager.generic_msg_hdr.length" showname="Length: 24" size="4" pos="204" show="24" value="00000018"/>
+          <field name="rgmanager.generic_msg_hdr.command" showname="Command: view formation message (0x00003000)" size="4" pos="208" show="0x00003000" value="00003000"/>
+          <field name="rgmanager.generic_msg_hdr.vf_command" showname="View formation command holder: 0x00003005, VF command: view formed, VF flags: Unknown" size="4" pos="212" show="0x00003005" value="00003005">
+            <field name="rgmanager.vf_command" showname=".... .... .... .... 0011 0000 0000 0101 = VF command: view formed (0x00003005)" size="4" pos="212" show="0x00003005" value="3005" unmaskedvalue="00003005"/>
+            <field name="rgmanager.vf_flags" showname="0000 0000 0000 0000 .... .... .... .... = VF flags: Unknown (0x00000000)" size="4" pos="212" show="0x00000000" value="0" unmaskedvalue="00003005"/>
+          </field>
+          <field name="rgmanager.generic_msg_hdr.vf_trans" showname="View formed transaction: 0x00010005" size="4" pos="216" show="0x00010005" value="00010005"/>
+          <field name="rgmanager.generic_msg_hdr.arg3" showname="Arguement 3: 0 (unused)" size="4" pos="220" show="0" value="00000000"/>
+        </proto>
+      </proto>
+    </field>
+  </proto>
 </packet>
 
 
