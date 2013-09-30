@@ -171,7 +171,7 @@ dissect_openais_a_id(proto_tree *parent_tree,
 }
 
 static int
-dissect_openais_a(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_openais_a(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
 	guint    length;
 	int      offset;
@@ -240,7 +240,7 @@ dissect_openais_a(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 			sub_tvb = tvb_new_subset(tvb, offset, 
 						 length - offset,
 						 length - offset);
-			dissector_try_port(subdissector_table, a_id >> 16, sub_tvb, pinfo, tree);
+			dissector_try_uint(subdissector_table, a_id >> 16, sub_tvb, pinfo, tree);
 		}
 
 	restore_pdata:
@@ -481,7 +481,7 @@ proto_reg_handoff_openais_a(void)
 		dissector_delete_string("corosync_totempg.group_name", "a", openais_a_handle);
 	} else {
 		openais_a_handle = new_create_dissector_handle(dissect_openais_a,
-								  proto_openais_a);
+							       proto_openais_a);
 		register_dissector = TRUE;
 	}
 	dissector_add_string("corosync_totempg.group_name", "a", openais_a_handle);

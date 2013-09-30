@@ -41,7 +41,7 @@ static guint clumond_port  = CLUMOND_PORT;
 dissector_handle_t xml_handle;
 
 static int
-dissect_clumond(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_clumond(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
   guint length;
   proto_item *item;
@@ -103,9 +103,9 @@ proto_reg_handoff_clumond (void)
     xml_handle = find_dissector("xml");
     dissector_registered = TRUE;
   } else {
-    dissector_delete("tcp.port",  port,  clumond_handle);
+    dissector_delete_uint("tcp.port",  port,  clumond_handle);
   }
 
   port  = clumond_port;
-  dissector_add("tcp.port",  port,  clumond_handle);
+  dissector_add_uint("tcp.port",  port,  clumond_handle);
 }

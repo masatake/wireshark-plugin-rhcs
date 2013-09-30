@@ -211,7 +211,7 @@ dissect_openais_ckpt_creation_attributes(tvbuff_t *tvb, packet_info *pinfo, prot
 }
 
 static int
-dissect_openais_ckpt(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_openais_ckpt(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
 	guint    length;
 	int      offset;
@@ -579,17 +579,17 @@ proto_reg_handoff_openais_ckpt(void)
 	static dissector_handle_t openais_ckpt_handle;
 
 	if (register_dissector) {
-		dissector_delete("openais_a.header.id.service", 
-				 OPENAIS_CKPT_SERIVICE_TYPE, 
-				 openais_ckpt_handle);
+		dissector_delete_uint("openais_a.header.id.service", 
+				      OPENAIS_CKPT_SERIVICE_TYPE, 
+				      openais_ckpt_handle);
 	} else {
 		openais_ckpt_handle = new_create_dissector_handle(dissect_openais_ckpt,
 								  proto_openais_ckpt);
 		register_dissector = TRUE;
 	}
-	dissector_add("openais_a.header.id.service", 
-		      OPENAIS_CKPT_SERIVICE_TYPE,
-		      openais_ckpt_handle);
+	dissector_add_uint("openais_a.header.id.service", 
+			   OPENAIS_CKPT_SERIVICE_TYPE,
+			   openais_ckpt_handle);
 }
 
 /* packet-openais-ckpt.c ends here */

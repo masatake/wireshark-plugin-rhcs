@@ -542,7 +542,7 @@ dissect_corosync_totempg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_t
 }
 
 static gboolean
-dissect_corosync_totempg_heur(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree)
+dissect_corosync_totempg_heur(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree, void* data)
 {
   int r;
 
@@ -555,8 +555,8 @@ dissect_corosync_totempg_heur(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tre
 
 static void corosync_totempg_message_reassemble_init (void)
 {
-  fragment_table_init    (&corosync_totempg_message_segment_table);
-  reassembled_table_init (&corosync_totempg_message_reassembled_table);
+  /* fragment_table_init    (&corosync_totempg_message_segment_table); */
+  /* reassembled_table_init (&corosync_totempg_message_reassembled_table); */
 }
 
 /* Register the protocol with Wireshark */

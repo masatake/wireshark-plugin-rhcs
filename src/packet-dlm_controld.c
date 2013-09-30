@@ -397,164 +397,164 @@ dissect_dlm_controld(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 }
 
 static int
-dissect_dlm_controld_daemon(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_dlm_controld_daemon(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
   return dissect_dlm_controld(tvb, pinfo, parent_tree, "dlm:controld");
 }
 
 static int
-dissect_dlm_controld_ls(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
-{
-  if (pinfo->private_data &&
-      strstr(pinfo->private_data, DLM_CONTROLD_LS_PREFIX))
-    return dissect_dlm_controld(tvb, pinfo, parent_tree, pinfo->private_data);
-  else
-    return 0;
-}
+dissect_dlm_controld_ls(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
+ {
+   if (pinfo->private_data &&
+       strstr(pinfo->private_data, DLM_CONTROLD_LS_PREFIX))
+     return dissect_dlm_controld(tvb, pinfo, parent_tree, pinfo->private_data);
+   else
+     return 0;
+ }
 
-void
-proto_register_dlm_controld(void)
-{
-  /* Setup list of fields */
-  static hf_register_info hf[] = {
-    { &hf_dlm_controld_header,
-      { "header", "dlm_controld.dlm_header",
-        FT_NONE, BASE_NONE, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_version,
-      { "header version", "dlm_controld.dlm_header.version",
-        FT_NONE, BASE_NONE, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_version_major,
-      { "header major version", "dlm_controld.dlm_header.version.major",
-        FT_UINT16, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_version_minor,
-      { "header minor version", "dlm_controld.dlm_header.version.minor",
-        FT_UINT16, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_version_patch,
-      { "header patch level", "dlm_controld.dlm_header.version.patch",
-        FT_UINT16, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_type,
-      { "header type", "dlm_controld.dlm_header.type",
-        FT_UINT16, BASE_DEC, VALS(vals_header_type), 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_nodeid,
-      { "Sender node", "dlm_controld.dlm_header.nodeid",
-        FT_UINT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_to_nodeid,
-      { "Recipient node", "dlm_controld.dlm_header.to_nodeid",
-        FT_UINT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_global_id,
-      { "Global unique id for this domain", "dlm_controld.dlm_header.global_id",
-        FT_UINT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_flags,
-      { "header flags", "dlm_controld.dlm_header.flags",
-        FT_UINT32, BASE_HEX, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_flags_joining,
-      { "Joining", "dlm_controld.dlm_header.flags.joining",
-	FT_BOOLEAN, 32, NULL, DLM_MFLG_JOINING,
-	NULL, HFILL }},
-    { &hf_dlm_controld_header_flags_haveplock,
-      { "Haveplock", "dlm_controld.dlm_header.flags.haveplock",
-	FT_BOOLEAN, 32, NULL, DLM_MFLG_HAVEPLOCK,
-	NULL, HFILL }},
-    { &hf_dlm_controld_header_flags_nack,
-      { "Nack", "dlm_controld.dlm_header.flags.nack",
-	FT_BOOLEAN, 32, NULL, DLM_MFLG_NACK,
-	NULL, HFILL }},
-    
-    { &hf_dlm_controld_header_msgdata,
-      { "header msgdata", "dlm_controld.dlm_header.msgdata",
-        FT_UINT32, BASE_HEX, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_pad1,
-      { "Padding", "dlm_controld.dlm_header.pad1",
-        FT_UINT32, BASE_HEX, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_header_pad2,
-      { "Padding", "dlm_controld.dlm_header.pad2",
-        FT_UINT64, BASE_HEX, NULL, 0x0,
-        NULL, HFILL }},
+ void
+ proto_register_dlm_controld(void)
+ {
+   /* Setup list of fields */
+   static hf_register_info hf[] = {
+     { &hf_dlm_controld_header,
+       { "header", "dlm_controld.dlm_header",
+	 FT_NONE, BASE_NONE, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_version,
+       { "header version", "dlm_controld.dlm_header.version",
+	 FT_NONE, BASE_NONE, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_version_major,
+       { "header major version", "dlm_controld.dlm_header.version.major",
+	 FT_UINT16, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_version_minor,
+       { "header minor version", "dlm_controld.dlm_header.version.minor",
+	 FT_UINT16, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_version_patch,
+       { "header patch level", "dlm_controld.dlm_header.version.patch",
+	 FT_UINT16, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_type,
+       { "header type", "dlm_controld.dlm_header.type",
+	 FT_UINT16, BASE_DEC, VALS(vals_header_type), 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_nodeid,
+       { "Sender node", "dlm_controld.dlm_header.nodeid",
+	 FT_UINT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_to_nodeid,
+       { "Recipient node", "dlm_controld.dlm_header.to_nodeid",
+	 FT_UINT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_global_id,
+       { "Global unique id for this domain", "dlm_controld.dlm_header.global_id",
+	 FT_UINT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_flags,
+       { "header flags", "dlm_controld.dlm_header.flags",
+	 FT_UINT32, BASE_HEX, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_flags_joining,
+       { "Joining", "dlm_controld.dlm_header.flags.joining",
+	 FT_BOOLEAN, 32, NULL, DLM_MFLG_JOINING,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_flags_haveplock,
+       { "Haveplock", "dlm_controld.dlm_header.flags.haveplock",
+	 FT_BOOLEAN, 32, NULL, DLM_MFLG_HAVEPLOCK,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_flags_nack,
+       { "Nack", "dlm_controld.dlm_header.flags.nack",
+	 FT_BOOLEAN, 32, NULL, DLM_MFLG_NACK,
+	 NULL, HFILL }},
 
-    { &hf_dlm_controld_protocol,
-      { "protocol", "dlm_controld.protocol",
-        FT_NONE, BASE_NONE, NULL, 0x0,
-        NULL, HFILL }},
-#define ATTACH_protocol(X,Y)		   \
-    { &hf_dlm_controld_protocol_##X##_ver, \
-      { "Protocol version of " Y, "dlm_controld.protocol." #X "_ver", \
-        FT_NONE, BASE_NONE, NULL, 0x0, \
-        NULL, HFILL }}, \
-    { &hf_dlm_controld_protocol_##X##_ver_major, \
-      { "Major version of " Y, "dlm_controld.protocol." #X "_ver.major", \
-        FT_UINT16, BASE_DEC, NULL, 0x0, \
-        NULL, HFILL }}, \
-    { &hf_dlm_controld_protocol_##X##_ver_minor, \
-      { "Minor version of " Y, "dlm_controld.protocol." #X "_ver.minor", \
-        FT_UINT16, BASE_DEC, NULL, 0x0, \
-        NULL, HFILL }}, \
-    { &hf_dlm_controld_protocol_##X##_ver_patch, \
-      { "Patch level of " Y, "dlm_controld.protocol." #X "_ver.patch", \
-        FT_UINT16, BASE_DEC, NULL, 0x0, \
-        NULL, HFILL }}, \
-    { &hf_dlm_controld_protocol_##X##_ver_flags, \
-      { "Flags of " Y, "dlm_controld.protocol." #X "_ver.flags", \
-        FT_UINT16, BASE_DEC, NULL, 0x0, \
-        NULL, HFILL }} 
+     { &hf_dlm_controld_header_msgdata,
+       { "header msgdata", "dlm_controld.dlm_header.msgdata",
+	 FT_UINT32, BASE_HEX, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_pad1,
+       { "Padding", "dlm_controld.dlm_header.pad1",
+	 FT_UINT32, BASE_HEX, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_header_pad2,
+       { "Padding", "dlm_controld.dlm_header.pad2",
+	 FT_UINT64, BASE_HEX, NULL, 0x0,
+	 NULL, HFILL }},
 
-    ATTACH_protocol(dm, "daemon max"),
-    ATTACH_protocol(km, "kernel max"),
-    ATTACH_protocol(dr, "daemon running"),
-    ATTACH_protocol(kr, "kernel running"),
+     { &hf_dlm_controld_protocol,
+       { "protocol", "dlm_controld.protocol",
+	 FT_NONE, BASE_NONE, NULL, 0x0,
+	 NULL, HFILL }},
+ #define ATTACH_protocol(X,Y)		   \
+     { &hf_dlm_controld_protocol_##X##_ver, \
+       { "Protocol version of " Y, "dlm_controld.protocol." #X "_ver", \
+	 FT_NONE, BASE_NONE, NULL, 0x0, \
+	 NULL, HFILL }}, \
+     { &hf_dlm_controld_protocol_##X##_ver_major, \
+       { "Major version of " Y, "dlm_controld.protocol." #X "_ver.major", \
+	 FT_UINT16, BASE_DEC, NULL, 0x0, \
+	 NULL, HFILL }}, \
+     { &hf_dlm_controld_protocol_##X##_ver_minor, \
+       { "Minor version of " Y, "dlm_controld.protocol." #X "_ver.minor", \
+	 FT_UINT16, BASE_DEC, NULL, 0x0, \
+	 NULL, HFILL }}, \
+     { &hf_dlm_controld_protocol_##X##_ver_patch, \
+       { "Patch level of " Y, "dlm_controld.protocol." #X "_ver.patch", \
+	 FT_UINT16, BASE_DEC, NULL, 0x0, \
+	 NULL, HFILL }}, \
+     { &hf_dlm_controld_protocol_##X##_ver_flags, \
+       { "Flags of " Y, "dlm_controld.protocol." #X "_ver.flags", \
+	 FT_UINT16, BASE_DEC, NULL, 0x0, \
+	 NULL, HFILL }} 
+
+     ATTACH_protocol(dm, "daemon max"),
+     ATTACH_protocol(km, "kernel max"),
+     ATTACH_protocol(dr, "daemon running"),
+     ATTACH_protocol(kr, "kernel running"),
 
 
-    { &hf_dlm_controld_ls_info,
-      { "ls_info", "dlm_controld.ls_info",
-        FT_NONE, BASE_NONE, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_ls_info_ls_info_size,
-      { "Size of ls_info", "dlm_controld.ls_info.ls_info_size",
-        FT_UINT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_ls_info_id_info_size,
-      { "Size of id_info", "dlm_controld.ls_info.id_info_size",
-        FT_UINT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_ls_info_id_info_count,
-      { "Count of id_infos", "dlm_controld.ls_info.id_info_count",
-        FT_UINT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_ls_info_started_count,
-      { "Count of started", "dlm_controld.ls_info.started_count",
-        FT_UINT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_ls_info_member_count,
-      { "Count of members", "dlm_controld.ls_info.member_count",
-        FT_INT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_ls_info_joined_count,
-      { "Count of joined", "dlm_controld.ls_info.joined_count",
-        FT_INT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_ls_info_remove_count,
-      { "Count of remove", "dlm_controld.ls_info.remove_count",
-        FT_INT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
-    { &hf_dlm_controld_ls_info_failed_count,
-      { "Count of failed", "dlm_controld.ls_info.failed_count",
-        FT_INT32, BASE_DEC, NULL, 0x0,
-        NULL, HFILL }},
+     { &hf_dlm_controld_ls_info,
+       { "ls_info", "dlm_controld.ls_info",
+	 FT_NONE, BASE_NONE, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_ls_info_ls_info_size,
+       { "Size of ls_info", "dlm_controld.ls_info.ls_info_size",
+	 FT_UINT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_ls_info_id_info_size,
+       { "Size of id_info", "dlm_controld.ls_info.id_info_size",
+	 FT_UINT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_ls_info_id_info_count,
+       { "Count of id_infos", "dlm_controld.ls_info.id_info_count",
+	 FT_UINT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_ls_info_started_count,
+       { "Count of started", "dlm_controld.ls_info.started_count",
+	 FT_UINT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_ls_info_member_count,
+       { "Count of members", "dlm_controld.ls_info.member_count",
+	 FT_INT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_ls_info_joined_count,
+       { "Count of joined", "dlm_controld.ls_info.joined_count",
+	 FT_INT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_ls_info_remove_count,
+       { "Count of remove", "dlm_controld.ls_info.remove_count",
+	 FT_INT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
+     { &hf_dlm_controld_ls_info_failed_count,
+       { "Count of failed", "dlm_controld.ls_info.failed_count",
+	 FT_INT32, BASE_DEC, NULL, 0x0,
+	 NULL, HFILL }},
 
-    { &hf_dlm_controld_id_info,
-      { "id_info", "dlm_controld.id_info",
-        FT_NONE, BASE_NONE, NULL, 0x0,
+     { &hf_dlm_controld_id_info,
+       { "id_info", "dlm_controld.id_info",
+	        FT_NONE, BASE_NONE, NULL, 0x0,
         NULL, HFILL }},
     { &hf_dlm_controld_id_info_nodeid,
       { "Node id", "dlm_controld.id_info.nodeid",

@@ -91,7 +91,7 @@ plugin_register (void)
 #endif
 #include <string.h>
 #include <glib.h>
-#include <epan/crypt/crypt-sha1.h>
+#include <epan/crypt/sha1.h>
 #ifndef HAVE_SHA1_HMAC
 
 /*

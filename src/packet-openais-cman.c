@@ -628,7 +628,7 @@ dissect_openais_cman_msg_fencestatus(tvbuff_t *tvb,
 }
 
 static int
-dissect_openais_cman(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_openais_cman(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
 	guint    length;
 	int      offset;
@@ -679,7 +679,7 @@ dissect_openais_cman(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 		{
 			dissector_handle_t h;
 			
-			h = dissector_get_port_handle(subdissector_table, tgtport);
+			h = dissector_get_uint_handle(subdissector_table, tgtport);
 			proto_item_append_text(sub_item, " (%s)", 
 					       h? dissector_handle_get_short_name(h): "application");
 		}
@@ -829,7 +829,7 @@ dissect_openais_cman(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
 		tvbuff_t* next_tvb;
 
 		next_tvb = tvb_new_subset(tvb, offset, (length - offset), (length - offset));
-		dissector_try_port(subdissector_table, tgtport, 
+		dissector_try_uint(subdissector_table, tgtport, 
 				   next_tvb, pinfo, tree);
 	}
 

@@ -483,7 +483,7 @@ dissect_gfs_controld(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 }
 
 static int
-dissect_gfs_controld_daemon(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_gfs_controld_daemon(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
   return dissect_gfs_controld(tvb, pinfo, parent_tree, "gfs:controld");
 }
@@ -712,7 +712,7 @@ proto_register_gfs_controld(void)
 }
 
 static int
-dissect_gfs_controld_mount(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_gfs_controld_mount(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
   if (pinfo->private_data &&
       strstr(pinfo->private_data, GFS_CONTROLD_MOUNT_PREFIX))

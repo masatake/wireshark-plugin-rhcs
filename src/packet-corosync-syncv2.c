@@ -72,7 +72,7 @@ static const value_string vals_header_id[] = {
 
 
 static int
-dissect_corosync_syncv2(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_corosync_syncv2(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
 	guint    length;
 	int      offset;
@@ -143,7 +143,7 @@ dissect_corosync_syncv2(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tr
 	if (check_col(pinfo->cinfo, COL_INFO))
 	  {
 	    const char* strval;
-	    strval = match_strval(header_id, vals_header_id);
+	    strval = try_val_to_str(header_id, vals_header_id);
 	    col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", ":%s)", strval?strval: "UNKNOWN-ID");
 	  }
 

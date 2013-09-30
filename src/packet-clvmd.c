@@ -544,7 +544,7 @@ dissect_clvmd__cmd_flags_resource(tvbuff_t *tvb, packet_info *pinfo, proto_tree 
 }
 
 static int
-dissect_clvmd(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_clvmd(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
 	guint    length;
 	int      offset;
@@ -847,11 +847,11 @@ proto_reg_handoff_clvmd(void)
 	static dissector_handle_t clvmd_handle;
 
 	if (register_dissector) {
-		dissector_delete("openais_cman.tgtport", CLVMD_CMAN_TGTPORT, clvmd_handle);
+		dissector_delete_uint("openais_cman.tgtport", CLVMD_CMAN_TGTPORT, clvmd_handle);
 	} else {
 		clvmd_handle = new_create_dissector_handle(dissect_clvmd, proto_clvmd);
 		register_dissector = TRUE;
 	}
-	dissector_add("openais_cman.tgtport", CLVMD_CMAN_TGTPORT, clvmd_handle);
+	dissector_add_uint("openais_cman.tgtport", CLVMD_CMAN_TGTPORT, clvmd_handle);
 }
 

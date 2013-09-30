@@ -65,7 +65,7 @@ static const value_string vals_header_id[] = {
   {0, NULL}
 };
 static int
-dissect_openais_sync(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_openais_sync(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
 	guint    length;
 	int      offset;

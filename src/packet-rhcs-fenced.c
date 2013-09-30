@@ -408,7 +408,7 @@ dissect_rhcs_fenced(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
   if (check_col(pinfo->cinfo, COL_INFO)) {
     const char* strval;
 
-    strval = match_strval(type, vals_header_type);
+    strval = try_val_to_str(type, vals_header_type);
     col_append_sep_fstr(pinfo->cinfo, COL_INFO, " ", "(%s :%s)", 
 			(daemon?"fenced:daemon": "fenced:default"),
 			(strval? strval: "UNKNOWN-TYPE"));
@@ -515,13 +515,13 @@ dissect_rhcs_fenced(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree,
 }
 
 static int
-dissect_rhcs_fenced_daemon(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_rhcs_fenced_daemon(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
   return dissect_rhcs_fenced(tvb, pinfo, parent_tree, TRUE);
 }
 
 static int
-dissect_rhcs_fenced_default(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_rhcs_fenced_default(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void* data)
 {
   return dissect_rhcs_fenced(tvb, pinfo, parent_tree, FALSE);
 }

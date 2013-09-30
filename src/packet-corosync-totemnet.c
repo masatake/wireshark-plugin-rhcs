@@ -37,7 +37,8 @@
 
 #include <epan/packet.h>
 #include <epan/prefs.h>
-#include <epan/crypt/crypt-sha1.h>
+/* #include <epan/crypt/crypt-sha1.h> */
+#include <epan/crypt/sha1.h>
 
 #include "packet-corosync-totemsrp.h"
 
@@ -423,7 +424,8 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
 
 static int
 dissect_corosynec_totemnet(tvbuff_t *tvb,
-                           packet_info *pinfo, proto_tree *parent_tree)
+                           packet_info *pinfo, proto_tree *parent_tree,
+			   void *data)
 {
   if (corosync_totemnet_private_keys_list) 
     {
@@ -512,8 +514,8 @@ proto_reg_handoff_corosync_totemnet(void)
 
   if (register_dissector) 
     {
-      dissector_delete("udp.port", port, corosync_totemnet_handle);
-      dissector_delete("udp.port", port - 1, corosync_totemnet_handle);
+      dissector_delete_uint("udp.port", port, corosync_totemnet_handle);
+      dissector_delete_uint("udp.port", port - 1, corosync_totemnet_handle);
     } 
   else 
     {
@@ -530,8 +532,8 @@ proto_reg_handoff_corosync_totemnet(void)
 						   ";", 
 						   0);
   port  = corosync_totemnet_port;
-  dissector_add("udp.port", port,     corosync_totemnet_handle);
-  dissector_add("udp.port", port - 1, corosync_totemnet_handle);
+  dissector_add_uint("udp.port", port,     corosync_totemnet_handle);
+  dissector_add_uint("udp.port", port - 1, corosync_totemnet_handle);
 }
 
 

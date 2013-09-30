@@ -94,7 +94,7 @@ static const value_string vals_openais_cpg_event_id_type[] = {
 };
 
 static int
-dissect_groupd(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_groupd(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
 	guint    length;
 	int      offset;

@@ -789,7 +789,7 @@ out:
 }
 
 static int
-dissect_rgmanager(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_rgmanager(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
 	guint    length;
 	int      offset;
@@ -1208,12 +1208,12 @@ proto_reg_handoff_rgmanager(void)
 	static dissector_handle_t rgmanager_handle;
 
 	if (register_dissector) {
-		dissector_delete("openais_cman.tgtport", RGMANAGER_CMAN_TGTPORT, rgmanager_handle);
+		dissector_delete_uint("openais_cman.tgtport", RGMANAGER_CMAN_TGTPORT, rgmanager_handle);
 	} else {
 		rgmanager_handle = new_create_dissector_handle(dissect_rgmanager, proto_rgmanager);
 		register_dissector = TRUE;
 	}
-	dissector_add("openais_cman.tgtport", RGMANAGER_CMAN_TGTPORT, rgmanager_handle);
+	dissector_add_uint("openais_cman.tgtport", RGMANAGER_CMAN_TGTPORT, rgmanager_handle);
 }
 
 

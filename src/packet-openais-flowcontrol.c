@@ -75,7 +75,7 @@ static const value_string vals_openais_flowcontrol_state[] = {
 };
 
 static int
-dissect_openais_flowcontrol(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_openais_flowcontrol(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
         guint32  id_len;
 
@@ -230,7 +230,7 @@ proto_reg_handoff_openais_flowcontrol(void)
 		dissector_delete_string("corosync_totempg.group_name", "flowcontrol", openais_flowcontrol_handle);
 	} else {
 		openais_flowcontrol_handle = new_create_dissector_handle(dissect_openais_flowcontrol,
-								  proto_openais_flowcontrol);
+									 proto_openais_flowcontrol);
 		register_dissector = TRUE;
 	}
 	dissector_add_string("corosync_totempg.group_name", "flowcontrol", openais_flowcontrol_handle);

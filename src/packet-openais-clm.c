@@ -60,7 +60,7 @@ static const value_string vals_openais_clm_fn_id[] = {
 
 
 static int
-dissect_openais_clm(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_openais_clm(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void *data)
 {
 	guint    length;
 	int      offset;
@@ -148,17 +148,17 @@ proto_reg_handoff_openais_clm(void)
 	static dissector_handle_t openais_clm_handle;
 
 	if (register_dissector) {
-		dissector_delete("openais_a.header.id.service", 
-				 OPENAIS_CLM_SERIVICE_TYPE, 
-				 openais_clm_handle);
+		dissector_delete_uint("openais_a.header.id.service", 
+				      OPENAIS_CLM_SERIVICE_TYPE, 
+				      openais_clm_handle);
 	} else {
 		openais_clm_handle = new_create_dissector_handle(dissect_openais_clm,
 								  proto_openais_clm);
 		register_dissector = TRUE;
 	}
-	dissector_add("openais_a.header.id.service", 
-		      OPENAIS_CLM_SERIVICE_TYPE,
-		      openais_clm_handle);
+	dissector_add_uint("openais_a.header.id.service", 
+			   OPENAIS_CLM_SERIVICE_TYPE,
+			   openais_clm_handle);
 }
 
 #if 0

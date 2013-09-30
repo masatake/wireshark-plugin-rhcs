@@ -549,7 +549,7 @@ dissect_openais_cpg_mcast(tvbuff_t *tvb,
 
 		    saved_private_data = pinfo->private_data;
 		    pinfo->private_data = group_name;
-		    dissector_try_heuristic(heur_subdissector_list, next_tvb, pinfo, tree);
+		    dissector_try_heuristic(heur_subdissector_list, next_tvb, pinfo, tree, NULL);
 		    pinfo->private_data = saved_private_data;
 		  }
 
@@ -707,7 +707,7 @@ dissect_openais_cpg_downlist(tvbuff_t *tvb,
 }
 
 static int
-dissect_openais_cpg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree)
+dissect_openais_cpg(tvbuff_t *tvb, packet_info *pinfo, proto_tree *parent_tree, void* data)
 {
 	guint    length;
 	int      offset;
@@ -957,17 +957,17 @@ proto_reg_handoff_openais_cpg(void)
 	static dissector_handle_t openais_cpg_handle;
 
 	if (register_dissector) {
-		dissector_delete("openais_a.header.id.service", 
-				 OPENAIS_CPG_SERIVICE_TYPE, 
-				 openais_cpg_handle);
+		dissector_delete_uint("openais_a.header.id.service", 
+				      OPENAIS_CPG_SERIVICE_TYPE, 
+				      openais_cpg_handle);
 	} else {
 		openais_cpg_handle = new_create_dissector_handle(dissect_openais_cpg,
-								  proto_openais_cpg);
+								 proto_openais_cpg);
 		register_dissector = TRUE;
 	}
-	dissector_add("openais_a.header.id.service", 
-		      OPENAIS_CPG_SERIVICE_TYPE,
-		      openais_cpg_handle);
+	dissector_add_uint("openais_a.header.id.service", 
+			   OPENAIS_CPG_SERIVICE_TYPE,
+			   openais_cpg_handle);
 }
 
 static guint32
