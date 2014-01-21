@@ -365,7 +365,7 @@ proto_register_corosync_totemnet(void)
                                  10,
                                  &corosync_totemnet_port);
   prefs_register_string_preference(corosync_totemnet_module, "private_keys", "Private keys",
-                                   "Semicolon-separated list keys to decrypt the communications "
+                                   "Semicolon-separated key list to decrypt the communications "
 				   "on corosync cluster engine." ,
                                    (const gchar **)&corosync_totemnet_private_keys);
 }
