@@ -174,140 +174,6 @@ dissect_corosync_totemnet_security_header(tvbuff_t *tvb,
   return HMAC_HASH_SIZE + SALT_SIZE;
 }
 
-/* About totemnet.c of corosync cluster engine:
- *
- * dissect_corosynec_totemnet_with_decryption() is derived from
- * totemnet.c in corosync which is licensed under 3-clause BSD license.
- * However, to merge this dissector to wireshark official source tree,
- * corosync developers permit EXPLICITLY to reuse totemnet.c in GPL.
- *
- http://permalink.gmane.org/gmane.linux.redhat.cluster/19087
- ------------------------------------------------------------
-  Steven Dake | 4 Jan 2011 22:02
-  Re: [Openais] packet dissectors for totempg, cman, clvmd, rgmanager, cpg,
-
-On 12/14/2010 08:04 AM, Masatake YAMATO wrote:
-> Thank you for replying.
-> 
->> Masatake,
->>
->> Masatake YAMATO napsal(a):
->>> I'd like to your advice more detail seriously.
->>> I've been developing this code for three years.
->>> I don't want to make this code garbage.
->>>
->>>> Masatake,
->>>> I'm pretty sure that biggest problem of your code was that it was
->>>> licensed under BSD (three clause, same as Corosync has)
->>>> license. Wireshark is licensed under GPL and even I like BSD licenses
->>>> much more, I would recommend you to try to relicense code under GPL
->>>> and send them this code.
->>>>
->>>> Regards,
->>>>   Honza
->>> I got the similar comment from wireshark developer.
->>> Please, read the discussion:
->>> 	https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=3232
->>>
->>
->> I've read that thread long time before I've sent previous mail, so
->> thats reason why I think that Wireshark developers just feel MUCH more
->> comfortable with GPL and thats reason why they just ignoring it.
-> 
-> I see.
->  
->>> In my understanding there is no legal problem in putting 3-clause BSD
->>> code into GPL code.  Acutally wireshark includes some 3-clause BSD
->>> code:
->>>
->>
->> Actually there is really not. BSD to GPL works without problem, but
->> many people just don't know it...
-> 
-> ...it is too bad. I strongly believe FOSS developers should know the
-> intent behind of the both licenses.
->  
->>> epan/dissectors/packet-radiotap-defs.h: 
->>> *//*-
->>>  * Copyright (c) 2003, 2004 David Young.  All rights reserved.
->>>  *
->>>  * $Id: packet-radiotap-defs.h 34554 2010-10-18 13:24:10Z morriss $
->>>  *
->>>  * Redistribution and use in source and binary forms, with or without
->>>  * modification, are permitted provided that the following conditions
->>>  * are met:
->>>  * 1. Redistributions of source code must retain the above copyright
->>>  *    notice, this list of conditions and the following disclaimer.
->>>  * 2. Redistributions in binary form must reproduce the above copyright
->>>  *    notice, this list of conditions and the following disclaimer in the
->>>  *    documentation and/or other materials provided with the distribution.
->>>  * 3. The name of David Young may not be used to endorse or promote
->>>  *    products derived from this software without specific prior
->>>  *    written permission.
->>>  *
->>>  * THIS SOFTWARE IS PROVIDED BY DAVID YOUNG ``AS IS'' AND ANY
->>>  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
->>>  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
->>>  * PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL DAVID
->>>  * YOUNG BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
->>>  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
->>>  * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
->>>  * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
->>>  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
->>>  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
->>>  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
->>>  * OF SUCH DAMAGE.
->>>  *//*
->>> I'd like to separate the legal issue and preference. I think I
->>> understand the importance of preference of upstream
->>> developers. However, I'd like to clear the legal issue first.
->>>
->>
->> Legally it's ok. But as you said, developers preference are
->> different. And because you are trying to change THEIR code it's
->> sometimes better to play they rules.
-> 
-> I see.
->  
->>> I can image there are people who prefer to GPL as the license covering
->>> their software. But here I've taken some corosync code in my
->>> dissector. It is essential part of my dissector. And corosync is
->>
->> ^^^ This may be problem. Question is how big is that part and if it
->> can be possible to make exception there. Can you point that code?
->>
->> Steve, we were able to relicense HUGE portion of code in case of
->> libqb, are we able to make the same for Wireshark dissector?
-> 
-> Could you see https://github.com/masatake/wireshark-plugin-rhcs/blob/master/src/packet-corosync-totemnet.c#L156
-> I refer totemnet.c to write dissect_corosynec_totemnet_with_decryption() function. 
-> 
->>> licensed in 3-clause BSD, as you know. I'd like to change the license
->>> to merge my code to upstream project. I cannot do it in this context.
->>> See https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=3232#c13
->>> Thank you.
->>
->> Regards,
->>   Honza
-> 
-> Masatake YAMATO
-
-Masatake,
-
-Red Hat is the author of the totemnet file and can provide that code
-under GPL if you like.  We cannot modify the license for libtomcrypt as
-we are not the authors.  Feel free to change the license for that
-particular code you rewrote in the link
-
-> Could you see
-https://github.com/masatake/wireshark-plugin-rhcs/blob/master/src/packet-corosync-totemnet.c#L156
-
-under a GPL license if it helps move things along.
-
-Regards
--steveu
-       */
-
 static int
 dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
                                            packet_info *pinfo, proto_tree *parent_tree,
@@ -1428,4 +1294,139 @@ static unsigned long corocrypto_sober128_read(unsigned char *buf, unsigned long 
 
     return tlen;
 }
+
+/* About totemnet.c of corosync cluster engine:
+ *
+ * dissect_corosynec_totemnet_with_decryption() is derived from
+ * totemnet.c in corosync which is licensed under 3-clause BSD license.
+ * However, to merge this dissector to wireshark official source tree,
+ * corosync developers permit EXPLICITLY to reuse totemnet.c in GPL.
+ *
+ http://permalink.gmane.org/gmane.linux.redhat.cluster/19087
+ ------------------------------------------------------------
+  Steven Dake | 4 Jan 2011 22:02
+  Re: [Openais] packet dissectors for totempg, cman, clvmd, rgmanager, cpg,
+
+On 12/14/2010 08:04 AM, Masatake YAMATO wrote:
+> Thank you for replying.
+> 
+>> Masatake,
+>>
+>> Masatake YAMATO napsal(a):
+>>> I'd like to your advice more detail seriously.
+>>> I've been developing this code for three years.
+>>> I don't want to make this code garbage.
+>>>
+>>>> Masatake,
+>>>> I'm pretty sure that biggest problem of your code was that it was
+>>>> licensed under BSD (three clause, same as Corosync has)
+>>>> license. Wireshark is licensed under GPL and even I like BSD licenses
+>>>> much more, I would recommend you to try to relicense code under GPL
+>>>> and send them this code.
+>>>>
+>>>> Regards,
+>>>>   Honza
+>>> I got the similar comment from wireshark developer.
+>>> Please, read the discussion:
+>>> 	https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=3232
+>>>
+>>
+>> I've read that thread long time before I've sent previous mail, so
+>> thats reason why I think that Wireshark developers just feel MUCH more
+>> comfortable with GPL and thats reason why they just ignoring it.
+> 
+> I see.
+>  
+>>> In my understanding there is no legal problem in putting 3-clause BSD
+>>> code into GPL code.  Acutally wireshark includes some 3-clause BSD
+>>> code:
+>>>
+>>
+>> Actually there is really not. BSD to GPL works without problem, but
+>> many people just don't know it...
+> 
+> ...it is too bad. I strongly believe FOSS developers should know the
+> intent behind of the both licenses.
+>  
+>>> epan/dissectors/packet-radiotap-defs.h: 
+>>> *//*-
+>>>  * Copyright (c) 2003, 2004 David Young.  All rights reserved.
+>>>  *
+>>>  * $Id: packet-radiotap-defs.h 34554 2010-10-18 13:24:10Z morriss $
+>>>  *
+>>>  * Redistribution and use in source and binary forms, with or without
+>>>  * modification, are permitted provided that the following conditions
+>>>  * are met:
+>>>  * 1. Redistributions of source code must retain the above copyright
+>>>  *    notice, this list of conditions and the following disclaimer.
+>>>  * 2. Redistributions in binary form must reproduce the above copyright
+>>>  *    notice, this list of conditions and the following disclaimer in the
+>>>  *    documentation and/or other materials provided with the distribution.
+>>>  * 3. The name of David Young may not be used to endorse or promote
+>>>  *    products derived from this software without specific prior
+>>>  *    written permission.
+>>>  *
+>>>  * THIS SOFTWARE IS PROVIDED BY DAVID YOUNG ``AS IS'' AND ANY
+>>>  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+>>>  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+>>>  * PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL DAVID
+>>>  * YOUNG BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+>>>  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+>>>  * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+>>>  * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+>>>  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+>>>  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+>>>  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+>>>  * OF SUCH DAMAGE.
+>>>  *//*
+>>> I'd like to separate the legal issue and preference. I think I
+>>> understand the importance of preference of upstream
+>>> developers. However, I'd like to clear the legal issue first.
+>>>
+>>
+>> Legally it's ok. But as you said, developers preference are
+>> different. And because you are trying to change THEIR code it's
+>> sometimes better to play they rules.
+> 
+> I see.
+>  
+>>> I can image there are people who prefer to GPL as the license covering
+>>> their software. But here I've taken some corosync code in my
+>>> dissector. It is essential part of my dissector. And corosync is
+>>
+>> ^^^ This may be problem. Question is how big is that part and if it
+>> can be possible to make exception there. Can you point that code?
+>>
+>> Steve, we were able to relicense HUGE portion of code in case of
+>> libqb, are we able to make the same for Wireshark dissector?
+> 
+> Could you see https://github.com/masatake/wireshark-plugin-rhcs/blob/master/src/packet-corosync-totemnet.c#L156
+> I refer totemnet.c to write dissect_corosynec_totemnet_with_decryption() function. 
+> 
+>>> licensed in 3-clause BSD, as you know. I'd like to change the license
+>>> to merge my code to upstream project. I cannot do it in this context.
+>>> See https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=3232#c13
+>>> Thank you.
+>>
+>> Regards,
+>>   Honza
+> 
+> Masatake YAMATO
+
+Masatake,
+
+Red Hat is the author of the totemnet file and can provide that code
+under GPL if you like.  We cannot modify the license for libtomcrypt as
+we are not the authors.  Feel free to change the license for that
+particular code you rewrote in the link
+
+> Could you see
+https://github.com/masatake/wireshark-plugin-rhcs/blob/master/src/packet-corosync-totemnet.c#L156
+
+under a GPL license if it helps move things along.
+
+Regards
+-steveu
+       */
+
 /* packet-corosync-totemnet.c ends here */
