@@ -295,29 +295,53 @@ dissect_corosynec_totemnet(tvbuff_t *tvb,
 {
   if (corosync_totemnet_private_keys_list) 
     {
+      static int last_key_index = -1;
       int key_index;
-      gchar ** keys;
 
-      for (keys = corosync_totemnet_private_keys_list, key_index = 0;
-	   keys[key_index];
-	   key_index++)
+      static int last_check_crypt_type_index;
+      int check_crypt_type_index = -1;
+      gboolean check_crypt_type_list[] = {FALSE, TRUE};
+
+
+      if (last_key_index != -1)
 	{
 	  int r;
 
-	  r = dissect_corosynec_totemnet_with_decryption(tvb, 
+	  r = dissect_corosynec_totemnet_with_decryption(tvb,
 							 pinfo, 
 							 parent_tree,
-							 FALSE,
-							 keys[key_index]);
-      
-	  if (r == 0)
-	    r = dissect_corosynec_totemnet_with_decryption(tvb, 
-							   pinfo, 
-							   parent_tree,
-							   TRUE,
-							   keys[key_index]);
+							 check_crypt_type_list[last_check_crypt_type_index],
+							 corosync_totemnet_private_keys_list[last_key_index]);
 	  if (r > 0)
 	    return r;
+	  else
+	    last_key_index = -1;
+	}
+      
+      for (key_index = 0;
+	   corosync_totemnet_private_keys_list[key_index];
+	   key_index++)
+	{
+	  for (check_crypt_type_index = 0; 
+	       check_crypt_type_index < 2; 
+	       check_crypt_type_index++)
+	    {
+	      int r;
+
+	      r = dissect_corosynec_totemnet_with_decryption(tvb, 
+							     pinfo, 
+							     parent_tree,
+							     check_crypt_type_list[check_crypt_type_index],
+							     corosync_totemnet_private_keys_list[key_index]);
+	      if (r > 0)
+		{
+		  last_key_index = key_index;
+		  last_check_crypt_type_index = check_crypt_type_index;
+		  return r;
+		}
+	      else if (r < 0)
+		break;
+	    }
 	}
     }
   return dissect_corosync_totemsrp(tvb, pinfo, parent_tree);
