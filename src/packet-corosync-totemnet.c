@@ -42,7 +42,7 @@
 
 #include "packet-corosync-totemsrp.h"
 
-/* This dissector deals packets defined in totemnet.c of corosync 
+/* This dissector deals packets defined in totemnet.c of corosync
    cluster engine. In the totemnet.c the packet is encrypted and decrypted
    with LibTomCrypt. This dissector tries decrypting the packet with
    the library and sha1 functions in wireshark. */
@@ -50,7 +50,7 @@
 
 /* crypto.h */
 
-/* About LibTomCrypt: 
+/* About LibTomCrypt:
  * ---------------------------------------------------------------------
  * LibTomCrypt, modular cryptographic library -- Tom St Denis
  *
@@ -73,14 +73,14 @@
  */
 struct sober128_prng {
     unsigned long      R[17],          /* Working storage for the shift register */
-                 initR[17],      /* saved register contents */ 
+                 initR[17],      /* saved register contents */
                  konst,          /* key dependent constant */
                  sbuf;           /* partial word encryption buffer */
 
     int          nbuf,           /* number of part-word stream bits buffered */
                  flag,           /* first add_entropy call or not? */
                  set;            /* did we call add_entropy to set key? */
-    
+
 };
 
 static int corocrypto_sober128_start(struct sober128_prng *prng);
@@ -88,8 +88,8 @@ static int corocrypto_sober128_add_entropy(const unsigned char *buf, unsigned lo
 static unsigned long corocrypto_sober128_read(unsigned char *buf, unsigned long len, struct sober128_prng *prng);
 
 
-/* 
- * Dissector body 
+/*
+ * Dissector body
  */
 
 #define PORT_COROSYNC_TOTEMNET 5405
@@ -140,11 +140,11 @@ dissect_corosync_totemnet_security_header(tvbuff_t *tvb,
 
   if (check_col(pinfo->cinfo, COL_PROTOCOL))
     col_set_str(pinfo->cinfo, COL_PROTOCOL, "COROSYNC/TOTEMNET");
-  
+
   if (check_col(pinfo->cinfo, COL_INFO))
     col_clear(pinfo->cinfo, COL_INFO);
-  
-  if (parent_tree) 
+
+  if (parent_tree)
     {
       item = proto_tree_add_item(parent_tree, proto_corosync_totemnet, tvb, 0,
                                  -1, FALSE);
@@ -156,7 +156,7 @@ dissect_corosync_totemnet_security_header(tvbuff_t *tvb,
       proto_tree_add_item(tree,
                           hf_corosync_totemnet_security_header_salt,
                           tvb, HMAC_HASH_SIZE, SALT_SIZE, FALSE);
-      
+
       if (check_crypt_type)
 	{
 	  int io_len = tvb_length(tvb);
@@ -188,7 +188,7 @@ dissect_corosync_totemnet_security_header(tvbuff_t *tvb,
 
 On 12/14/2010 08:04 AM, Masatake YAMATO wrote:
 > Thank you for replying.
-> 
+>
 >> Masatake,
 >>
 >> Masatake YAMATO napsal(a):
@@ -213,9 +213,9 @@ On 12/14/2010 08:04 AM, Masatake YAMATO wrote:
 >> I've read that thread long time before I've sent previous mail, so
 >> thats reason why I think that Wireshark developers just feel MUCH more
 >> comfortable with GPL and thats reason why they just ignoring it.
-> 
+>
 > I see.
->  
+>
 >>> In my understanding there is no legal problem in putting 3-clause BSD
 >>> code into GPL code.  Acutally wireshark includes some 3-clause BSD
 >>> code:
@@ -223,11 +223,11 @@ On 12/14/2010 08:04 AM, Masatake YAMATO wrote:
 >>
 >> Actually there is really not. BSD to GPL works without problem, but
 >> many people just don't know it...
-> 
+>
 > ...it is too bad. I strongly believe FOSS developers should know the
 > intent behind of the both licenses.
->  
->>> epan/dissectors/packet-radiotap-defs.h: 
+>
+>>> epan/dissectors/packet-radiotap-defs.h:
 >>> *//*-
 >>>  * Copyright (c) 2003, 2004 David Young.  All rights reserved.
 >>>  *
@@ -266,9 +266,9 @@ On 12/14/2010 08:04 AM, Masatake YAMATO wrote:
 >> Legally it's ok. But as you said, developers preference are
 >> different. And because you are trying to change THEIR code it's
 >> sometimes better to play they rules.
-> 
+>
 > I see.
->  
+>
 >>> I can image there are people who prefer to GPL as the license covering
 >>> their software. But here I've taken some corosync code in my
 >>> dissector. It is essential part of my dissector. And corosync is
@@ -278,10 +278,10 @@ On 12/14/2010 08:04 AM, Masatake YAMATO wrote:
 >>
 >> Steve, we were able to relicense HUGE portion of code in case of
 >> libqb, are we able to make the same for Wireshark dissector?
-> 
+>
 > Could you see https://github.com/masatake/wireshark-plugin-rhcs/blob/master/src/packet-corosync-totemnet.c#L156
 > I refer totemnet.c to write dissect_corosynec_totemnet_with_decryption() function. 
-> 
+>
 >>> licensed in 3-clause BSD, as you know. I'd like to change the license
 >>> to merge my code to upstream project. I cannot do it in this context.
 >>> See https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=3232#c13
@@ -289,7 +289,7 @@ On 12/14/2010 08:04 AM, Masatake YAMATO wrote:
 >>
 >> Regards,
 >>   Honza
-> 
+>
 > Masatake YAMATO
 
 Masatake,
@@ -325,7 +325,7 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
   int            io_len;
   unsigned char  type;
   guint8        *io_base;
-  
+
 #define PRIVATE_KEY_LEN_MAX 256
   gchar          private_key[PRIVATE_KEY_LEN_MAX];
   unsigned int   private_key_len;
@@ -345,7 +345,7 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
 
   hash_digest = io_base;
   salt        = io_base + HMAC_HASH_SIZE;
-  
+
 
   memset(private_key, 0, sizeof(private_key));
 
@@ -360,7 +360,7 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
   memset (keys, 0, sizeof(keys));
   corocrypto_sober128_start (&keygen_prng_state);
   corocrypto_sober128_add_entropy(private_key,
-                                   private_key_len, &keygen_prng_state);
+				  private_key_len, &keygen_prng_state);
   corocrypto_sober128_add_entropy (salt, SALT_SIZE, &keygen_prng_state);
   corocrypto_sober128_read (keys, sizeof (keys), &keygen_prng_state);
 
@@ -368,17 +368,17 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
    * Setup stream cipher
    */
   corocrypto_sober128_start (&stream_prng_state);
-  corocrypto_sober128_add_entropy (cipher_key, 16, &stream_prng_state); 
-  corocrypto_sober128_add_entropy (initial_vector, 16, &stream_prng_state);     
-  
+  corocrypto_sober128_add_entropy (cipher_key, 16, &stream_prng_state);
+  corocrypto_sober128_add_entropy (initial_vector, 16, &stream_prng_state);
+
   /*
    * Authenticate contents of message
    */
-  sha1_hmac(hmac_key, 16, 
-	    io_base + HMAC_HASH_SIZE, io_len - HMAC_HASH_SIZE, 
+  sha1_hmac(hmac_key, 16,
+	    io_base + HMAC_HASH_SIZE, io_len - HMAC_HASH_SIZE,
 	    digest_comparison);
 
-  if (memcmp (digest_comparison, hash_digest, HMAC_HASH_SIZE) != 0) 
+  if (memcmp (digest_comparison, hash_digest, HMAC_HASH_SIZE) != 0)
     {
       g_free(io_base);
       return 0;
@@ -390,8 +390,8 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
    */
 
   corocrypto_sober128_read (io_base + HMAC_HASH_SIZE + SALT_SIZE,
-                             io_len - (HMAC_HASH_SIZE + SALT_SIZE),
-                             &stream_prng_state);
+			    io_len - (HMAC_HASH_SIZE + SALT_SIZE),
+			    &stream_prng_state);
 
 
   /*
@@ -404,19 +404,18 @@ dissect_corosynec_totemnet_with_decryption(tvbuff_t *tvb,
 
     decrypted_tvb = tvb_new_real_data(io_base, io_len, io_len);
     tvb_set_free_cb(decrypted_tvb, g_free);
-    
+
     tvb_set_child_real_data_tvbuff(tvb, decrypted_tvb);
     add_new_data_source(pinfo, decrypted_tvb, "Decrypted Data");
 
-    
+
     dissect_corosync_totemnet_security_header(decrypted_tvb, pinfo, parent_tree, 
 					      check_crypt_type, key_for_trial);
-    
-    next_tvb = tvb_new_subset(decrypted_tvb, 
-                              HMAC_HASH_SIZE + SALT_SIZE, 
-                              io_len - (HMAC_HASH_SIZE + SALT_SIZE),
-                              io_len - (HMAC_HASH_SIZE + SALT_SIZE));
-    
+
+    next_tvb = tvb_new_subset(decrypted_tvb,
+			      HMAC_HASH_SIZE + SALT_SIZE,
+			      io_len - (HMAC_HASH_SIZE + SALT_SIZE),
+			      io_len - (HMAC_HASH_SIZE + SALT_SIZE));
 
     return dissect_corosync_totemsrp(next_tvb, pinfo, parent_tree) + HMAC_HASH_SIZE + SALT_SIZE;
   }
@@ -427,7 +426,7 @@ dissect_corosynec_totemnet(tvbuff_t *tvb,
                            packet_info *pinfo, proto_tree *parent_tree,
 			   void *data)
 {
-  if (corosync_totemnet_private_keys_list) 
+  if (corosync_totemnet_private_keys_list)
     {
       static int last_key_index = -1;
       int key_index;
@@ -442,7 +441,7 @@ dissect_corosynec_totemnet(tvbuff_t *tvb,
 	  int r;
 
 	  r = dissect_corosynec_totemnet_with_decryption(tvb,
-							 pinfo, 
+							 pinfo,
 							 parent_tree,
 							 check_crypt_type_list[last_check_crypt_type_index],
 							 corosync_totemnet_private_keys_list[last_key_index]);
@@ -451,19 +450,19 @@ dissect_corosynec_totemnet(tvbuff_t *tvb,
 	  else
 	    last_key_index = -1;
 	}
-      
+
       for (key_index = 0;
 	   corosync_totemnet_private_keys_list[key_index];
 	   key_index++)
 	{
-	  for (check_crypt_type_index = 0; 
-	       check_crypt_type_index < 2; 
+	  for (check_crypt_type_index = 0;
+	       check_crypt_type_index < 2;
 	       check_crypt_type_index++)
 	    {
 	      int r;
 
-	      r = dissect_corosynec_totemnet_with_decryption(tvb, 
-							     pinfo, 
+	      r = dissect_corosynec_totemnet_with_decryption(tvb,
+							     pinfo,
 							     parent_tree,
 							     check_crypt_type_list[check_crypt_type_index],
 							     corosync_totemnet_private_keys_list[key_index]);
@@ -504,7 +503,7 @@ proto_register_corosync_totemnet(void)
       { "Private Key for decryption", "corosync_totemnet.security_crypto_key",
 	FT_NONE, BASE_NONE, NULL, 0x0, NULL, HFILL }},
   };
-  
+
   static gint *ett_corosync_totemnet[] = {
     &ett_corosync_totemnet_security_header,
   };
@@ -513,7 +512,7 @@ proto_register_corosync_totemnet(void)
                                                     "COROSYNC/TOTEMNET", "corosync_totemnet");
   proto_register_field_array(proto_corosync_totemnet, hf, array_length(hf));
   proto_register_subtree_array(ett_corosync_totemnet, array_length(ett_corosync_totemnet));
-  
+
   corosync_totemnet_module = prefs_register_protocol(proto_corosync_totemnet,
                                                      proto_reg_handoff_corosync_totemnet);
 
@@ -536,12 +535,12 @@ proto_reg_handoff_corosync_totemnet(void)
   static int port = 0;
 
 
-  if (register_dissector) 
+  if (register_dissector)
     {
       dissector_delete_uint("udp.port", port, corosync_totemnet_handle);
       dissector_delete_uint("udp.port", port - 1, corosync_totemnet_handle);
-    } 
-  else 
+    }
+  else
     {
       corosync_totemnet_handle = new_create_dissector_handle(dissect_corosynec_totemnet,
                                                              proto_corosync_totemnet);
@@ -553,7 +552,7 @@ proto_reg_handoff_corosync_totemnet(void)
     corosync_totemnet_private_keys_list = NULL;
   }
   corosync_totemnet_private_keys_list = g_strsplit(corosync_totemnet_private_keys,
-						   ";", 
+						   ";",
 						   0);
   port  = corosync_totemnet_port;
   dissector_add_uint("udp.port", port,     corosync_totemnet_handle);
@@ -564,7 +563,7 @@ proto_reg_handoff_corosync_totemnet(void)
 
 /* crypto.c */
 
-/* About LibTomCrypt: 
+/* About LibTomCrypt:
  * ---------------------------------------------------------------------
  * LibTomCrypt, modular cryptographic library -- Tom St Denis
  *
@@ -673,7 +672,7 @@ typedef unsigned long long ulong64;
          (((ulong64)((y)[4] & 255))<<24)|(((ulong64)((y)[5] & 255))<<16) | \
          (((ulong64)((y)[6] & 255))<<8)|(((ulong64)((y)[7] & 255))); }
 
-#ifdef ENDIAN_32BITWORD 
+#ifdef ENDIAN_32BITWORD
 
 #define STORE32L(x, y)        \
      { unsigned long __t = (x); memcpy(y, &__t, 4); }
@@ -734,7 +733,7 @@ typedef unsigned long long ulong64;
          (((ulong64)((y)[3] & 255))<<24)|(((ulong64)((y)[2] & 255))<<16) | \
          (((ulong64)((y)[1] & 255))<<8)|(((ulong64)((y)[0] & 255))); }
 
-#ifdef ENDIAN_32BITWORD 
+#ifdef ENDIAN_32BITWORD
 
 #define STORE32H(x, y)        \
      { unsigned long __t = (x); memcpy(y, &__t, 4); }
@@ -896,7 +895,7 @@ static inline unsigned long ROR(unsigned long word, int i)
          (((ulong64)((y)[4] & 255))<<24)|(((ulong64)((y)[5] & 255))<<16) | \
          (((ulong64)((y)[6] & 255))<<8)|(((ulong64)((y)[7] & 255))); }
 
-#ifdef ENDIAN_32BITWORD 
+#ifdef ENDIAN_32BITWORD
 
 #define STORE32L(x, y)        \
      { unsigned long __t = (x); memcpy(y, &__t, 4); }
@@ -957,7 +956,7 @@ static inline unsigned long ROR(unsigned long word, int i)
          (((ulong64)((y)[3] & 255))<<24)|(((ulong64)((y)[2] & 255))<<16) | \
          (((ulong64)((y)[1] & 255))<<8)|(((ulong64)((y)[0] & 255))); }
 
-#ifdef ENDIAN_32BITWORD 
+#ifdef ENDIAN_32BITWORD
 
 #define STORE32H(x, y)        \
      { unsigned long __t = (x); memcpy(y, &__t, 4); }
@@ -1095,7 +1094,7 @@ static const ulong32 Multab[256] = {
  * "On the Design of 8*32 S-boxes". Unpublished report, by the
  * Information Systems Research Centre,
  * Queensland University of Technology, 1999.
- * 
+ *
  * The most significant 8 bits are the Skipjack "F table", which can be
  * found at http://csrc.nist.gov/CryptoToolkit/skipjack/skipjack.pdf .
  * In this optimised table, though, the intent is to XOR the word from
@@ -1248,7 +1247,7 @@ static ulong32 nltap(struct sober128_prng *c)
 int corocrypto_sober128_start(struct sober128_prng *c)
 {
     int                   i;
-    
+
     /* Register initialised to Fibonacci numbers */
     c->R[0] = 1;
     c->R[1] = 1;
@@ -1307,7 +1306,7 @@ static void s128_genkonst(struct sober128_prng *c)
    c->R[FOLDP] ^= (nl);
 
 /* nonlinear diffusion of register for key */
-#define DROUND(z) STEP(c->R,z); NLFUNC(c,(z+1)); c->R[OFF((z+1),FOLDP)] ^= t; 
+#define DROUND(z) STEP(c->R,z); NLFUNC(c,(z+1)); c->R[OFF((z+1),FOLDP)] ^= t;
 static void s128_diffuse(struct sober128_prng *c)
 {
     ulong32 t;
@@ -1340,7 +1339,7 @@ static int corocrypto_sober128_add_entropy(const unsigned char *buf, unsigned lo
        /* this is the first call to the add_entropy so this input is the key */
        /* len must be multiple of 4 bytes */
        assert ((len & 3) == 0);
-    
+
        for (i = 0; i < len; i += 4) {
            k = BYTE2WORD((unsigned char *)&buf[i]);
           ADDKEY(k);
@@ -1357,7 +1356,7 @@ static int corocrypto_sober128_add_entropy(const unsigned char *buf, unsigned lo
        s128_genkonst(c);
        s128_savestate(c);
        c->nbuf = 0;
-       c->flag = 0;       
+       c->flag = 0;
        c->set  = 1;
     } else {
        /* ok we are adding an IV then... */
@@ -1394,7 +1393,7 @@ static unsigned long corocrypto_sober128_read(unsigned char *buf, unsigned long 
 
    t = 0;
    tlen = nbytes;
-   
+
    /* handle any previously buffered bytes */
    while (c->nbuf != 0 && nbytes != 0) {
       *buf++ ^= c->sbuf & 0xFF;
@@ -1443,10 +1442,10 @@ static unsigned long corocrypto_sober128_read(unsigned char *buf, unsigned long 
       c->sbuf = nltap(c);
       c->nbuf = 32;
       while (c->nbuf != 0 && nbytes != 0) {
-          *buf++ ^= c->sbuf & 0xFF;
-          c->sbuf >>= 8;
-          c->nbuf -= 8;
-          --nbytes;
+	*buf++ ^= c->sbuf & 0xFF;
+	c->sbuf >>= 8;
+	c->nbuf -= 8;
+	--nbytes;
       }
     }
 
