@@ -29,25 +29,24 @@
 
 #include <netinet/in.h>
 
-extern  int dissect_corosync_totemsrp     (tvbuff_t    *tvb,
-                                           packet_info *pinfo, 
-                                           proto_tree  *parent_tree);
+extern  int dissect_corosync_totemsrp  (tvbuff_t    *tvb,
+					packet_info *pinfo,
+					proto_tree  *parent_tree);
 
 
-/* subdissectors for corosync_totemsrp can know the endian information
-   embedded in totemsrp packet header. */
-extern gboolean corosync_totemsrp_is_little_endian(packet_info *pinfo);
-extern guint corosync_totemsrp_nodeid             (packet_info *pinfo);
+/* Utilities for subdissectors of corosync_totemsrp.*/
+extern gboolean corosync_totemsrp_is_little_endian (packet_info *pinfo);
+extern guint    corosync_totemsrp_nodeid           (packet_info *pinfo);
 
 #define COROSYNC_TOTEMSRP_IP_ADDRLEN           (sizeof(struct in6_addr))
 #define corosync_totemsrp_ip_address_length    ( 4 + 2 + COROSYNC_TOTEMSRP_IP_ADDRLEN )
 #define corosync_totemsrp_memb_ring_id_length  ( 8 + corosync_totemsrp_ip_address_length )
 
-extern  int corosync_totemsrp_dissect_memb_ring_id(tvbuff_t    *tvb,
-                                                   packet_info *pinfo, 
-                                                   proto_tree  *parent_tree,
-                                                   guint        length, 
-                                                   int          offset);
+extern  int corosync_totemsrp_dissect_memb_ring_id (tvbuff_t    *tvb,
+						    packet_info *pinfo,
+						    proto_tree  *parent_tree,
+						    guint        length,
+						    int          offset);
 
 
 #endif /* packet-totemsrp.h */
