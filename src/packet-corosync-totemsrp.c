@@ -479,7 +479,8 @@ dissect_corosync_totemsrp_srp_addr(tvbuff_t *tvb,
         int sub_length;
         proto_tree *tree;
         proto_item *item;
-
+        guint nodeid;
+	
 #define corosync_totemsrp_srp_addr_length  (corosync_totemsrp_ip_address_length * COROSYNC_TOTEMSRP_SRP_ADDR_INTERFACE_MAX)
         if ((length - offset) < corosync_totemsrp_srp_addr_length)
                 return 0;
@@ -494,11 +495,11 @@ dissect_corosync_totemsrp_srp_addr(tvbuff_t *tvb,
                                                  length, offset,
                                                  little_endian,
                                                  TRUE, 0,
-                                                 NULL);
+                                                 &nodeid);
         if (sub_length == 0)
                 goto out;
-
-
+        proto_item_append_text(item, " (node: %u)", nodeid);
+	
         offset += sub_length;
         sub_length = dissect_corosync_totemsrp_ip_address(tvb, pinfo, tree,
                                                  length, offset,
