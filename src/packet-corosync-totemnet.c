@@ -1,7 +1,7 @@
 /* packet-corosync-totemnet.c
  * Routines for the lowest level(encryption/decryption) protocol used in Corosync cluster engine
- * Copyright 2009 2010 Masatake YAMATO <yamato@redhat.com>
- * Copyright (c) 2010 Red Hat, Inc.
+ * Copyright 2009 2010 2014 Masatake YAMATO <yamato@redhat.com>
+ * Copyright (c) 2010 2014 Red Hat, Inc.
  *
  * $Id:$
  *
