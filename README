@@ -11,6 +11,7 @@ Coverage of the communications:
 	  openais_cman: DONE.
 	    clvmd: DONE.
 	    rgmanager: Most of all but not completed.
+	    qdiskd(CLUSTER_PORT_QDISKD): done nothing yet. 
 	  openais_a: DONE.
 	    openais_cpg: DONE.
 	      groupd: DONE.
@@ -24,6 +25,11 @@ Coverage of the communications:
 	  sync: DONE.
 	  sync2: DONE.
 
+
+NOTE
+----------
+This plugin doesn't be compiled well with svn version of wireshark.
+See [1] if you want to use this plugin with the svn version.
 
 Background
 ----------
